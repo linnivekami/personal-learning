@@ -1,0 +1,14 @@
+# 个人学习数据（不公开）
+personal-learning/data/learner-profile.md
+personal-learning/data/projects/
+ielts-learning-os/data/
+tests/
+archive/
+# 构建产物
+*.zip
+dist/
+# 旧交接快照与系统文件
+personal-learning-交接说明.md
+.DS_Store
+__pycache__/
+.Rhistory
