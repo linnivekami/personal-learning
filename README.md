@@ -1,6 +1,12 @@
 # Personal Learning OS
 
-当前主系统版本为 **v1.3.0**。当前系统源目录是 [`personal-learning/`](personal-learning/)；教学对话与维护对话均应从此目录读取和写入。
+当前主系统版本为 **v2.0.0**。当前系统源目录是 [`personal-learning/`](personal-learning/)；教学对话与维护对话均应从此目录读取和写入。
+
+## 软件平台
+
+[Personal Learning 平台源码与启动说明](personal-learning-platform/README.md) · [部署与安全配置](personal-learning-platform/docs/DEPLOYMENT.md) · [完整验收状态](personal-learning-platform/docs/ACCEPTANCE.md)
+
+软件与 Skill 共享教学状态引擎；个人记录不包含在公开源码或演示数据中。当前提供完整功能代码与内部验收环境，真实模型、语音、邮件、Google 登录及生产恢复仍需服务配置和验收后正式上线。
 
 ## 快速入口
 

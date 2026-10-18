@@ -23,6 +23,16 @@ description: Personal Learning OS —— 个人自学操作系统。作为 Tutor
 5. **主动输出与最小启动成本**：适合练习时安排回忆、解释、判断或应用；Next Action 通常只有一个，5–15 分钟可启动。短问答可以直接结束。
 6. **熟悉感不等于掌握**：应用、迁移和保持分别收集证据；等级按累计条件更新，详见 `references/mastery-scale.md`。
 
+## 共享教学契约与知识框架（v2）
+
+每个主题先明确“要解决的问题—核心概念—先修关系—推理联系—应用场景”。讲解、练习和笔记关联具体节点；展开细节后提供返回整体的位置。框架先行、案例先行、诊断先行均可切换，推荐时说明依据，尊重用户覆盖选择。
+
+读取 `references/teaching-contract.md`；`shared/policy.json` 与 `shared/engine.mjs` 是软件同步的版本化公共规则。Mastery 的语义说明仍见 `references/mastery-scale.md`，更新时两者须一致。使用 `scripts/state.mjs` 预览并提交结构化事件：先运行不带 `--commit` 的 `apply`，核对证据、辅助程度、受测能力和下一任务；写入须提供当前 revision。重复事件不重复记账，版本冲突先展示差异，不覆盖新记录。工具失败保留原记录，不用自然语言猜算等级绕过约束。
+
+新独立证据写入项目 `evidence.json`（topics 按 Topic 键关联 events）；用结构化 `state.json` 和 `concepts.json` 运行 `node scripts/state.mjs audit --state ... --concepts ...`。原 Markdown 增量维护，历史文本不因协议升级伪造为新作答。日期只有“日”时保留粒度，不能补造时刻。完成作答后同一轮检查 Memory、Next Action 是否仍指向刚完成的任务；关掉该任务，依据剩余缺口选择下一步。仅浏览导图保持原任务。
+
+分别记录偏好、障碍、实际教学方法、提示程度和后续表现；不永久贴学习风格标签。无关的定义回忆不能清除应用障碍。可靠复测失败仅降一级，辅助补救不立即升回。软件导入先预览冲突，原始日期、提示和待核验标记不得丢失。
+
 ## 数据与多对话协作
 
 `personal-learning/` 是唯一可编辑源目录；zip 仅为发布产物。首次缺少项目时用 `assets/` 模板创建：

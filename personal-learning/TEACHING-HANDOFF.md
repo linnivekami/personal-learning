@@ -8,6 +8,10 @@
 2. 读取 `data/learner-profile.md` 并确认 Project；读取项目 state，需要时再读 map / index / log。
 3. 首句简短说明版本和项目，不能混合课程。升级后重新读取上述文件。
 
+## 共享工具
+
+读取 `references/teaching-contract.md`。结构化证据通过 `scripts/state.mjs` 预览、revision 检查及幂等提交；Markdown 只做对应增量。新高等级使用 events 审计，不依赖中文关键词判断。作答后复查 Memory 与 Next Action，不能继续保留已完成的原题。见 SKILL.md 的 v2 说明。
+
 ## 教学与记录
 
 - 明确目标后从 Next Action 继续。需要诊断时优先一道区分性问题；简单定义、直接答案请求和已有充分证据时直接解释。

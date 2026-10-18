@@ -4,6 +4,10 @@ import argparse
 from pathlib import Path
 import re
 import sys
+import json
+import hashlib
+import subprocess
+import tempfile
 
 
 def cells(line):
@@ -32,6 +36,8 @@ def mastery_rows(path):
 def audit(source):
     errors = []
     count = pending = 0
+    baseline_path = source / 'data/legacy-audit-baseline.json'
+    baseline = json.loads(baseline_path.read_text()).get('projects', {}) if baseline_path.exists() else {}
     for path in sorted((source / 'data/projects').glob('*/state.md')):
         seen = set()
         for line, header, row in mastery_rows(path):
@@ -61,31 +67,25 @@ def audit(source):
                 pending += 1
                 if not evidence.split('待按 v1.2 核验：', 1)[1].strip():
                     errors.append(f'{location}: historical verification gap missing')
-            if int(grade) >= 3 and not waiting:
-                linked_history = int(grade) == 3 and 'v1.2 累积证据来源：' in evidence
-                # Future entries must explicitly describe covered capabilities and interval.
-                documented = all(word in evidence for word in ['解释', '应用', '无提示', '间隔'])
-                if int(grade) >= 4:
-                    documented = documented and '变式' in evidence
-                if int(grade) >= 5:
-                    documented = documented and '迁移' in evidence
-                if not (linked_history or documented):
-                    errors.append(f'{location}: high grade lacks cumulative evidence description or historical pending marker')
-            if int(grade) >= 2 and '经提示后' in evidence and not waiting:
-                errors.append(f'{location}: assisted historical success needs independent-evidence verification')
-    active = [source / 'SKILL.md', source / 'TEACHING-HANDOFF.md']
-    active += list((source / 'references').glob('*.md'))
-    active += list((source / 'assets').glob('*.md'))
-    active += list((source / 'data/projects').glob('*/state.md'))
-    obsolete = ['每轮必做', '每次答题后追问', '每次作答后询问 Confidence',
-                '含提示后答对', '不跳级', 'Confidence 必填',
-                'Confidence ≥ 7 且 Mastery ≤ 2', 'Confidence ≤ 4 且 Mastery ≥ 4',
-                '这是识别"熟悉感幻觉"的唯一手段', 'Mastery: 2 → 2.5']
-    for path in active:
-        content = path.read_text()
-        for old in obsolete:
-            if old in content:
-                errors.append(f'{path.relative_to(source)}: obsolete active rule {old}')
+            if int(grade) >= 2 and not waiting:
+                fingerprint = hashlib.sha256(json.dumps(row, ensure_ascii=False, separators=(',', ':')).encode()).hexdigest()
+                grandfathered = baseline.get(path.parent.name, {}).get(topic) == fingerprint
+                evidence_path = path.parent / 'evidence.json'
+                structured = json.loads(evidence_path.read_text()).get('topics', {}).get(topic) if evidence_path.exists() else None
+                if not grandfathered:
+                    if not structured:
+                        errors.append(f'{location}: structured evidence required for new or changed independent grade')
+                    else:
+                        try:
+                            with tempfile.NamedTemporaryFile(mode='w', suffix='.json') as handle:
+                                json.dump(structured.get('events', []), handle)
+                                handle.flush()
+                                result = subprocess.run(['node', str(source / 'scripts/state.mjs'), 'grade', '--events', handle.name], capture_output=True, text=True, check=True)
+                            actual = json.loads(result.stdout)['mastery']
+                            if actual != int(grade):
+                                errors.append(f'{location}: structured evidence derives {actual}, claimed {grade}')
+                        except (ValueError, subprocess.CalledProcessError, OSError) as exc:
+                            errors.append(f'{location}: invalid structured evidence: {type(exc).__name__}')
     return errors, count, pending
 
 

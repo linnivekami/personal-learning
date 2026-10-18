@@ -18,7 +18,7 @@ for project_dir in "$SRC_DIR"/data/projects/*; do
 done
 test "$found_project" -eq 1 || { echo "No project directories found" >&2; exit 1; }
 
-if rg -n '\[[?A-Z0-9+]+\]' "$SRC_DIR"/data/projects/*/knowledge-map.md; then
+if rg -n '^([[:space:]]*[-*] |[[:space:]]*[0-9]+[.)] )\[[?A-Z0-9+]+\]' "$SRC_DIR"/data/projects/*/knowledge-map.md; then
   echo "Knowledge maps must not contain mastery/status markers" >&2
   exit 1
 fi

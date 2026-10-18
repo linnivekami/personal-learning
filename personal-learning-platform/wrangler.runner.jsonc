@@ -1,0 +1,7 @@
+{
+ "name":"personal-learning-runner",
+ "main":"dist/runner/index.js",
+ "compatibility_date":"2026-10-18",
+ "vars":{"APP_ORIGIN":"https://learning.example.com"},
+ "observability":{"enabled":true}
+}

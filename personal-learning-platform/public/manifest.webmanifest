@@ -1,0 +1,18 @@
+{
+  "name": "Personal Learning",
+  "short_name": "Learning",
+  "description": "Connected understanding, one small step at a time.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#f5f7f6",
+  "theme_color": "#173e3a",
+  "icons": [
+    {
+      "src": "/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
