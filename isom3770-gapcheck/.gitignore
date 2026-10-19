@@ -1,0 +1,5 @@
+# Build products are reproducible from src/ via build.py.
+dist/
+# Screenshots and downloaded JSON from the Playwright checks.
+test-output/
+__pycache__/

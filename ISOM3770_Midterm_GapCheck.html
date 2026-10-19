@@ -1,0 +1,2379 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#1f4ed8">
+<title>ISOM 3770 · 考前查缺补漏</title>
+<meta name="description" content="ISOM 3770 期中考前查缺补漏：自选题量、英文 A–E 单选、E=不知道、自动保存、章节/题型/知识点诊断与 JSON 导出。">
+<style>/* ISOM 3770 · pre-exam gap-check — self-contained styles */
+:root{
+  color-scheme:light;
+  --bg:#f3f5f9;
+  --bg-glow:rgba(31,78,216,.10);
+  --panel:#ffffff;
+  --panel-2:#f8fafc;
+  --panel-3:#eef2f8;
+  --ink:#121826;
+  --ink-2:#283449;
+  --muted:#667085;
+  --muted-2:#8a94a6;
+  --line:#d8e0ea;
+  --line-strong:#b9c5d6;
+  --primary:#1f4ed8;
+  --primary-2:#173ba8;
+  --primary-soft:#e9efff;
+  --teal:#0f766e;
+  --teal-soft:#dff7f2;
+  --amber:#a85a06;
+  --amber-soft:#fff3dc;
+  --red:#b42318;
+  --red-soft:#fee7e4;
+  --green:#067647;
+  --green-soft:#dcfae6;
+  --violet:#6941c6;
+  --violet-soft:#f0e9ff;
+  --shadow:0 12px 34px rgba(18,24,38,.07);
+  --shadow-sm:0 4px 14px rgba(18,24,38,.05);
+  --radius:16px;
+  --radius-sm:11px;
+  --ring:0 0 0 4px rgba(31,78,216,.20);
+  --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,"Liberation Mono",monospace;
+  --sans:ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans SC",Arial,sans-serif;
+  --serif:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,"Songti SC",serif;
+}
+[data-theme="dark"]{
+  color-scheme:dark;
+  --bg:#0c111b;
+  --bg-glow:rgba(102,140,255,.15);
+  --panel:#131a27;
+  --panel-2:#0f1622;
+  --panel-3:#1a2434;
+  --ink:#edf1f8;
+  --ink-2:#d7dfec;
+  --muted:#9aa6b8;
+  --muted-2:#778397;
+  --line:#283446;
+  --line-strong:#3b4a63;
+  --primary:#7b9cff;
+  --primary-2:#a3b9ff;
+  --primary-soft:#1b2a4d;
+  --teal:#5eead4;
+  --teal-soft:#113a36;
+  --amber:#f5b75b;
+  --amber-soft:#3a2a12;
+  --red:#ff8d84;
+  --red-soft:#3d1c1c;
+  --green:#7ee2a8;
+  --green-soft:#123424;
+  --violet:#c4a7ff;
+  --violet-soft:#2c2145;
+  --shadow:0 18px 44px rgba(0,0,0,.34);
+  --shadow-sm:0 6px 18px rgba(0,0,0,.24);
+  --ring:0 0 0 4px rgba(123,156,255,.25);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  min-width:320px;
+  background:
+    radial-gradient(900px 420px at 80% -160px,var(--bg-glow),transparent 70%),
+    radial-gradient(700px 380px at -140px 10%,rgba(15,118,110,.07),transparent 70%),
+    var(--bg);
+  color:var(--ink);
+  font-family:var(--sans);
+  font-size:15px;
+  line-height:1.55;
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+}
+button,input,select{font:inherit}
+button{cursor:pointer}
+a{color:var(--primary);text-decoration-thickness:1px;text-underline-offset:2px}
+a:hover{color:var(--primary-2)}
+h1,h2,h3,h4,p{margin:0}
+ul,ol{margin:0;padding:0}
+:focus-visible{outline:3px solid var(--primary);outline-offset:2px;box-shadow:var(--ring)}
+::selection{background:var(--primary);color:#fff}
+[hidden],.hidden{display:none!important}
+.sr-only{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.skip{position:fixed;left:12px;top:-60px;z-index:100;background:var(--ink);color:var(--bg);padding:10px 14px;border-radius:9px;transition:top .15s}
+.skip:focus{top:12px;color:var(--bg)}
+.muted{color:var(--muted)}
+.small{font-size:13px}
+.tiny{font-size:12px}
+.mono{font-family:var(--mono)}
+.nowrap{white-space:nowrap}
+
+/* ---------- shell ---------- */
+.site-head{
+  max-width:1180px;margin:0 auto;padding:20px 24px 12px;
+  display:flex;align-items:center;justify-content:space-between;gap:16px;
+}
+.brand{display:flex;align-items:center;gap:11px;min-width:0;text-decoration:none;color:var(--ink)}
+.brand-mark{
+  width:40px;height:40px;border-radius:12px;display:grid;place-items:center;flex:0 0 auto;
+  background:linear-gradient(145deg,var(--primary),var(--teal));color:#fff;
+  font-family:var(--serif);font-size:17px;font-weight:700;letter-spacing:-.5px;
+  box-shadow:0 6px 16px rgba(31,78,216,.26);
+}
+.brand-text{display:flex;flex-direction:column;line-height:1.15;min-width:0}
+.brand-text b{font-size:14px;letter-spacing:.01em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.brand-text span{font-size:11.5px;color:var(--muted);letter-spacing:.06em;text-transform:uppercase}
+.head-tools{display:flex;align-items:center;gap:8px;flex:0 0 auto}
+.icon-btn{
+  width:38px;height:38px;display:inline-grid;place-items:center;border-radius:10px;
+  border:1px solid var(--line);background:var(--panel);color:var(--ink);box-shadow:var(--shadow-sm);
+}
+.icon-btn:hover{background:var(--panel-3)}
+.shell{max-width:1180px;margin:0 auto;padding:8px 24px 70px}
+.eyebrow{font-size:11.5px;font-weight:750;letter-spacing:.13em;text-transform:uppercase;color:var(--primary)}
+.eyebrow.teal{color:var(--teal)}
+.eyebrow.amber{color:var(--amber)}
+
+/* ---------- buttons ---------- */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  border:1px solid var(--line-strong);background:var(--panel);color:var(--ink);
+  padding:10px 15px;border-radius:10px;font-weight:650;font-size:14px;line-height:1.2;
+  min-height:42px;transition:background .15s,border-color .15s,transform .1s,box-shadow .15s;
+  text-decoration:none;
+}
+.btn:hover{background:var(--panel-3);border-color:var(--line-strong)}
+.btn:active{transform:translateY(1px)}
+.btn.primary{background:var(--primary);border-color:var(--primary);color:#fff;box-shadow:0 7px 18px rgba(31,78,216,.20)}
+.btn.primary:hover{background:var(--primary-2);border-color:var(--primary-2);color:#fff}
+.btn.soft{background:var(--primary-soft);border-color:transparent;color:var(--primary)}
+.btn.soft:hover{background:var(--primary-soft);border-color:var(--primary)}
+.btn.ghost{background:transparent;border-color:transparent;color:var(--muted)}
+.btn.ghost:hover{background:var(--panel-3);color:var(--ink)}
+.btn.danger{color:var(--red);border-color:var(--line-strong)}
+.btn.danger:hover{background:var(--red-soft);border-color:var(--red)}
+.btn.sm{min-height:34px;padding:7px 11px;font-size:13px;border-radius:8px}
+.btn.lg{min-height:50px;padding:13px 20px;font-size:15px;border-radius:12px}
+.btn:disabled{cursor:not-allowed;opacity:.48;box-shadow:none;transform:none}
+.btn-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+
+/* ---------- generic cards ---------- */
+.card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow-sm)}
+.card-pad{padding:24px}
+.card-head{display:flex;align-items:flex-start;justify-content:space-between;gap:14px;margin-bottom:16px}
+.card-head h2,.card-head h3{font-size:18px;letter-spacing:-.01em;line-height:1.3}
+.card-head p{font-size:13px;color:var(--muted);margin-top:3px}
+.divider{height:1px;background:var(--line);margin:18px 0}
+
+/* ---------- setup ---------- */
+.setup{padding-top:10px}
+.hero{
+  display:grid;grid-template-columns:minmax(0,1.35fr) minmax(260px,.65fr);gap:26px;align-items:stretch;
+  margin-bottom:20px;
+}
+.hero-main{
+  position:relative;overflow:hidden;padding:38px 38px 34px;border-radius:22px;
+  background:
+    linear-gradient(135deg,rgba(31,78,216,.11),rgba(15,118,110,.07) 55%,transparent 80%),
+    var(--panel);
+  border:1px solid var(--line);box-shadow:var(--shadow);
+}
+.hero-main::after{
+  content:"";position:absolute;right:-80px;top:-110px;width:340px;height:340px;border-radius:50%;
+  border:1px solid rgba(31,78,216,.18);box-shadow:0 0 0 36px rgba(31,78,216,.04),0 0 0 72px rgba(15,118,110,.035);
+  pointer-events:none;
+}
+.hero-main h1{font-family:var(--serif);font-size:clamp(36px,5.1vw,54px);line-height:1.03;letter-spacing:-.035em;margin:12px 0 12px;position:relative}
+.hero-main h1 em{font-style:normal;color:var(--primary)}
+.hero-main .lead{max-width:650px;color:var(--muted);font-size:16px;line-height:1.65;position:relative}
+.hero-badges{display:flex;flex-wrap:wrap;gap:7px;margin:18px 0 22px;position:relative}
+.badge{display:inline-flex;align-items:center;gap:5px;font-size:12px;font-weight:600;border:1px solid var(--line);background:var(--panel-2);color:var(--ink-2);border-radius:999px;padding:5px 10px;white-space:nowrap}
+.badge.blue{background:var(--primary-soft);border-color:transparent;color:var(--primary)}
+.badge.teal{background:var(--teal-soft);border-color:transparent;color:var(--teal)}
+.badge.amber{background:var(--amber-soft);border-color:transparent;color:var(--amber)}
+.badge.red{background:var(--red-soft);border-color:transparent;color:var(--red)}
+.hero-side{display:flex;flex-direction:column;gap:12px}
+.hero-side .mini-card{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:17px 18px;box-shadow:var(--shadow-sm)}
+.hero-side .mini-card h3{font-size:13px;letter-spacing:.02em;margin-bottom:8px}
+.hero-side .mini-card p{font-size:12.5px;color:var(--muted);line-height:1.55}
+.hero-side .mini-card .big{font-family:var(--serif);font-size:31px;line-height:1;letter-spacing:-.02em;margin-bottom:5px}
+.hero-side .mini-card .big small{font-family:var(--sans);font-size:12px;color:var(--muted);letter-spacing:0;margin-left:4px}
+.signal{display:flex;align-items:center;gap:8px;font-size:12.5px;color:var(--muted);margin-top:10px}
+.signal i{width:8px;height:8px;border-radius:50%;background:var(--green);box-shadow:0 0 0 4px var(--green-soft);flex:0 0 auto}
+.signal.amber i{background:var(--amber);box-shadow:0 0 0 4px var(--amber-soft)}
+
+.setup-grid{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(280px,.7fr);gap:18px;align-items:start}
+.config-card{padding:26px}
+.config-card h2{font-size:22px;letter-spacing:-.02em}
+.config-card .sub{color:var(--muted);font-size:13.5px;margin-top:4px}
+.field{margin-top:22px}
+.field-label{display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin-bottom:9px}
+.field-label label,.field-label .lab{font-weight:700;font-size:13.5px}
+.field-label .hint{font-size:12px;color:var(--muted)}
+.count-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.presets{display:flex;gap:6px;flex-wrap:wrap}
+.preset{
+  border:1px solid var(--line-strong);background:var(--panel);color:var(--ink);
+  border-radius:8px;padding:8px 12px;font-size:13px;font-weight:650;min-width:50px;
+}
+.preset:hover{background:var(--panel-3)}
+.preset.on{background:var(--primary);border-color:var(--primary);color:#fff}
+.count-box{display:flex;align-items:center;gap:8px;border:1px solid var(--line-strong);background:var(--panel);border-radius:9px;padding:5px 10px}
+.count-box input{width:52px;border:0;background:transparent;color:var(--ink);font-weight:750;font-size:17px;text-align:right;outline:none}
+.count-box span{font-size:12px;color:var(--muted)}
+.count-box .count-prefix{font-size:10.5px;color:var(--muted-2);letter-spacing:.04em;text-transform:uppercase;white-space:nowrap}
+.mode-list{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+.mode-option{position:relative;display:flex;gap:10px;align-items:flex-start;border:1px solid var(--line);background:var(--panel);border-radius:11px;padding:12px 13px;cursor:pointer;transition:border-color .15s,background .15s}
+.mode-option:hover{border-color:var(--line-strong);background:var(--panel-2)}
+.mode-option.on{border-color:var(--primary);background:var(--primary-soft)}
+.mode-option.disabled{opacity:.55;cursor:not-allowed}
+.mode-option input{position:absolute;opacity:0;pointer-events:none}
+.mode-dot{width:16px;height:16px;border-radius:50%;border:2px solid var(--line-strong);flex:0 0 auto;margin-top:2px;display:grid;place-items:center}
+.mode-option.on .mode-dot{border-color:var(--primary)}
+.mode-option.on .mode-dot::after{content:"";width:8px;height:8px;border-radius:50%;background:var(--primary)}
+.mode-option b{display:block;font-size:13.5px}
+.mode-option small{display:block;color:var(--muted);font-size:12px;line-height:1.45;margin-top:2px}
+.config-summary{display:flex;gap:14px;align-items:center;flex-wrap:wrap;background:var(--panel-2);border:1px dashed var(--line-strong);border-radius:10px;padding:11px 13px;margin-top:18px;font-size:12.5px;color:var(--muted)}
+.config-summary b{color:var(--ink)}
+.start-row{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-top:18px}
+.start-row .note{font-size:12px;color:var(--muted);max-width:320px}
+.resume-banner{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;background:var(--primary-soft);border:1px solid transparent;border-radius:12px;padding:13px 15px;margin-bottom:16px}
+.resume-banner b{font-size:13.5px}
+.resume-banner p{font-size:12.5px;color:var(--muted);margin-top:2px}
+.how-card{padding:23px}
+.how-list{list-style:none;counter-reset:how;display:grid;gap:13px;margin-top:15px}
+.how-list li{position:relative;padding-left:35px;font-size:13px;color:var(--muted);line-height:1.55}
+.how-list li::before{counter-increment:how;content:counter(how);position:absolute;left:0;top:1px;width:23px;height:23px;border-radius:50%;display:grid;place-items:center;background:var(--panel-3);color:var(--ink);font-size:11.5px;font-weight:750}
+.how-list b{color:var(--ink)}
+.rule-callout{margin-top:16px;background:var(--amber-soft);border:1px solid transparent;border-radius:10px;padding:12px 13px;font-size:12.5px;color:var(--ink-2);line-height:1.55}
+.rule-callout b{color:var(--amber)}
+
+.scope-card{margin-top:18px;padding:22px 24px}
+.scope-grid{display:grid;grid-template-columns:1fr 1fr;gap:17px;margin-top:14px}
+.scope-col h3{font-size:12px;text-transform:uppercase;letter-spacing:.09em;color:var(--muted);margin-bottom:7px}
+.scope-chips{display:flex;flex-wrap:wrap;gap:5px}
+.scope-chip{font-size:11.5px;border:1px solid var(--line);background:var(--panel-2);border-radius:6px;padding:4px 7px;color:var(--ink-2)}
+.scope-chip.off{text-decoration:line-through;opacity:.65}
+.history-card{margin-top:18px;padding:22px 24px}
+.history-list{display:grid;gap:8px;margin-top:12px}
+.history-row{display:grid;grid-template-columns:1fr auto auto;gap:12px;align-items:center;border:1px solid var(--line);background:var(--panel-2);border-radius:9px;padding:10px 12px;font-size:12.5px}
+.history-row .h-date{color:var(--muted)}
+.history-row b{font-size:13px}
+.history-empty{font-size:12.5px;color:var(--muted);padding:12px 0 2px}
+
+/* ---------- exam ---------- */
+.exam-head{
+  position:sticky;top:0;z-index:30;border-bottom:1px solid var(--line);
+  background:var(--panel);
+  background:color-mix(in srgb,var(--panel) 90%,transparent);
+  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+}
+.exam-head-inner{max-width:1240px;margin:0 auto;padding:11px 22px;display:flex;align-items:center;gap:18px}
+.exam-title{display:flex;align-items:center;gap:10px;font-weight:750;font-size:13.5px;white-space:nowrap}
+.exam-title .dot{width:7px;height:7px;border-radius:50%;background:var(--green);box-shadow:0 0 0 4px var(--green-soft)}
+.exam-progress{flex:1;min-width:90px;display:flex;align-items:center;gap:10px}
+.progress-track{height:7px;border-radius:99px;background:var(--panel-3);overflow:hidden;flex:1}
+.progress-track i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--primary),var(--teal));border-radius:99px;transition:width .25s}
+.progress-label{font-size:12px;color:var(--muted);font-variant-numeric:tabular-nums;white-space:nowrap}
+.timer{font-family:var(--mono);font-size:12px;color:var(--muted);white-space:nowrap;min-width:58px;text-align:right}
+.exam-head .btn{min-height:36px;padding:7px 12px;font-size:13px}
+.exam-layout{max-width:1240px;margin:0 auto;padding:22px 22px 70px;display:grid;grid-template-columns:minmax(0,1fr) 292px;gap:20px;align-items:start}
+.q-card{padding:30px 32px 26px;min-height:520px}
+.q-meta{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin-bottom:20px}
+.q-meta .chip{font-size:11.5px;font-weight:650;color:var(--muted);background:var(--panel-2);border:1px solid var(--line);border-radius:6px;padding:4px 8px}
+.q-meta .chip.primary{background:var(--primary-soft);border-color:transparent;color:var(--primary)}
+.q-meta .chip.amber{background:var(--amber-soft);border-color:transparent;color:var(--amber)}
+.q-meta .chip.teal{background:var(--teal-soft);border-color:transparent;color:var(--teal)}
+.q-num{font-family:var(--serif);font-size:18px;color:var(--muted);margin-right:4px}
+.q-text{font-size:clamp(19px,2.1vw,23px);line-height:1.42;font-weight:660;letter-spacing:-.012em;max-width:860px;margin-bottom:24px}
+.options{display:grid;gap:9px;max-width:900px}
+.option{
+  display:flex;align-items:flex-start;gap:12px;width:100%;text-align:left;
+  border:1.5px solid var(--line);background:var(--panel);color:var(--ink);
+  border-radius:11px;padding:13px 15px;line-height:1.5;font-size:15px;font-weight:500;
+  transition:border-color .13s,background .13s,box-shadow .13s;
+}
+.option:hover{border-color:var(--line-strong);background:var(--panel-2)}
+.option .letter{
+  flex:0 0 auto;width:27px;height:27px;border-radius:50%;display:grid;place-items:center;
+  border:1.5px solid var(--line-strong);font-size:12px;font-weight:800;color:var(--muted);background:var(--panel-2);
+  margin-top:-1px;
+}
+.option .opt-text{flex:1;min-width:0}
+.option.selected{border-color:var(--primary);background:var(--primary-soft);box-shadow:0 0 0 1px var(--primary) inset}
+.option.selected .letter{background:var(--primary);border-color:var(--primary);color:#fff}
+.option.dontknow{border-style:dashed;background:var(--panel-2)}
+.option.dontknow .letter{border-style:dashed}
+.option.dontknow.selected{border-color:var(--amber);background:var(--amber-soft);box-shadow:0 0 0 1px var(--amber) inset}
+.option.dontknow.selected .letter{background:var(--amber);border-color:var(--amber);color:#fff}
+.option.dontknow .opt-note{display:block;font-size:11.5px;color:var(--muted);font-weight:500;margin-top:2px}
+.q-actions{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-top:24px;padding-top:18px;border-top:1px solid var(--line)}
+.q-actions .left,.q-actions .right{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.flag-btn.on{background:var(--amber-soft);border-color:var(--amber);color:var(--amber)}
+.keyhint{font-size:11.5px;color:var(--muted-2);display:flex;gap:10px;flex-wrap:wrap;margin-top:8px}
+.kbd{font-family:var(--mono);font-size:10.5px;border:1px solid var(--line);border-bottom-width:2px;background:var(--panel-2);border-radius:4px;padding:1px 5px;color:var(--muted)}
+
+.side{position:sticky;top:78px;display:grid;gap:12px}
+.side-card{padding:15px}
+.side-card h3{font-size:12px;text-transform:uppercase;letter-spacing:.09em;color:var(--muted);margin-bottom:10px}
+.palette-wrap summary{display:flex;align-items:center;justify-content:space-between;gap:8px;list-style:none;cursor:pointer;margin-bottom:10px}
+.palette-wrap summary::-webkit-details-marker{display:none}
+.palette-wrap summary .side-title{font-size:12px;text-transform:uppercase;letter-spacing:.09em;color:var(--muted);font-weight:700}
+.palette-wrap summary::after{content:"收起";font-size:11px;color:var(--muted-2)}
+.palette-wrap:not([open]) summary{margin-bottom:0}
+.palette-wrap:not([open]) summary::after{content:"展开"}
+@media(min-width:861px){.palette-wrap summary{cursor:default}.palette-wrap summary::after{display:none}}
+.side-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-bottom:12px}
+.side-stat{background:var(--panel-2);border:1px solid var(--line);border-radius:8px;padding:7px 8px;text-align:center}
+.side-stat b{display:block;font-size:16px;line-height:1.2;font-variant-numeric:tabular-nums}
+.side-stat span{font-size:10.5px;color:var(--muted);white-space:nowrap}
+.side-stat.amber b{color:var(--amber)}
+.side-stat.blue b{color:var(--primary)}
+.palette{display:grid;grid-template-columns:repeat(8,1fr);gap:4px}
+.pnum{
+  aspect-ratio:1/1;min-width:0;border:1px solid var(--line);background:var(--panel);color:var(--muted);
+  border-radius:5px;font-size:10.5px;font-weight:650;display:grid;place-items:center;position:relative;padding:0;
+}
+.pnum:hover{border-color:var(--primary);color:var(--ink)}
+.pnum.answered{background:var(--primary-soft);border-color:color-mix(in srgb,var(--primary) 35%,var(--line));color:var(--primary)}
+.pnum.unknown{background:var(--amber-soft);border-color:color-mix(in srgb,var(--amber) 35%,var(--line));color:var(--amber)}
+.pnum.flagged::after{content:"";position:absolute;top:2px;right:2px;width:4px;height:4px;border-radius:50%;background:var(--violet)}
+.pnum.current{outline:2px solid var(--primary);outline-offset:1px;box-shadow:0 0 0 2px var(--panel)}
+.palette-legend{display:flex;flex-wrap:wrap;gap:7px;margin-top:10px;font-size:10.5px;color:var(--muted)}
+.palette-legend span{display:inline-flex;align-items:center;gap:3px}
+.palette-legend i{width:8px;height:8px;border-radius:2px;background:var(--panel);border:1px solid var(--line)}
+.palette-legend .a{background:var(--primary-soft);border-color:var(--primary)}
+.palette-legend .u{background:var(--amber-soft);border-color:var(--amber)}
+.palette-legend .f{background:var(--violet);border-color:var(--violet);border-radius:50%;width:5px;height:5px;margin:0 1px}
+.side-submit{width:100%}
+.side-note{font-size:11.5px;color:var(--muted);line-height:1.45;margin-top:9px}
+.side-exit{width:100%;justify-content:flex-start;color:var(--muted)}
+
+/* ---------- report ---------- */
+.report{padding-top:8px}
+.report-hero{
+  position:relative;overflow:hidden;border:1px solid var(--line);border-radius:22px;box-shadow:var(--shadow);
+  background:
+    radial-gradient(600px 220px at 90% -30%,rgba(31,78,216,.18),transparent 70%),
+    linear-gradient(135deg,var(--panel),var(--panel-2));
+  padding:30px 34px;margin-bottom:18px;
+}
+.report-hero-grid{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:26px;align-items:center}
+.report-hero h1{font-family:var(--serif);font-size:clamp(30px,4vw,42px);line-height:1.05;letter-spacing:-.035em;margin:8px 0 6px}
+.report-hero .lead{color:var(--muted);font-size:13.5px;max-width:670px}
+.score-block{display:flex;align-items:baseline;gap:5px;justify-content:flex-end}
+.score-num{font-family:var(--serif);font-size:66px;line-height:.9;letter-spacing:-.06em;font-variant-numeric:tabular-nums}
+.score-den{font-size:15px;color:var(--muted);font-weight:650}
+.score-cap{text-align:right;font-size:11.5px;color:var(--muted);margin-top:5px}
+.band{display:inline-flex;align-items:center;gap:6px;border-radius:999px;padding:5px 10px;font-size:11.5px;font-weight:750;margin-top:10px}
+.band.good{background:var(--green-soft);color:var(--green)}
+.band.mid{background:var(--amber-soft);color:var(--amber)}
+.band.bad{background:var(--red-soft);color:var(--red)}
+.report-actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px}
+.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:18px}
+.stat-card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:14px 16px;box-shadow:var(--shadow-sm)}
+.stat-card span{display:block;font-size:11.5px;color:var(--muted);margin-bottom:4px}
+.stat-card b{font-family:var(--serif);font-size:29px;line-height:1;letter-spacing:-.03em;font-variant-numeric:tabular-nums}
+.stat-card small{display:block;font-size:11px;color:var(--muted);margin-top:4px}
+.stat-card.correct b{color:var(--green)}
+.stat-card.wrong b{color:var(--red)}
+.stat-card.unknown b{color:var(--amber)}
+.stat-card.rate b{color:var(--primary)}
+.stack{height:12px;border-radius:99px;overflow:hidden;display:flex;background:var(--panel-3);margin:2px 0 7px}
+.stack i{display:block;height:100%}
+.stack .s-correct{background:var(--green)}
+.stack .s-wrong{background:var(--red)}
+.stack .s-unknown{background:var(--amber)}
+.stack .s-unanswered{background:var(--line-strong)}
+.stack-legend{display:flex;flex-wrap:wrap;gap:12px;font-size:11px;color:var(--muted)}
+.stack-legend span{display:inline-flex;align-items:center;gap:4px}
+.stack-legend i{width:8px;height:8px;border-radius:2px}
+.report-grid{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(280px,.85fr);gap:18px;align-items:start}
+.panel{padding:22px 24px}
+.panel h2{font-size:18px;letter-spacing:-.015em;margin-bottom:3px}
+.panel .panel-sub{font-size:12.5px;color:var(--muted);margin-bottom:14px}
+.class-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:12px}
+.class-card{border:1px solid var(--line);border-radius:10px;padding:12px;background:var(--panel-2)}
+.class-card b{display:block;font-size:24px;font-family:var(--serif);line-height:1;margin:2px 0 5px}
+.class-card span{font-size:11.5px;font-weight:750}
+.class-card small{display:block;font-size:11px;color:var(--muted);line-height:1.4;margin-top:4px}
+.class-card.knowledge b{color:var(--amber)}
+.class-card.understanding b{color:var(--violet)}
+.class-card.application b{color:var(--red)}
+.table-wrap{overflow:auto;border:1px solid var(--line);border-radius:10px}
+table.data{width:100%;border-collapse:collapse;font-size:12.5px;min-width:620px}
+table.data th{background:var(--panel-2);text-align:left;font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);padding:9px 10px;border-bottom:1px solid var(--line);white-space:nowrap}
+table.data td{padding:9px 10px;border-bottom:1px solid var(--line);vertical-align:middle}
+table.data tr:last-child td{border-bottom:0}
+table.data tbody tr:hover{background:var(--panel-2)}
+table.data .num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+table.data .btn{white-space:nowrap;padding:5px 7px;min-height:28px}
+table.data.compact{min-width:560px}
+table.data.compact th,table.data.compact td{padding:9px 7px}
+table.data.compact .bar-cell{min-width:100px}
+.bar-cell{display:flex;align-items:center;gap:7px;min-width:120px}
+.bar-cell .mini-track{height:5px;border-radius:9px;background:var(--panel-3);overflow:hidden;flex:1;min-width:54px}
+.bar-cell .mini-track i{display:block;height:100%;background:var(--red);border-radius:9px}
+.bar-cell span{font-size:11px;color:var(--muted);font-variant-numeric:tabular-nums;white-space:nowrap}
+.priority{display:inline-flex;align-items:center;border-radius:999px;padding:2px 7px;font-size:10.5px;font-weight:800;white-space:nowrap}
+.priority.high{background:var(--red-soft);color:var(--red)}
+.priority.mid{background:var(--amber-soft);color:var(--amber)}
+.priority.low{background:var(--green-soft);color:var(--green)}
+.priority.none{background:var(--panel-3);color:var(--muted)}
+.gap-list{display:grid;gap:8px;margin-top:12px}
+.gap-card{border:1px solid var(--line);border-left:3px solid var(--red);background:var(--panel-2);border-radius:8px;padding:11px 12px}
+.gap-card.med{border-left-color:var(--amber)}
+.gap-card.low{border-left-color:var(--green)}
+.gap-card .gap-top{display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap}
+.gap-card b{font-size:12.5px}
+.gap-card .gap-code{font-family:var(--mono);font-size:10.5px;color:var(--muted);margin-right:5px}
+.gap-card p{font-size:11.5px;color:var(--muted);margin-top:5px;line-height:1.5}
+.gap-card .gap-act{font-size:11.5px;color:var(--ink-2);margin-top:5px}
+.gap-card .gap-act b{color:var(--primary)}
+.strength-list{display:flex;flex-wrap:wrap;gap:5px;margin-top:10px}
+.strength-chip{font-size:11px;border:1px solid var(--line);background:var(--green-soft);color:var(--green);border-radius:6px;padding:4px 7px}
+.tip-box{margin-top:14px;border:1px dashed var(--line-strong);border-radius:9px;padding:11px 12px;font-size:11.5px;color:var(--muted);line-height:1.55;background:var(--panel-2)}
+.tip-box b{color:var(--ink)}
+.section-link{font-size:11px;white-space:nowrap}
+
+.review-panel{margin-top:18px;padding:22px 24px}
+.review-tools{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;margin:14px 0}
+.filters{display:flex;gap:5px;flex-wrap:wrap}
+.filter{border:1px solid var(--line);background:var(--panel);color:var(--muted);border-radius:7px;padding:6px 10px;font-size:12px;font-weight:650}
+.filter:hover{background:var(--panel-2);color:var(--ink)}
+.filter.on{background:var(--ink);border-color:var(--ink);color:var(--bg)}
+.review-list{display:grid;gap:9px}
+.review-item{border:1px solid var(--line);border-radius:10px;padding:14px 16px;background:var(--panel)}
+.review-item.wrong{border-left:3px solid var(--red)}
+.review-item.unknown{border-left:3px solid var(--amber)}
+.review-item.correct{border-left:3px solid var(--green)}
+.review-item.unanswered{border-left:3px solid var(--line-strong)}
+.review-top{display:flex;align-items:center;gap:7px;flex-wrap:wrap;margin-bottom:7px}
+.review-top .rid{font-family:var(--mono);font-size:11px;color:var(--muted)}
+.review-q{font-size:14px;font-weight:650;line-height:1.5;margin-bottom:9px}
+.review-opts{display:grid;gap:5px;margin:8px 0}
+.review-opt{display:flex;gap:7px;font-size:12px;line-height:1.45;border:1px solid transparent;border-radius:6px;padding:5px 7px;color:var(--muted)}
+.review-opt .rl{font-weight:800;min-width:17px}
+.review-opt.correct{background:var(--green-soft);color:var(--green);border-color:color-mix(in srgb,var(--green) 25%,transparent)}
+.review-opt.picked-wrong{background:var(--red-soft);color:var(--red);border-color:color-mix(in srgb,var(--red) 25%,transparent)}
+.review-opt.picked-unknown{background:var(--amber-soft);color:var(--amber);border-color:color-mix(in srgb,var(--amber) 25%,transparent)}
+.review-explain{font-size:12px;color:var(--ink-2);background:var(--panel-2);border-radius:7px;padding:8px 10px;line-height:1.55}
+.review-explain b{color:var(--ink)}
+.review-meta{display:flex;gap:10px;flex-wrap:wrap;font-size:11px;color:var(--muted);margin-top:7px}
+.status-badge{font-size:10.5px;font-weight:800;border-radius:999px;padding:2px 7px;white-space:nowrap}
+.status-badge.correct{background:var(--green-soft);color:var(--green)}
+.status-badge.wrong{background:var(--red-soft);color:var(--red)}
+.status-badge.unknown{background:var(--amber-soft);color:var(--amber)}
+.status-badge.unanswered{background:var(--panel-3);color:var(--muted)}
+.empty-state{text-align:center;padding:36px 18px;color:var(--muted);font-size:13px}
+
+/* ---------- dialog / toast ---------- */
+dialog{border:0;border-radius:16px;padding:0;background:var(--panel);color:var(--ink);box-shadow:0 30px 90px rgba(0,0,0,.28);width:min(520px,calc(100vw - 32px))}
+dialog::backdrop{background:rgba(10,15,25,.48);backdrop-filter:blur(3px)}
+.dialog-body{padding:24px 26px 20px}
+.dialog-body h2{font-size:20px;letter-spacing:-.02em;margin-bottom:7px}
+.dialog-body p{font-size:13.5px;color:var(--muted);line-height:1.6}
+.dialog-stats{display:flex;gap:7px;flex-wrap:wrap;margin:14px 0 4px}
+.dialog-actions{display:flex;justify-content:flex-end;gap:8px;padding:14px 18px;border-top:1px solid var(--line);background:var(--panel-2);border-radius:0 0 16px 16px;flex-wrap:wrap}
+.toast{position:fixed;left:50%;bottom:22px;transform:translateX(-50%);z-index:60;background:var(--ink);color:var(--bg);padding:11px 16px;border-radius:10px;font-size:13px;box-shadow:0 14px 40px rgba(0,0,0,.25);max-width:calc(100vw - 30px);text-align:center}
+.toast.good{background:var(--green);color:#fff}
+.toast.bad{background:var(--red);color:#fff}
+
+/* ---------- responsive ---------- */
+@media (max-width:1040px){
+  .exam-layout{grid-template-columns:minmax(0,1fr) 260px;gap:16px}
+  .palette{grid-template-columns:repeat(6,1fr)}
+  .hero{grid-template-columns:1fr}
+  .hero-side{display:grid;grid-template-columns:repeat(3,1fr)}
+}
+@media (max-width:860px){
+  .setup-grid,.report-grid{grid-template-columns:1fr}
+  .exam-layout{grid-template-columns:1fr}
+  .q-card{grid-row:1}
+  .side{position:static;grid-row:2}
+  .q-card{padding:22px 18px;min-height:0}
+  .stats-grid{grid-template-columns:repeat(2,1fr)}
+  .report-hero-grid{grid-template-columns:1fr}
+  .score-block{justify-content:flex-start}
+  .score-cap{text-align:left}
+  .class-grid{grid-template-columns:1fr}
+  .scope-grid{grid-template-columns:1fr}
+  .hero-main{padding:28px 24px}
+  .mode-list{grid-template-columns:1fr}
+  .history-row{grid-template-columns:1fr auto}
+  .history-row .h-top{grid-column:1/-1}
+}
+@media (max-width:620px){
+  .site-head{padding:14px 14px 8px}
+  .shell{padding:6px 14px 60px}
+  .exam-head-inner{padding:9px 12px;gap:10px;flex-wrap:wrap}
+  .exam-title{font-size:12.5px}
+  .exam-progress{order:3;flex-basis:100%;min-width:0}
+  .timer{min-width:0}
+  .exam-layout{padding:14px 12px 60px}
+  .hero-main h1{font-size:34px}
+  .hero-side{grid-template-columns:1fr}
+  .hero-badges{gap:5px}
+  .badge{font-size:11px;padding:4px 8px}
+  .q-text{font-size:18px}
+  .option{font-size:14px;padding:12px 12px;gap:10px}
+  .q-card{padding:20px 14px}
+  .panel,.review-panel,.scope-card,.history-card,.config-card{padding:18px 16px}
+  .report-hero{padding:22px 18px}
+  .score-num{font-size:54px}
+  .stats-grid{gap:7px}
+  .stat-card{padding:11px 12px}
+  .stat-card b{font-size:25px}
+  .palette{grid-template-columns:repeat(10,1fr)}
+  .pnum{font-size:9.5px}
+  .report-actions .btn{flex:1 1 auto}
+  .q-actions{position:sticky;bottom:0;background:var(--panel);margin:18px -14px -20px;padding:12px 14px;border-top:1px solid var(--line);z-index:5}
+  .keyhint{display:none}
+}
+@media (max-width:390px){
+  .palette{grid-template-columns:repeat(8,1fr)}
+  .presets .preset{min-width:44px;padding:7px 9px}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important;scroll-behavior:auto!important}
+}
+@media print{
+  body{background:#fff!important;color:#111!important;font-size:11pt}
+  .site-head,.exam-head,.side,.report-actions,.review-tools,.no-print,.q-actions{display:none!important}
+  .shell,.report{max-width:none;padding:0}
+  .report-hero,.card,.panel,.review-panel,.review-item,.stat-card{box-shadow:none!important;break-inside:avoid;border-color:#ccc!important;background:#fff!important}
+  .report-hero{padding:0 0 14px;border:0;border-bottom:2px solid #111;border-radius:0}
+  .stats-grid{grid-template-columns:repeat(4,1fr)}
+  .report-grid{display:block}
+  .panel{page-break-inside:avoid;margin:10px 0;border:1px solid #ddd}
+  .review-list{display:block}
+  .review-item{margin:8px 0;padding:9px 0;border:0;border-bottom:1px solid #ddd}
+  .review-opt{padding:1px 4px}
+  .review-explain{background:#f7f7f7}
+  a{color:#111;text-decoration:none}
+  .badge,.priority,.status-badge{border:1px solid #bbb}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">跳到正文</a>
+<div id="app"></div>
+<dialog id="dialog" aria-label="确认对话框"></dialog>
+<div id="toast" class="toast" hidden role="status" aria-live="polite"></div>
+<noscript><div style="max-width:720px;margin:40px auto;padding:20px;font-family:system-ui">This exam needs JavaScript. 请用浏览器打开并启用 JavaScript。</div></noscript>
+<script>try{var t=localStorage.getItem('isom3770-gapcheck.v1.theme');if(t==='dark'||t==='light')document.documentElement.dataset.theme=t;}catch(e){}</script>
+<script>window.__BANK__ = [{"id":1,"section":"S1","sectionName":"Supply Chain Fundamentals","topic":"S1-01","code":"S1 · 01","topicTitle":"Supply Chain / Network","category":"Supply Chain Basics","type":"Concept","difficulty":2,"question":"Which statement best describes a supply chain?","options":["Only suppliers, warehouses, and carriers upstream of retailers","All stages and flows involved directly or indirectly in fulfilling a customer request","A single firm’s internal production departments","Only the firms that physically manufacture a product"],"answer":1,"explain":"Customer is also a stage; it is a network of suppliers, manufacturers, distributors, retailers and associated flows."},{"id":2,"section":"S1","sectionName":"Supply Chain Fundamentals","topic":"S1-02","code":"S1 · 02","topicTitle":"Three flows","category":"Supply Chain Basics","type":"Concept","difficulty":2,"question":"Which direction most accurately describes the three key supply-chain flows?","options":["Products upstream; cash downstream; information downstream","All three flows exclusively downstream","Products downstream; cash and information exclusively upstream","Products downstream; cash upstream; information in both directions"],"answer":3,"explain":"Material flows mainly toward customers; funds toward suppliers; information moves both ways."},{"id":3,"section":"S1","sectionName":"Supply Chain Fundamentals","topic":"S1-03","code":"S1 · 03","topicTitle":"Multiplier / Financial impact","category":"Supply Chain Basics","type":"Calculation","difficulty":1,"question":"A firm has COGS of $60 million and net income of $3 million. What is its supply-chain multiplier?","options":["0.05","63","20","5"],"answer":2,"explain":"Supply-chain multiplier = COGS / net income = 60/3 = 20."},{"id":4,"section":"S1","sectionName":"Supply Chain Fundamentals","topic":"S1-03","code":"S1 · 03","topicTitle":"Multiplier / Financial impact","category":"Supply Chain Basics","type":"Calculation","difficulty":2,"question":"A firm has revenue $100, COGS $60, labor $15, overhead $15, and profit $10 per unit. If COGS falls by 10% without changing other items, profit rises by:","options":["6%","40%","60%","10%"],"answer":2,"explain":"COGS saves $6; profit increases from $10 to $16, i.e. +60%."},{"id":5,"section":"S1","sectionName":"Supply Chain Fundamentals","topic":"S1-04","code":"S1 · 04","topicTitle":"Goal: SC surplus","category":"Supply Chain Basics","type":"Concept","difficulty":2,"question":"The primary objective of supply-chain management is to:","options":["Maximize total value created and overall supply-chain profitability","Maximize retailer profit even if manufacturer losses increase","Maximize total manufacturing output","Minimize all inventory regardless of service levels"],"answer":0,"explain":"Supply-chain surplus = customer value − total SC cost; evaluate whole-chain profit, not a single stage."},{"id":6,"section":"S1","sectionName":"Supply Chain Fundamentals","topic":"S1-05","code":"S1 · 05","topicTitle":"Decision phases","category":"Supply Chain Basics","type":"Scenario","difficulty":2,"question":"A company decides where to build factories and what long-term capacity each factory should have. Which decision phase is this?","options":["Supply-chain operation","Supply-chain planning","Daily replenishment control","Supply-chain strategy/design"],"answer":3,"explain":"Factory location/capacity are expensive-to-reverse design decisions, normally with a multi-year horizon."},{"id":7,"section":"S1","sectionName":"Supply Chain Fundamentals","topic":"S1-06","code":"S1 · 06","topicTitle":"Cycle vs Push/Pull","category":"Supply Chain Basics","type":"Concept","difficulty":2,"question":"The replenishment cycle in the cycle view is the interface between:","options":["Distributor and manufacturer","Retailer and distributor","Manufacturer and supplier","Customer and retailer"],"answer":1,"explain":"Customer order: customer–retailer; replenishment: retailer–distributor; manufacturing: distributor–manufacturer; procurement: manufacturer–supplier."},{"id":8,"section":"S1","sectionName":"Supply Chain Fundamentals","topic":"S1-06","code":"S1 · 06","topicTitle":"Cycle vs Push/Pull","category":"Supply Chain Basics","type":"Scenario","difficulty":2,"question":"A retailer places an order before receiving an actual customer order, based on forecast demand. The retailer’s action is:","options":["Demand postponement","Cycle-service-level planning","Push process","Pull process"],"answer":2,"explain":"Push occurs in anticipation of customer orders; pull begins after receiving actual customer orders."},{"id":9,"section":"S2","sectionName":"Strategic Fit & Six Drivers","topic":"S2-01","code":"S2 · 01","topicTitle":"Strategic fit","category":"Strategic Fit & Six Drivers","type":"Scenario","difficulty":2,"question":"A retailer promises extremely wide variety and same-day delivery. Which supply-chain configuration most strongly supports strategic fit?","options":["Highly centralized inventory and slow bulk replenishment","Responsive facilities and transport with appropriate inventory and information","Strictly lowest transportation spending irrespective of time","A pricing-only change with no operations adjustment"],"answer":1,"explain":"Fast response and variety normally require responsive drivers, often at higher cost."},{"id":10,"section":"S2","sectionName":"Strategic Fit & Six Drivers","topic":"S2-01","code":"S2 · 01","topicTitle":"Strategic fit","category":"Strategic Fit & Six Drivers","type":"Concept","difficulty":2,"question":"Which supply-chain driver can often improve both efficiency and responsiveness rather than requiring a direct trade-off?","options":["Holding more stock everywhere","Extra idle factory capacity","Better information and coordination","Using premium delivery for every order"],"answer":2,"explain":"High-quality timely information improves forecasts, utilization, coordination, and product availability."},{"id":11,"section":"S2","sectionName":"Strategic Fit & Six Drivers","topic":"S2-02","code":"S2 · 02","topicTitle":"Six drivers","category":"Strategic Fit & Six Drivers","type":"Concept","difficulty":2,"question":"Which set contains the three logistical supply-chain drivers?","options":["Inventory, sourcing, pricing","Facilities, information, pricing","Facilities, transportation, inventory","Information, pricing, sourcing"],"answer":2,"explain":"Logistical = facilities, inventory, transportation; cross-functional = information, sourcing, pricing."},{"id":12,"section":"S2","sectionName":"Strategic Fit & Six Drivers","topic":"S2-03","code":"S2 · 03","topicTitle":"Facilities decisions/metrics","category":"Strategic Fit & Six Drivers","type":"Scenario","difficulty":2,"question":"A factory adds spare capacity to handle sudden orders. The most likely immediate trade-off is:","options":["Elimination of variable production cost","Zero impact on utilization and response time","Reduced responsiveness and improved fixed-cost efficiency","Improved responsiveness but potentially lower capacity utilization"],"answer":3,"explain":"Excess capacity increases response speed but can mean costly idle resources."},{"id":13,"section":"S2","sectionName":"Strategic Fit & Six Drivers","topic":"S2-03","code":"S2 · 03","topicTitle":"Facilities decisions/metrics","category":"Strategic Fit & Six Drivers","type":"Concept","difficulty":2,"question":"Which metric most directly reflects use of a facility’s available capacity?","options":["Capacity utilization","Days sales outstanding","Inventory turnover","Freight cost per shipment"],"answer":0,"explain":"Utilization compares actual output/processing with facility capacity."},{"id":14,"section":"S2","sectionName":"Strategic Fit & Six Drivers","topic":"S2-04","code":"S2 · 04","topicTitle":"Inventory types/metrics","category":"Strategic Fit & Six Drivers","type":"Concept","difficulty":2,"question":"Which type of inventory is built deliberately in advance of a predictable peak season?","options":["Safety inventory","Cycle inventory","Seasonal inventory","Pipeline inventory"],"answer":2,"explain":"Seasonal stock is prebuilt for predictable seasonal demand; safety inventory buffers uncertainty."},{"id":15,"section":"S2","sectionName":"Strategic Fit & Six Drivers","topic":"S2-05","code":"S2 · 05","topicTitle":"Transportation","category":"Strategic Fit & Six Drivers","type":"Scenario","difficulty":2,"question":"Switching from ocean shipping to air freight typically:","options":["Lowers transportation cost and increases lead time","Increases responsiveness but may raise shipping cost","Leaves inventory design unaffected","Always reduces overall supply-chain cost"],"answer":1,"explain":"Air is faster but normally more expensive; transport choices influence stock and facility locations."},{"id":16,"section":"S2","sectionName":"Strategic Fit & Six Drivers","topic":"S2-06","code":"S2 · 06","topicTitle":"Information","category":"Strategic Fit & Six Drivers","type":"Concept","difficulty":2,"question":"A team jointly agrees on sales forecasts, production and inventory plans. Which driver/activity is most directly involved?","options":["Sourcing and procurement","Pricing and EDLP","Facility selection","Information and S&OP"],"answer":3,"explain":"S&OP uses shared information across sales, operations and inventory planning."},{"id":17,"section":"S2","sectionName":"Strategic Fit & Six Drivers","topic":"S2-07","code":"S2 · 07","topicTitle":"Sourcing","category":"Strategic Fit & Six Drivers","type":"Scenario","difficulty":2,"question":"Supplier A quotes $5/unit but has poor quality and unreliable delivery; supplier B quotes $5.30/unit with better delivery performance. Best sourcing principle?","options":["Choose lowest total cost of ownership, including quality and reliability","Always choose the lowest quoted price","Outsource all activities","Prioritize the largest supplier regardless of cost"],"answer":0,"explain":"Procurement evaluates purchase price plus lead time, quality, service and other total ownership costs."},{"id":18,"section":"S2","sectionName":"Strategic Fit & Six Drivers","topic":"S2-08","code":"S2 · 08","topicTitle":"Pricing","category":"Strategic Fit & Six Drivers","type":"Concept","difficulty":2,"question":"Compared with high–low promotion pricing, Everyday Low Pricing (EDLP) tends to:","options":["Concentrate orders into promotion weeks","Eliminate all price sensitivity","Stabilize downstream demand and replenishment","Create higher forward buying"],"answer":2,"explain":"EDLP avoids sharp discount-driven order spikes and smooths demand."},{"id":19,"section":"S2","sectionName":"Strategic Fit & Six Drivers","topic":"S2-09","code":"S2 · 09","topicTitle":"Walmart drivers","category":"Strategic Fit & Six Drivers","type":"Case","difficulty":2,"question":"Which combination best describes Walmart’s supply chain in the review?","options":["No IT spending, unusually high safety stock and direct supplier delivery only","Specialty products, tiny batches and in-store manufacturing","EDLP, cross-docking, centralized distribution and its own truck fleet","High–low pricing, scattered independent buying and air-only transport"],"answer":2,"explain":"Walmart uses EDLP, central DCs, cross-docking, an owned fleet and information investment to support low prices."},{"id":20,"section":"S3","sectionName":"Seven-Eleven Japan","topic":"S3-01","code":"S3 · 01","topicTitle":"SEJ response model","category":"Seven-Eleven Japan","type":"Case","difficulty":2,"question":"Seven-Eleven Japan primarily achieved store responsiveness through:","options":["Frequent small replenishments coordinated with local demand data","Once-a-month central bulk delivery","Cooking every product inside each shop","High local safety stock of every SKU"],"answer":0,"explain":"SEJ emphasizes rapid replenishment, small store inventory and detailed micro-matching."},{"id":21,"section":"S3","sectionName":"Seven-Eleven Japan","topic":"S3-01","code":"S3 · 01","topicTitle":"SEJ response model","category":"Seven-Eleven Japan","type":"Case","difficulty":2,"question":"Which dimension is central to SEJ’s micro-matching of demand and supply?","options":["Only supplier manufacturing cost","Location, time of day, day of week, and season","Only total advertising expenditure","Only annual national demand totals"],"answer":1,"explain":"SEJ matches demand by store and time, including hourly/daily/seasonal patterns."},{"id":22,"section":"S3","sectionName":"Seven-Eleven Japan","topic":"S3-02","code":"S3 · 02","topicTitle":"Facilities / clustering","category":"Seven-Eleven Japan","type":"Case","difficulty":2,"question":"The primary logistics rationale for clustering 50–60 SEJ stores around one DC is:","options":["Relocate manufacturing into each store","Eliminate all delivery trucks","Increase stop density and combined-delivery efficiency","Avoid sharing sales information"],"answer":2,"explain":"High store density lowers delivery distance per store and improves density and brand presence."},{"id":23,"section":"S3","sectionName":"Seven-Eleven Japan","topic":"S3-02","code":"S3 · 02","topicTitle":"Facilities / clustering","category":"Seven-Eleven Japan","type":"Case","difficulty":2,"question":"SEJ combined concentrated manufacturing with:","options":["Fully independent store production","Centralized retail in a few large megastores","An exclusively online distribution network","Dense, decentralized neighborhood storefronts"],"answer":3,"explain":"Manufacturing is centralized while small stores are densely distributed near customers."},{"id":24,"section":"S3","sectionName":"Seven-Eleven Japan","topic":"S3-03","code":"S3 · 03","topicTitle":"Distribution / cross-dock","category":"Seven-Eleven Japan","type":"Case","difficulty":2,"question":"Which statement is correct about the food DCs used by SEJ?","options":["They allow only one fixed-temperature category for all products","They mainly store several weeks of finished-goods inventory","They send each supplier’s truck directly to each store","They receive deliveries from suppliers and cross-dock goods with little/no storage"],"answer":3,"explain":"SEJ food DCs are cross-docking points, combining frozen/chilled/ambient/warm categories in suitable flows."},{"id":25,"section":"S3","sectionName":"Seven-Eleven Japan","topic":"S3-03","code":"S3 · 03","topicTitle":"Distribution / cross-dock","category":"Seven-Eleven Japan","type":"Case","difficulty":2,"question":"Why did SEJ replace many direct-to-store deliveries with combined deliveries?","options":["To reduce receiving traffic and consolidate compatible temperature-controlled loads","To increase the number of trucks entering stores","To ban supplier coordination","To remove point-of-sale systems"],"answer":0,"explain":"Combined delivery consolidates supplier loads to reduce store receiving and freight intensity."},{"id":26,"section":"S3","sectionName":"Seven-Eleven Japan","topic":"S3-04","code":"S3 · 04","topicTitle":"POS & systems","category":"Seven-Eleven Japan","type":"Case","difficulty":2,"question":"Which SEJ device is used by store staff to prepare and place product orders?","options":["Graphical Order Terminal (GOT)","DC refrigeration controller","POS checkout recorder only","Scanner Terminal for receiving checks"],"answer":0,"explain":"GOT supports ordering decisions; scanner checks incoming deliveries; POS records sales and customer patterns."},{"id":27,"section":"S3","sectionName":"Seven-Eleven Japan","topic":"S3-05","code":"S3 · 05","topicTitle":"E-commerce / US","category":"Seven-Eleven Japan","type":"Case","difficulty":2,"question":"Compared with Japanese operations, rapid replenishment was harder to replicate in the United States chiefly because:","options":["US stores were more dispersed and conventional wholesalers/DSD were established","US stores had no suppliers","US customers never buy prepared meals","Japanese stores had lower inventory turnover"],"answer":0,"explain":"Lower US store density, greater distances and existing DSD/wholesaler routes impede Japan-style distribution."},{"id":28,"section":"S3","sectionName":"Seven-Eleven Japan","topic":"S3-06","code":"S3 · 06","topicTitle":"Triple-A","category":"Seven-Eleven Japan","type":"Case","difficulty":2,"question":"In the review’s Triple-A classification, penalties for late suppliers and aligned delivery incentives illustrate:","options":["Agility","Alignment","Adaptability","Asset utilization"],"answer":1,"explain":"Alignment means coordinating partner incentives and goals; agility is short-run response, adaptability network change."},{"id":29,"section":"S4","sectionName":"Network Design / MILP","topic":"S4-01","code":"S4 · 01","topicTitle":"Network design logic","category":"Network Design / MILP","type":"Concept","difficulty":2,"question":"Which decision is part of strategic supply-chain network design?","options":["Factory locations, capacities and market assignments","Choosing one customer’s delivery slot today","Which customer order to pick this morning","Daily POS scanner calibration"],"answer":0,"explain":"Network design chooses number/location/size of plants or DCs, mix and flows."},{"id":30,"section":"S4","sectionName":"Network Design / MILP","topic":"S4-02","code":"S4 · 02","topicTitle":"CPLM / MILP","category":"Network Design / MILP","type":"Model","difficulty":2,"question":"In a capacitated plant-location model, yᵢ and xᵢⱼ are respectively:","options":["Plant open/close binary and nonnegative shipment amount","Demand forecast and supplier lead time","Shipment quantity and customer demand","Unit selling price and variable cost"],"answer":0,"explain":"y_i ∈{0,1} opens plant i; x_ij ≥0 ships from plant i to market j."},{"id":31,"section":"S4","sectionName":"Network Design / MILP","topic":"S4-02","code":"S4 · 02","topicTitle":"CPLM / MILP","category":"Network Design / MILP","type":"Model","difficulty":2,"question":"Which constraint forces market j to receive all demand Dⱼ when unmet demand is not allowed?","options":["Σᵢ yᵢ = Dⱼ","Σᵢ xᵢⱼ = Dⱼ","Σⱼ xᵢⱼ = Dⱼ","Σⱼ yᵢ = Kᵢ"],"answer":1,"explain":"Sum shipments over all plants i for a fixed market j, so Σ_i x_ij = D_j."},{"id":32,"section":"S4","sectionName":"Network Design / MILP","topic":"S4-02","code":"S4 · 02","topicTitle":"CPLM / MILP","category":"Network Design / MILP","type":"Model","difficulty":2,"question":"Which constraint prevents a closed plant from shipping products?","options":["Σᵢ yᵢ ≤ xᵢⱼ","Σⱼ xᵢⱼ ≤ Kᵢyᵢ","Σᵢ xᵢⱼ ≥ Kᵢyᵢ","Σⱼ xᵢⱼ ≤ Kᵢ + yᵢ"],"answer":1,"explain":"Capacity is multiplied by the binary opening variable. If y_i=0, total shipments cannot exceed zero."},{"id":33,"section":"S4","sectionName":"Network Design / MILP","topic":"S4-02","code":"S4 · 02","topicTitle":"CPLM / MILP","category":"Network Design / MILP","type":"Model","difficulty":2,"question":"The total-cost objective for a standard capacitated plant-location model is:","options":["Min Σᵢ fᵢyᵢ + Σᵢⱼ cᵢⱼxᵢⱼ","Min Σᵢ fᵢxᵢⱼ + Σᵢⱼ cᵢⱼyᵢ","Max Σᵢ fᵢyᵢ + Σᵢⱼ cᵢⱼxᵢⱼ","Min Σᵢ Kᵢyᵢ + Σᵢⱼ Dⱼxᵢⱼ"],"answer":0,"explain":"Choose fixed costs for open sites and unit variable landed costs for shipped quantities."},{"id":34,"section":"S4","sectionName":"Network Design / MILP","topic":"S4-03","code":"S4 · 03","topicTitle":"Capacity choice / single sourcing","category":"Network Design / MILP","type":"Model","difficulty":2,"question":"A site can be closed, low-capacity, or high-capacity (but not both). Which constraint is required?","options":["yᵢL + yᵢH ≥ 1","yᵢL + yᵢH = 2","yᵢL + yᵢH ≤ 1","yᵢL − yᵢH = 1"],"answer":2,"explain":"The two binary choices can total at most one, so closed is also allowed."},{"id":35,"section":"S4","sectionName":"Network Design / MILP","topic":"S4-03","code":"S4 · 03","topicTitle":"Capacity choice / single sourcing","category":"Network Design / MILP","type":"Model","difficulty":2,"question":"For strictly single sourcing of market j, which condition is essential?","options":["Σᵢ zᵢⱼ ≥ 2, with zᵢⱼ binary","Σⱼ zᵢⱼ = 0 for every plant","zᵢⱼ continuous with Σᵢ zᵢⱼ = 2","Σᵢ zᵢⱼ = 1, with zᵢⱼ binary"],"answer":3,"explain":"Exactly one plant is selected per market; link shipment x_ij = D_j z_ij when demand must be fully met."},{"id":36,"section":"S4","sectionName":"Network Design / MILP","topic":"S4-04","code":"S4 · 04","topicTitle":"Tutorial 1 models","category":"Network Design / MILP","type":"Calculation","difficulty":2,"question":"A Sleekfon unit has fixed allocated cost 5, production variable cost 5.5 and transport 2.2, all subject to a 25% tariff. Total landed unit cost is:","options":["$15.88","$18.13","$15.25","$12.70"],"answer":0,"explain":"(5+5.5+2.2)×1.25=12.7×1.25=15.875≈$15.88."},{"id":37,"section":"S4","sectionName":"Network Design / MILP","topic":"S4-04","code":"S4 · 04","topicTitle":"Tutorial 1 models","category":"Network Design / MILP","type":"Calculation","difficulty":2,"question":"Each consulting office can employ at most 10 consultants, and each consultant can complete at most 25 trips/year. A valid annual office-capacity constraint is:","options":["Σⱼxᵢⱼ ≥ 250yᵢ","Σᵢxᵢⱼ ≤ 10yᵢ","Σⱼxᵢⱼ ≤ 25yᵢ","Σⱼxᵢⱼ ≤ 250yᵢ"],"answer":3,"explain":"10 consultants ×25 trips per consultant = 250 trips per office if opened."},{"id":38,"section":"S5","sectionName":"Distribution Network","topic":"S5-01","code":"S5 · 01","topicTitle":"Distribution evaluation","category":"Distribution Network","type":"Concept","difficulty":2,"question":"Which is a customer-service metric used to evaluate distribution-network design?","options":["Order visibility","Average warehouse rent","Facility handling cost","Freight cost per shipment"],"answer":0,"explain":"Response time, product variety, availability, customer experience, order visibility and returnability evaluate customer needs."},{"id":39,"section":"S5","sectionName":"Distribution Network","topic":"S5-02","code":"S5 · 02","topicTitle":"# Facilities trade-off","category":"Distribution Network","type":"Scenario","difficulty":2,"question":"As the number of distribution facilities rises substantially, which trade-off is most typical?","options":["Facility cost falls and responsiveness falls","Transportation cost always falls monotonically","Response time falls while facility and aggregate inventory costs tend to rise","Inventory pooling improves and inventory cost falls"],"answer":2,"explain":"More local nodes improve delivery time but lose pooling benefits, raising facilities and inventory costs."},{"id":40,"section":"S5","sectionName":"Distribution Network","topic":"S5-02","code":"S5 · 02","topicTitle":"# Facilities trade-off","category":"Distribution Network","type":"Concept","difficulty":2,"question":"Why can transportation cost be U-shaped as distribution facilities increase?","options":["Returns costs exactly offset outbound costs","More sites shorten outbound trips at first but ultimately reduce inbound scale economies","Inbound shipping costs disappear entirely at large network sizes","All freight costs always increase with consolidation"],"answer":1,"explain":"Fewer sites imply long outbound travel; too many sites fragment inbound loads. Intermediate network sizes can minimize transport."},{"id":41,"section":"S5","sectionName":"Distribution Network","topic":"S5-03","code":"S5 · 03","topicTitle":"Six designs","category":"Distribution Network","type":"Scenario","difficulty":2,"question":"A manufacturer ships ordered items straight to consumers without storing them at a distributor. This is:","options":["Manufacturer storage with direct shipping (drop shipping)","Retail storage with pickup","Distributor storage with customer pickup","Distributor storage with last-mile delivery"],"answer":0,"explain":"Drop shipping keeps the product at manufacturer storage until order fulfillment."},{"id":42,"section":"S5","sectionName":"Distribution Network","topic":"S5-03","code":"S5 · 03","topicTitle":"Six designs","category":"Distribution Network","type":"Scenario","difficulty":2,"question":"Two products from different manufacturers are consolidated in transit and arrive together in one final delivery. The design is:","options":["Dedicated local manufacturing","Single sourcing","Retail storage and customer pickup","In-transit merge"],"answer":3,"explain":"Manufacturer storage + in-transit merge combines orders on the way to the customer."},{"id":43,"section":"S5","sectionName":"Distribution Network","topic":"S5-04","code":"S5 · 04","topicTitle":"Direct vs local inventory","category":"Distribution Network","type":"Scenario","difficulty":2,"question":"Which product is generally most suitable for manufacturer storage with direct shipping?","options":["Low-price bulky item requiring short-distance delivery","Popular staple with predictable high daily volume","Perishable food requiring immediate store pickup","High-value product with many variants and slow demand"],"answer":3,"explain":"High-value/variety, lower-volume items benefit from centralized stock despite longer and costlier direct shipping."},{"id":44,"section":"S5","sectionName":"Distribution Network","topic":"S5-05","code":"S5 · 05","topicTitle":"Omni-channel","category":"Distribution Network","type":"Scenario","difficulty":2,"question":"A retailer stocks predictable fast movers in physical outlets but sells uncertain long-tail products online. This primarily exploits:","options":["Omni-channel complementarity","Complete inventory decentralization","Single-stage optimization","Supplier shortage gaming"],"answer":0,"explain":"Store handles predictable demand, pickup, experience and returns; online supports variety and unpredictable demand."},{"id":45,"section":"S5","sectionName":"Distribution Network","topic":"S5-05","code":"S5 · 05","topicTitle":"Omni-channel","category":"Distribution Network","type":"Concept","difficulty":2,"question":"Which service advantage is most closely associated with physical stores over an online-only channel?","options":["Immediate tactile evaluation, returns and pickup","Unlimited online assortment","Automatically lower rent and handling cost","Zero need for on-site inventory"],"answer":0,"explain":"Physical stores allow touch/feel, quick pickup and easier returns; online channels improve variety and convenience."},{"id":46,"section":"S6","sectionName":"Inventory Models & Service","topic":"S6-01","code":"S6 · 01","topicTitle":"Four inventory systems","category":"Inventory Models & Service","type":"Scenario","difficulty":2,"question":"A shop must order Halloween costumes only once before the season and demand is uncertain. The appropriate model is:","options":["Continuous review (Q,ROP)","Newsvendor","Economic order quantity (EOQ)","Periodic review (T,S)"],"answer":1,"explain":"Newsvendor addresses one-shot ordering under uncertain demand and leftover risk."},{"id":47,"section":"S6","sectionName":"Inventory Models & Service","topic":"S6-01","code":"S6 · 01","topicTitle":"Four inventory systems","category":"Inventory Models & Service","type":"Concept","difficulty":2,"question":"In a continuous-review (Q,ROP) system:","options":["Lead time is always exactly zero","Q is the stockout probability","Order size is variable and review dates are fixed","Order size is fixed and the order occurs when inventory position reaches ROP"],"answer":3,"explain":"Continuous monitoring triggers a fixed-quantity replenishment at the reorder point."},{"id":48,"section":"S6","sectionName":"Inventory Models & Service","topic":"S6-02","code":"S6 · 02","topicTitle":"Newsvendor optimal","category":"Inventory Models & Service","type":"Calculation","difficulty":2,"question":"For a one-period item, selling price p=$80, purchase cost c=$50, salvage value v=$20. The critical ratio is:","options":["0.75","0.60","0.50","0.25"],"answer":2,"explain":"Underage = 80−50=30; overage=50−20=30; CR=30/(30+30)=0.50."},{"id":49,"section":"S6","sectionName":"Inventory Models & Service","topic":"S6-02","code":"S6 · 02","topicTitle":"Newsvendor optimal","category":"Inventory Models & Service","type":"Calculation","difficulty":2,"question":"A newsvendor sells for $50, purchases for $40 and salvages for $0. Demand N(1000,200²); Φ(−0.84)=0.20. The optimal order quantity is closest to:","options":["1000","832","1200","1168"],"answer":1,"explain":"Cu=10, Co=40, CR=0.2; z≈−0.84; Q*=1000−0.84×200=832."},{"id":50,"section":"S6","sectionName":"Inventory Models & Service","topic":"S6-02","code":"S6 · 02","topicTitle":"Newsvendor optimal","category":"Inventory Models & Service","type":"Concept","difficulty":2,"question":"For normally distributed demand, if the newsvendor’s critical ratio is below 0.5, then:","options":["Optimal Q is above mean demand","Optimal Q must be zero","Optimal Q is below mean demand","Optimal Q equals mean demand"],"answer":2,"explain":"CR<0.5 implies z*<0, hence Q* = μ+z*σ < μ."},{"id":51,"section":"S6","sectionName":"Inventory Models & Service","topic":"S6-02","code":"S6 · 02","topicTitle":"Newsvendor optimal","category":"Inventory Models & Service","type":"Scenario","difficulty":2,"question":"A perishable item has unit selling price $20, cost $12, and salvage $3. Which values are Cu and Co?","options":["Cu=8, Co=12","Cu=9, Co=8","Cu=8, Co=9","Cu=17, Co=12"],"answer":2,"explain":"Cu=p−c=8; Co=c−v=9."},{"id":52,"section":"S6","sectionName":"Inventory Models & Service","topic":"S6-03","code":"S6 · 03","topicTitle":"Newsvendor performance","category":"Inventory Models & Service","type":"Calculation","difficulty":2,"question":"A newsvendor orders Q=150 units. Expected demand is 120 units and expected lost sales are 10 units. Expected leftover inventory equals:","options":["30 units","10 units","40 units","20 units"],"answer":2,"explain":"Expected sales=120−10=110; leftover=150−110=40 units."},{"id":53,"section":"S6","sectionName":"Inventory Models & Service","topic":"S6-03","code":"S6 · 03","topicTitle":"Newsvendor performance","category":"Inventory Models & Service","type":"Calculation","difficulty":2,"question":"Price=$100, unit cost=$60, salvage=$20, expected sales=120, expected leftover=30. Expected newsvendor profit is:","options":["$3,600","$5,200","$6,000","$4,800"],"answer":0,"explain":"(100−60)×120−(60−20)×30=4800−1200=$3600."},{"id":54,"section":"S6","sectionName":"Inventory Models & Service","topic":"S6-04","code":"S6 · 04","topicTitle":"Type I vs Type II","category":"Inventory Models & Service","type":"Concept","difficulty":2,"question":"Type I (cycle) service level measures:","options":["Fraction of units demanded that are filled","Fraction of annual costs due to orders","Average inventory units on hand","Probability of no stockout during a replenishment cycle"],"answer":3,"explain":"CSL is the probability that all demand is satisfied without stockout; fill rate is a unit fraction."},{"id":55,"section":"S6","sectionName":"Inventory Models & Service","topic":"S6-04","code":"S6 · 04","topicTitle":"Type I vs Type II","category":"Inventory Models & Service","type":"Calculation","difficulty":2,"question":"Across 10 replenishment cycles, shortages occur in 2 cycles. Type I service level is:","options":["80%","20%","98%","90%"],"answer":0,"explain":"Eight of ten cycles have no stockout: CSL = 8/10 = 80%."},{"id":56,"section":"S6","sectionName":"Inventory Models & Service","topic":"S6-04","code":"S6 · 04","topicTitle":"Type I vs Type II","category":"Inventory Models & Service","type":"Calculation","difficulty":2,"question":"Average demand per cycle is 200 units and expected shortage is 8 units. Type II fill rate is:","options":["80%","4%","92%","96%"],"answer":3,"explain":"Fill rate=1−8/200=96%."},{"id":57,"section":"S6","sectionName":"Inventory Models & Service","topic":"S6-05","code":"S6 · 05","topicTitle":"EOQ","category":"Inventory Models & Service","type":"Calculation","difficulty":2,"question":"Annual demand D=10,000 units, ordering cost K=$50/order, annual holding cost H=$2/unit. EOQ is closest to:","options":["1000 units","500 units","707 units","1414 units"],"answer":2,"explain":"EOQ=√(2KD/H)=√(2×50×10000/2)=√500000≈707 units."},{"id":58,"section":"S6","sectionName":"Inventory Models & Service","topic":"S6-05","code":"S6 · 05","topicTitle":"EOQ","category":"Inventory Models & Service","type":"Concept","difficulty":2,"question":"At the economic order quantity (assuming standard EOQ assumptions), annual:","options":["Ordering cost equals holding cost","Average cycle inventory equals EOQ","Holding cost is zero","Ordering cost equals purchase expenditure"],"answer":0,"explain":"At Q*=√(2KD/H), KD/Q* = HQ*/2."},{"id":59,"section":"S6","sectionName":"Inventory Models & Service","topic":"S6-06","code":"S6 · 06","topicTitle":"Continuous review ROP","category":"Inventory Models & Service","type":"Calculation","difficulty":2,"question":"Mean daily demand=100 units/day and deterministic lead time=5 days. With no safety stock, reorder point is:","options":["100 units","600 units","500 units","20 units"],"answer":2,"explain":"ROP=dL=100×5=500 units."},{"id":60,"section":"S6","sectionName":"Inventory Models & Service","topic":"S6-06","code":"S6 · 06","topicTitle":"Continuous review ROP","category":"Inventory Models & Service","type":"Calculation","difficulty":2,"question":"Independent daily demand has σD=10 units and fixed lead time L=9 days. The standard deviation of demand during lead time is:","options":["90 units","900 units","10 units","30 units"],"answer":3,"explain":"For constant L, σL=√L×σD=√9×10=30, not LσD."},{"id":61,"section":"S6","sectionName":"Inventory Models & Service","topic":"S6-07","code":"S6 · 07","topicTitle":"Lead-time variance","category":"Inventory Models & Service","type":"Calculation","difficulty":2,"question":"Daily mean demand μD=100, daily σD=10, average lead time L=4 days, and lead-time std sL=2 days. Lead-time-demand variance is:","options":["10,400","40,400","20,400","400"],"answer":1,"explain":"Variance= LσD²+μD²sL²=4×100+100²×4=400+40000=40,400."},{"id":62,"section":"S6","sectionName":"Inventory Models & Service","topic":"S6-06","code":"S6 · 06","topicTitle":"Continuous review ROP","category":"Inventory Models & Service","type":"Calculation","difficulty":2,"question":"Lead-time demand has mean 500 and σL=100. For 95% CSL take z=1.645. Reorder point and safety stock are closest to:","options":["ROP 600; SS 100","ROP 950; SS 450","ROP 500; SS 0","ROP 665; SS 165"],"answer":3,"explain":"SS=1.645×100=164.5 and ROP=500+164.5≈665."},{"id":63,"section":"S6","sectionName":"Inventory Models & Service","topic":"S6-08","code":"S6 · 08","topicTitle":"Type II ROP design","category":"Inventory Models & Service","type":"Calculation","difficulty":2,"question":"In (Q,ROP), an order cycle has expected 2 units short and order quantity Q=200. The Type II fill rate is:","options":["98%","95%","90%","99%"],"answer":3,"explain":"Fill rate=1−n(ROP)/Q=1−2/200=99%."},{"id":64,"section":"S7","sectionName":"Periodic Review","topic":"S7-01","code":"S7 · 01","topicTitle":"Periodic review (T,S)","category":"Periodic Review","type":"Concept","difficulty":2,"question":"In periodic review with review interval T and fixed lead time L, the inventory protection period is:","options":["T×L","L only","T only","T+L"],"answer":3,"explain":"A review-order decision must cover demand until the next scheduled review order arrives, T+L."},{"id":65,"section":"S7","sectionName":"Periodic Review","topic":"S7-01","code":"S7 · 01","topicTitle":"Periodic review (T,S)","category":"Periodic Review","type":"Calculation","difficulty":2,"question":"Daily demand has μD=20, σD=4, T=3 days, fixed L=6 days. Mean and standard deviation of protection-period demand are:","options":["μ=180, σ=12","μ=60, σ=4","μ=180, σ=36","μ=120, σ=12"],"answer":0,"explain":"Protection period T+L=9 days, mean=20×9=180; sd=4√9=12."},{"id":66,"section":"S7","sectionName":"Periodic Review","topic":"S7-02","code":"S7 · 02","topicTitle":"Inventory position","category":"Periodic Review","type":"Calculation","difficulty":2,"question":"On-hand inventory is 100 units, backorders 20 units, and pipeline inventory 85 units. Inventory position is:","options":["185 units","205 units","165 units","15 units"],"answer":2,"explain":"Inventory level=100−20=80; position=80+85=165."},{"id":67,"section":"S7","sectionName":"Periodic Review","topic":"S7-02","code":"S7 · 02","topicTitle":"Inventory position","category":"Periodic Review","type":"Calculation","difficulty":2,"question":"Order-up-to target S=240 and inventory position=165. How many units should the store order?","options":["165 units","75 units","240 units","85 units"],"answer":1,"explain":"Order quantity=max(0,S−position)=240−165=75."},{"id":68,"section":"S7","sectionName":"Periodic Review","topic":"S7-02","code":"S7 · 02","topicTitle":"Inventory position","category":"Periodic Review","type":"Concept","difficulty":2,"question":"Which inventory component must be included in inventory position but is not physically on hand?","options":["Current sales revenue","Pipeline units already ordered but not received","Nominal factory capacity","Seasonal safety stock already received"],"answer":1,"explain":"Inventory position equals on-hand minus backorders plus outstanding pipeline orders."},{"id":69,"section":"S7","sectionName":"Periodic Review","topic":"S7-03","code":"S7 · 03","topicTitle":"Base-stock insights","category":"Periodic Review","type":"Scenario","difficulty":2,"question":"Compared with a continuous-review (Q,ROP) system, periodic-review (T,S) typically has:","options":["No need for lead-time coverage","No order-up-to target","Fixed order timing and variable order size","Variable order timing and fixed order size"],"answer":2,"explain":"Periodic review triggers at predetermined T intervals and orders the gap up to S."},{"id":70,"section":"S8","sectionName":"Risk Pooling","topic":"S8-01","code":"S8 · 01","topicTitle":"Risk pooling types","category":"Risk Pooling","type":"Concept","difficulty":2,"question":"The key statistical mechanism underlying risk pooling is:","options":["Increasing the number of isolated safety-stock locations","Aggregating uncertain demand to allow offsets across units","Adding all standard deviations regardless of correlation","Guaranteeing identical customer demand in all regions"],"answer":1,"explain":"Less-than-perfectly-correlated demand fluctuations partially cancel, decreasing aggregate uncertainty relative to total demand."},{"id":71,"section":"S8","sectionName":"Risk Pooling","topic":"S8-02","code":"S8 · 02","topicTitle":"Location pooling","category":"Risk Pooling","type":"Calculation","difficulty":2,"question":"Two independent markets each have demand standard deviation 30 units. Standard deviation of their combined demand is closest to:","options":["30","42.4","60","90"],"answer":1,"explain":"σpool=√(30²+30²)=√1800≈42.4."},{"id":72,"section":"S8","sectionName":"Risk Pooling","topic":"S8-02","code":"S8 · 02","topicTitle":"Location pooling","category":"Risk Pooling","type":"Calculation","difficulty":2,"question":"Four independent identical stores each have CV=0.40. The combined demand’s CV is:","options":["0.40","0.10","0.80","0.20"],"answer":3,"explain":"For n independent identical locations, CVpool=CV0/√n=0.4/2=0.2."},{"id":73,"section":"S8","sectionName":"Risk Pooling","topic":"S8-03","code":"S8 · 03","topicTitle":"Product & correlation","category":"Risk Pooling","type":"Calculation","difficulty":2,"question":"Two demands have standard deviations 20 and 30 units and correlation ρ=0. What is their combined standard deviation?","options":["50","10","25","36.1"],"answer":3,"explain":"√(20²+30²+2×0×20×30)=√1300≈36.1."},{"id":74,"section":"S8","sectionName":"Risk Pooling","topic":"S8-03","code":"S8 · 03","topicTitle":"Product & correlation","category":"Risk Pooling","type":"Concept","difficulty":2,"question":"For two identical-demand products, pooling benefit is greatest when correlation is:","options":["ρ=+0.5","ρ=−1","ρ=0","ρ=+1"],"answer":1,"explain":"With ρ=−1 and equal σ, combined standard deviation becomes zero."},{"id":75,"section":"S8","sectionName":"Risk Pooling","topic":"S8-04","code":"S8 · 04","topicTitle":"Lead-time pooling: DC","category":"Risk Pooling","type":"Scenario","difficulty":2,"question":"Stores receive rapidly from a nearby DC that pools slower upstream deliveries. This is mainly:","options":["Single sourcing through exclusive contracts","Lead-time pooling through consolidated distribution","Retail price discrimination","Forward buying"],"answer":1,"explain":"A long upstream lead time can be pooled at the DC while keeping short delivery time downstream."},{"id":76,"section":"S8","sectionName":"Risk Pooling","topic":"S8-05","code":"S8 · 05","topicTitle":"Postponement","category":"Risk Pooling","type":"Scenario","difficulty":2,"question":"A manufacturer stocks generic devices and configures language variants only after orders arrive. This illustrates:","options":["Postponement / delayed differentiation","Early product differentiation","Demand synchronization","Shortage gaming"],"answer":0,"explain":"Common inventory is pooled before the push–pull boundary; customization follows the order."},{"id":77,"section":"S8","sectionName":"Risk Pooling","topic":"S8-05","code":"S8 · 05","topicTitle":"Postponement","category":"Risk Pooling","type":"Concept","difficulty":2,"question":"Which condition most strongly supports economically attractive postponement?","options":["All variants always have perfectly identical demand","Supplier lead time is always zero","Demand across variants is diverse and late customization is inexpensive","Customization is very slow and expensive"],"answer":2,"explain":"Pool upstream generic stock and postpone variants only when inventory savings exceed delayed configuration cost."},{"id":78,"section":"S8","sectionName":"Risk Pooling","topic":"S8-06","code":"S8 · 06","topicTitle":"Capacity pooling/chaining","category":"Risk Pooling","type":"Case","difficulty":2,"question":"The main insight of the long-chain flexible-capacity example is:","options":["Every factory should make just one product with no alternatives","Every factory must be able to make every product to gain any benefit","A limited, well-connected set of flexible links can approach full-flexibility benefits","All capacities must be doubled before flexibility helps"],"answer":2,"explain":"A little flexibility goes a long way when the production-product network is well connected."},{"id":79,"section":"S8","sectionName":"Risk Pooling","topic":"S8-07","code":"S8 · 07","topicTitle":"Epson T2 economics","category":"Risk Pooling","type":"Calculation","difficulty":2,"question":"In the Epson postponement example, annual inventory holding saving is about $1.385M, while added assembly costs are about $4.290M. Net annual economic impact is approximately:","options":["+$5.675M","−$2.905M","−$1.385M","+$2.905M"],"answer":1,"explain":"Net=1.385−4.290≈−$2.905M. Pooling is not worthwhile if delayed assembly cost exceeds savings."},{"id":80,"section":"S9","sectionName":"Beer Game","topic":"S9-01","code":"S9 · 01","topicTitle":"Beer game mechanics","category":"Beer Game","type":"Case","difficulty":2,"question":"In the Beer Game, which player directly observes final consumer demand?","options":["Distributor","Manufacturer","Retailer","Wholesaler"],"answer":2,"explain":"Only the retailer sees true customer orders; other upstream players observe downstream orders."},{"id":81,"section":"S10","sectionName":"Bullwhip Effect","topic":"S10-07","code":"S10 · 07","topicTitle":"Remedies","category":"Bullwhip Effect","type":"Scenario","difficulty":2,"question":"Which intervention directly addresses multiple causes of the bullwhip effect while improving supply-chain coordination?","options":["Increase minimum order batches and restrict POS information","Share point-of-sale demand data, shorten lead time, and stagger replenishments","Use sporadic deep trade promotions and proportional shortage rationing","Reward managers for maximizing order quantity rather than end sales"],"answer":1,"explain":"Sharing actual POS demand plus EDI/RFID/coordination, smoother small batches and shorter lead times reduce artificial upstream swings."},{"id":82,"section":"S10","sectionName":"Bullwhip Effect","topic":"S10-01","code":"S10 · 01","topicTitle":"Bullwhip definition","category":"Bullwhip Effect","type":"Concept","difficulty":2,"question":"The bullwhip effect is best described as:","options":["Amplification of order and inventory variability upstream relative to customer demand","A smooth match between customer sales and manufacturer schedules","The reduction of waiting time by using more safety stock","Reduction in demand variance as orders move upstream"],"answer":0,"explain":"Small consumer-demand changes create larger upstream-order and inventory fluctuations."},{"id":83,"section":"S10","sectionName":"Bullwhip Effect","topic":"S10-02","code":"S10 · 02","topicTitle":"Six causes (exact names)","category":"Bullwhip Effect","type":"Concept","difficulty":2,"question":"Twenty retailers each sell 100 cases weekly but all order them on Monday instead of spreading orders evenly. Which bullwhip driver does this most directly illustrate?","options":["Trade promotions","Lead-time pooling","Shortage gaming","Order synchronization"],"answer":3,"explain":"Ordering on the same day creates large artificial peaks despite stable weekly consumption."},{"id":84,"section":"S10","sectionName":"Bullwhip Effect","topic":"S10-03","code":"S10 · 03","topicTitle":"Synchronization / batching","category":"Bullwhip Effect","type":"Scenario","difficulty":2,"question":"A retailer sells 100 units each week but orders 400 units only every fourth week. This illustrates:","options":["Shortage gaming","Order batching","Product pooling","Chase capacity planning"],"answer":1,"explain":"Batching makes upstream orders 400,0,0,0 while final demand remains 100 per week."},{"id":85,"section":"S10","sectionName":"Bullwhip Effect","topic":"S10-04","code":"S10 · 04","topicTitle":"Promotions / forward buying","category":"Bullwhip Effect","type":"Scenario","difficulty":2,"question":"A supplier offers a short-term wholesale discount. Retailers buy extra stock for future weeks, although consumer purchases have not increased. This is:","options":["Product customization","Capacity pooling","Forward buying","Permanent market growth"],"answer":2,"explain":"Promotion shifts later orders into the discount period; it does not itself create additional final consumption."},{"id":86,"section":"S10","sectionName":"Bullwhip Effect","topic":"S10-05","code":"S10 · 05","topicTitle":"Overreaction / rationing","category":"Bullwhip Effect","type":"Scenario","difficulty":2,"question":"A supplier allocates scarce units in proportion to orders. Retailers submit inflated orders to obtain more stock. This is:","options":["Shortage gaming / rationing","Risk pooling","Level capacity","EDLP"],"answer":0,"explain":"Proportional allocation incentivizes phantom orders. Allocating based on past sales mitigates gaming."},{"id":87,"section":"S10","sectionName":"Bullwhip Effect","topic":"S10-06","code":"S10 · 06","topicTitle":"Lead-time amplification","category":"Bullwhip Effect","type":"Calculation","difficulty":2,"question":"Demand drops permanently from 100 to 90 units/week. With lead time 4 weeks, target pipeline changes from 400 to 360. To correct the pipeline in the first week under the lecture’s simplified rule, the order is:","options":["140 units","90 units","50 units","100 units"],"answer":2,"explain":"Need current replenishment 90 plus a −40 pipeline adjustment = 50; long lead time amplifies order changes."},{"id":88,"section":"S11","sectionName":"S&OP / Red Tomato","topic":"S11-01","code":"S11 · 01","topicTitle":"Predictable variability","category":"S&OP / Red Tomato","type":"Concept","difficulty":2,"question":"Predictable variability refers chiefly to:","options":["Forecastable demand trends and seasonality","Inability to plan production","Complete elimination of demand changes","Unknown random demand deviations with no recurring pattern"],"answer":0,"explain":"Demand level, trends and seasonal peaks can be planned; they differ from irreducible uncertainty."},{"id":89,"section":"S11","sectionName":"S&OP / Red Tomato","topic":"S11-02","code":"S11 · 02","topicTitle":"Level vs chase","category":"S&OP / Red Tomato","type":"Scenario","difficulty":2,"question":"A company maintains stable production all year, building stock during low-demand months for a seasonal peak. This is:","options":["Postponement-only strategy","Level-capacity strategy","Rationing","Chase strategy"],"answer":1,"explain":"Level capacity keeps output stable and uses seasonal inventory; chase adjusts workforce/capacity."},{"id":90,"section":"S11","sectionName":"S&OP / Red Tomato","topic":"S11-07","code":"S11 · 07","topicTitle":"Promo demand calculation","category":"S&OP / Red Tomato","type":"Calculation","difficulty":3,"question":"Red Tomato discounts a product by $1 in January. Base demands are Jan=1600, Feb=3000, Mar=3200. Under D′Jan=1.1DJan+0.2DFeb+0.2DMar, what is January promotional demand?","options":["1,760 units","2,400 units","3,600 units","3,000 units"],"answer":3,"explain":"New January demand =1.1×1600+0.2×3000+0.2×3200=1760+600+640=3000 units; next two months fall to 0.8× their originals."},{"id":91,"section":"S11","sectionName":"S&OP / Red Tomato","topic":"S11-03","code":"S11 · 03","topicTitle":"Demand promotion sources","category":"S&OP / Red Tomato","type":"Concept","difficulty":2,"question":"Which promotional demand source shifts future purchases earlier without necessarily increasing total market consumption?","options":["Forward buying","Stealing share","Adding a new market","Market growth"],"answer":0,"explain":"Forward buying advances future purchases; market growth adds category demand, while share stealing redirects it."},{"id":92,"section":"S11","sectionName":"S&OP / Red Tomato","topic":"S11-04","code":"S11 · 04","topicTitle":"S&OP","category":"S&OP / Red Tomato","type":"Concept","difficulty":2,"question":"Sales and Operations Planning (S&OP) primarily integrates:","options":["Only final-stage retailer pricing","Only factory engineering layouts","Only supplier invoice approvals with tax accounting","Marketing demand estimates with operational capacity and inventory plans"],"answer":3,"explain":"S&OP aligns forecast, production, capacity, inventory and profit plans across functions."},{"id":93,"section":"S11","sectionName":"S&OP / Red Tomato","topic":"S11-05","code":"S11 · 05","topicTitle":"Red Tomato parameters","category":"S&OP / Red Tomato","type":"Calculation","difficulty":2,"question":"Red Tomato has 20 days/month at 8 h/day, and each worker needs 4 hours per unit. Normal monthly output per worker equals:","options":["40 units","20 units","32 units","80 units"],"answer":0,"explain":"20×8/4=40 units per worker per month."},{"id":94,"section":"S11","sectionName":"S&OP / Red Tomato","topic":"S11-06","code":"S11 · 06","topicTitle":"Red Tomato LP","category":"S&OP / Red Tomato","type":"Model","difficulty":2,"question":"In Red Tomato’s planning LP, Wₜ=workers, Hₜ=hires, Lₜ=layoffs. The correct workforce-flow constraint is:","options":["Wₜ = Hₜ + Lₜ","Wₜ = Wₜ₋₁ + Hₜ − Lₜ","Wₜ = Wₜ₋₁ + Lₜ − Hₜ","Wₜ = Wₜ₋₁ − Hₜ − Lₜ"],"answer":1,"explain":"End workforce equals starting workforce plus hires minus layoffs."},{"id":95,"section":"S11","sectionName":"S&OP / Red Tomato","topic":"S11-08","code":"S11 · 08","topicTitle":"Promo profit comparison","category":"S&OP / Red Tomato","type":"Case","difficulty":2,"question":"For the Red Tomato promotion scenarios in the review, which statement is correct?","options":["No promotion yields the highest profit","April promotion yields both the highest revenue and highest profit","January (off-peak) promotion yields the highest profit despite lower revenue than April","April and January promotions have exactly equal operating cost"],"answer":2,"explain":"Profit: Jan $221,320, no promo $217,340, Apr $211,220; peak promo increases costs enough to offset higher revenue."},{"id":96,"section":"S12","sectionName":"Zara / Fast Fashion","topic":"S12-01","code":"S12 · 01","topicTitle":"Zara speed + variety","category":"Zara / Fast Fashion","type":"Case","difficulty":2,"question":"Zara’s approximate design-to-rack response time in the course case is:","options":["2 years","15 days","6 months","60 days"],"answer":1,"explain":"Zara responds to changing fashion trends in about 15 days rather than trying to invent every trend."},{"id":97,"section":"S12","sectionName":"Zara / Fast Fashion","topic":"S12-02","code":"S12 · 02","topicTitle":"Organization / rhythm","category":"Zara / Fast Fashion","type":"Case","difficulty":2,"question":"Why does Zara place designers, market experts, planners and prototypes together in work cells?","options":["To replace all capacity buffers with higher utilization","To isolate design from procurement","To eliminate shop-floor feedback","To coordinate end-to-end decisions quickly across functions"],"answer":3,"explain":"Cross-functional co-location accelerates feedback, sampling, procurement and planning."},{"id":98,"section":"S12","sectionName":"Zara / Fast Fashion","topic":"S12-03","code":"S12 · 03","topicTitle":"SC architecture","category":"Zara / Fast Fashion","type":"Case","difficulty":2,"question":"Which supply-chain architecture best matches Zara in the review?","options":["Online-only direct-to-consumer without physical stores","Local manufacturing in every international retail store","Entirely offshore production with no company-owned facilities","Concentrated Spanish factories/DCs, contractors, store feedback and selected air transport"],"answer":3,"explain":"Zara combines near-Spain production (own + contractor), two central DCs and rapid replenishment globally."},{"id":99,"section":"S12","sectionName":"Zara / Fast Fashion","topic":"S12-04","code":"S12 · 04","topicTitle":"Utilization vs waiting","category":"Zara / Fast Fashion","type":"Concept","difficulty":2,"question":"Why might Zara deliberately leave production capacity underutilized?","options":["Spare capacity ensures there is no demand uncertainty","Lower utilization automatically eliminates fixed costs","High utilization always makes waiting times shorter","Near-full utilization can sharply increase queues and response time"],"answer":3,"explain":"Queuing waiting time rises nonlinearly as utilization approaches 100%; buffers support responsiveness."},{"id":100,"section":"S12","sectionName":"Zara / Fast Fashion","topic":"S12-05","code":"S12 · 05","topicTitle":"Zara vs competitors","category":"Zara / Fast Fashion","type":"Case","difficulty":2,"question":"Which comparison between Zara and SHEIN is consistent with the review?","options":["Both depend exclusively on early committed capacity for timeless classics","Zara uses shop feedback and nearer flexible production; SHEIN uses data/ML signals and outsourced small batches","Zara is online-only; SHEIN relies primarily on its own Spanish factories","SHEIN launches substantially fewer styles than Zara and uses only brick-and-mortar"],"answer":1,"explain":"Zara relies on physical-store feedback, nearby flexibility and ~35k styles/year; SHEIN uses algorithmic signals, PRD partners, very small batches and many more styles."}];</script>
+<script>/* ISOM 3770 · pre-exam gap-check — standalone app */
+(() => {
+  'use strict';
+
+  const BANK = window.__BANK__ || [];
+  const BY_ID = new Map(BANK.map((q) => [q.id, q]));
+  const LETTERS = ['A', 'B', 'C', 'D', 'E'];
+  const APP_VERSION = '1.0.0';
+  const REVIEW_HREF = '../ISOM3770_review.html';
+  const ACTIVE_KEY = 'isom3770-gapcheck.v1.active';
+  const HISTORY_KEY = 'isom3770-gapcheck.v1.history';
+  const THEME_KEY = 'isom3770-gapcheck.v1.theme';
+
+  const SECTIONS = [];
+  {
+    const seen = new Map();
+    for (const q of BANK) {
+      if (!seen.has(q.section)) {
+        seen.set(q.section, {
+          id: q.section,
+          name: q.sectionName,
+          ids: [],
+        });
+      }
+      seen.get(q.section).ids.push(q.id);
+    }
+    SECTIONS.push(...seen.values());
+    SECTIONS.sort((a, b) => Number(a.id.slice(1)) - Number(b.id.slice(1)));
+  }
+
+  const TYPE_META = {
+    Concept: { zh: '概念理解', tone: 'blue' },
+    Calculation: { zh: '公式计算', tone: 'amber' },
+    Model: { zh: '模型构建', tone: 'teal' },
+    Scenario: { zh: '情境应用', tone: 'violet' },
+    Case: { zh: '案例分析', tone: 'teal' },
+  };
+
+  const state = {
+    screen: 'setup',
+    attempt: null,
+    report: null,
+    filter: 'all',
+    setupCount: 100,
+    setupMode: 'balanced',
+    history: [],
+  };
+
+  /* ------------------------------------------------------------------ */
+  /* helpers                                                             */
+  /* ------------------------------------------------------------------ */
+
+  const $ = (selector, root = document) => root.querySelector(selector);
+  const $$ = (selector, root = document) => Array.from(root.querySelectorAll(selector));
+
+  function esc(value) {
+    return String(value).replace(/[&<>"']/g, (char) => ({
+      '&': '&amp;',
+      '<': '&lt;',
+      '>': '&gt;',
+      '"': '&quot;',
+      "'": '&#39;',
+    }[char]));
+  }
+
+  function clamp(value, min, max) {
+    return Math.min(max, Math.max(min, Number(value) || 0));
+  }
+
+  function pct(value) {
+    return `${(value * 100).toFixed(1)}%`;
+  }
+
+  function uid() {
+    try {
+      if (globalThis.crypto && typeof crypto.randomUUID === 'function') return crypto.randomUUID();
+    } catch (_) { /* ignore */ }
+    return `a-${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 9)}`;
+  }
+
+  function nowIso() {
+    return new Date().toISOString();
+  }
+
+  function formatDate(iso) {
+    if (!iso) return '—';
+    const date = new Date(iso);
+    if (Number.isNaN(date.getTime())) return '—';
+    return date.toLocaleString('zh-CN', {
+      month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit',
+    });
+  }
+
+  function formatDuration(totalSeconds) {
+    const seconds = Math.max(0, Math.round(Number(totalSeconds) || 0));
+    const hours = Math.floor(seconds / 3600);
+    const minutes = Math.floor((seconds % 3600) / 60);
+    const rest = seconds % 60;
+    const two = (n) => String(n).padStart(2, '0');
+    return hours ? `${hours}:${two(minutes)}:${two(rest)}` : `${two(minutes)}:${two(rest)}`;
+  }
+
+  function readJson(key, fallback) {
+    try {
+      const raw = localStorage.getItem(key);
+      return raw ? JSON.parse(raw) : fallback;
+    } catch (_) {
+      return fallback;
+    }
+  }
+
+  function writeJson(key, value) {
+    try {
+      localStorage.setItem(key, JSON.stringify(value));
+      return true;
+    } catch (_) {
+      return false;
+    }
+  }
+
+  function toast(message, kind = '') {
+    const element = $('#toast');
+    if (!element) return;
+    element.textContent = message;
+    element.className = `toast ${kind}`.trim();
+    element.hidden = false;
+    window.clearTimeout(toast._timer);
+    toast._timer = window.setTimeout(() => { element.hidden = true; }, 3200);
+  }
+
+  function typeLabel(type) {
+    return TYPE_META[type] ? TYPE_META[type].zh : type;
+  }
+
+  function difficultyLabel(level) {
+    return level >= 3 ? '进阶' : level === 1 ? '基础' : '标准';
+  }
+
+  function priorityBadge(priority) {
+    const label = { high: '高', mid: '中', low: '低', none: '—' }[priority] || '—';
+    return `<span class="priority ${priority}">${label}</span>`;
+  }
+
+  function statusLabel(status) {
+    return { correct: '正确', wrong: '答错', unknown: '不知道', unanswered: '未答' }[status] || status;
+  }
+
+  function statusBadge(status) {
+    return `<span class="status-badge ${status}">${statusLabel(status)}</span>`;
+  }
+
+  function reviewTip(row) {
+    if (row.status === 'correct') return '保持。用 30 秒复述本题考点，并说明其他选项为什么错。';
+    if (row.status === 'unknown') return `先回看 ${row.code} ${row.topicTitle} 的定义/公式，再重做本题；不要靠排除法猜。`;
+    if (row.type === 'Concept') return `回看 ${row.code} 的概念表述，比较正确项与你的选择的差别，写出误判原因。`;
+    if (row.type === 'Calculation') return '重写公式与变量，检查单位、百分数和小数点；再做一个同型变式。';
+    if (row.type === 'Model') return '先写变量、目标函数和约束，再对照本题的建模陷阱。';
+    return `把本题情境映射到 ${row.code} 的决策规则，写出“为什么”，而不是只记答案。`;
+  }
+
+  function problemBadge(problem) {
+    const cls = problem === '已掌握' ? 'low' : problem === '知识空白' ? 'mid' : problem === '空白 + 错误' ? 'high' : 'high';
+    return `<span class="priority ${cls}">${esc(problem)}</span>`;
+  }
+
+  function reviewHref(section) {
+    return `${REVIEW_HREF}${section ? `#sec-${encodeURIComponent(section.toLowerCase())}` : ''}`;
+  }
+
+  function modeLabel(config) {
+    if (!config) return '模考';
+    if (config.mode === 'weak') return '薄弱优先';
+    if (config.mode === 'retry') return '错题重练';
+    if (config.mode === 'section') return `只练 ${config.section || ''}`.trim();
+    return '均衡覆盖';
+  }
+
+  function isAnswered(attempt, id) {
+    const value = attempt.answers[id];
+    return Number.isInteger(value) && value >= 0 && value <= 4;
+  }
+
+  function answeredCount(attempt) {
+    return attempt.questionIds.filter((id) => isAnswered(attempt, id)).length;
+  }
+
+  function unknownCount(attempt) {
+    return attempt.questionIds.filter((id) => attempt.answers[id] === 4).length;
+  }
+
+  function flaggedCount(attempt) {
+    return attempt.questionIds.filter((id) => !!attempt.flags[id]).length;
+  }
+
+  /* ------------------------------------------------------------------ */
+  /* sampling                                                            */
+  /* ------------------------------------------------------------------ */
+
+  function seededRandom(seed) {
+    let value = (Number(seed) || 1) >>> 0;
+    return () => {
+      value |= 0;
+      value = (value + 0x6D2B79F5) | 0;
+      let t = value;
+      t = Math.imul(t ^ (t >>> 15), 1 | t);
+      t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+      return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+    };
+  }
+
+  function shuffle(items, seed) {
+    const result = items.slice();
+    const random = seededRandom(seed);
+    for (let i = result.length - 1; i > 0; i--) {
+      const j = Math.floor(random() * (i + 1));
+      const tmp = result[i];
+      result[i] = result[j];
+      result[j] = tmp;
+    }
+    return result;
+  }
+
+  function allocate(total, items, weightFor, capFor) {
+    const rows = items.map((item) => ({
+      item,
+      add: 0,
+      cap: Math.max(0, capFor(item)),
+      frac: 0,
+    }));
+    const weights = rows.map((row) => Math.max(0, Number(weightFor(row.item)) || 0));
+    const weightTotal = weights.reduce((sum, value) => sum + value, 0);
+    let used = 0;
+    rows.forEach((row, index) => {
+      const exact = weightTotal > 0 ? (total * weights[index]) / weightTotal : total / rows.length;
+      row.frac = exact - Math.floor(exact);
+      row.add = Math.min(Math.floor(exact), row.cap);
+      used += row.add;
+    });
+    let left = Math.max(0, total - used);
+    rows.sort((a, b) => b.frac - a.frac || b.cap - a.cap);
+    let guard = 0;
+    while (left > 0 && guard++ < 500) {
+      let progress = false;
+      for (const row of rows) {
+        if (left > 0 && row.add < row.cap) {
+          row.add += 1;
+          left -= 1;
+          progress = true;
+        }
+      }
+      if (!progress) break;
+    }
+    return new Map(rows.map((row) => [row.item.id, row.add]));
+  }
+
+  function sampleQuestionIds(count, mode, seed) {
+    const total = BANK.length;
+    const wanted = clamp(count, 1, total);
+    if (wanted >= total) return shuffle(BANK.map((q) => q.id), seed);
+    if (wanted < SECTIONS.length) return shuffle(BANK.map((q) => q.id), seed).slice(0, wanted);
+
+    const previous = state.history[0];
+    const gapBySection = new Map();
+    if (previous && Array.isArray(previous.sections)) {
+      for (const section of previous.sections) gapBySection.set(section.id, Number(section.gapRate) || 0);
+    }
+    const weightFor = (section) => {
+      if (mode !== 'weak') return section.ids.length;
+      return 1 + 2.6 * (gapBySection.get(section.id) || 0);
+    };
+    const capFor = (section) => Math.max(0, section.ids.length - 1);
+    const extra = wanted - SECTIONS.length;
+    const quotas = allocate(extra, SECTIONS, weightFor, capFor);
+
+    const selected = [];
+    SECTIONS.forEach((section, index) => {
+      const take = 1 + (quotas.get(section.id) || 0);
+      const shuffled = shuffle(section.ids, seed + index * 7919);
+      selected.push(...shuffled.slice(0, Math.min(take, shuffled.length)));
+    });
+    return shuffle(selected, seed + 104729);
+  }
+
+  /* ------------------------------------------------------------------ */
+  /* analysis                                                            */
+  /* ------------------------------------------------------------------ */
+
+  function analyze(attempt) {
+    const rows = attempt.questionIds.map((id, index) => {
+      const question = BY_ID.get(id);
+      const raw = attempt.answers[id];
+      const selected = Number.isInteger(raw) && raw >= 0 && raw <= 4 ? raw : null;
+      let status = 'unanswered';
+      if (selected !== null) {
+        status = selected === 4 ? 'unknown' : selected === question.answer ? 'correct' : 'wrong';
+      }
+      return {
+        ...question,
+        examIndex: index,
+        selected,
+        status,
+      };
+    });
+
+    const total = rows.length;
+    const correct = rows.filter((row) => row.status === 'correct').length;
+    const wrong = rows.filter((row) => row.status === 'wrong').length;
+    const unknown = rows.filter((row) => row.status === 'unknown').length;
+    const unanswered = rows.filter((row) => row.status === 'unanswered').length;
+    const accuracy = total ? correct / total : 0;
+    const effectiveAccuracy = correct + wrong ? correct / (correct + wrong) : 0;
+    const gapCount = wrong + unknown;
+
+    const group = (predicate) => {
+      const items = rows.filter(predicate);
+      const c = items.filter((row) => row.status === 'correct').length;
+      const w = items.filter((row) => row.status === 'wrong').length;
+      const u = items.filter((row) => row.status === 'unknown').length;
+      return { n: items.length, correct: c, wrong: w, unknown: u, gap: w + u, gapRate: items.length ? (w + u) / items.length : 0 };
+    };
+
+    const sections = SECTIONS
+      .filter((section) => rows.some((row) => row.section === section.id))
+      .map((section) => {
+        const stats = group((row) => row.section === section.id);
+        return { id: section.id, name: section.name, ...stats, priority: priorityFor(stats.gapRate, stats.gap, stats.n) };
+      })
+      .sort((a, b) => b.gapRate - a.gapRate || b.gap - a.gap || a.id.localeCompare(b.id));
+
+    const types = Object.keys(TYPE_META)
+      .map((type) => ({ type, ...group((row) => row.type === type) }))
+      .filter((item) => item.n > 0)
+      .sort((a, b) => b.gapRate - a.gapRate || b.gap - a.gap);
+
+    const topicMap = new Map();
+    for (const row of rows) {
+      if (!topicMap.has(row.topic)) {
+        topicMap.set(row.topic, {
+          code: row.code,
+          title: row.topicTitle,
+          topic: row.topic,
+          section: row.section,
+          sectionName: row.sectionName,
+          category: row.category,
+          ids: [],
+          rows: [],
+        });
+      }
+      const topic = topicMap.get(row.topic);
+      topic.ids.push(row.id);
+      topic.rows.push(row);
+    }
+
+    const topics = Array.from(topicMap.values()).map((topic) => {
+      const c = topic.rows.filter((row) => row.status === 'correct').length;
+      const w = topic.rows.filter((row) => row.status === 'wrong').length;
+      const u = topic.rows.filter((row) => row.status === 'unknown').length;
+      const gap = w + u;
+      const conceptWrong = topic.rows.filter((row) => row.status === 'wrong' && row.type === 'Concept').length;
+      const appliedWrong = topic.rows.filter((row) => row.status === 'wrong' && row.type !== 'Concept').length;
+      let problem = '已掌握';
+      if (gap > 0 && u > 0 && w === 0) problem = '知识空白';
+      else if (gap > 0 && w > 0 && u === 0) problem = conceptWrong > 0 && appliedWrong === 0 ? '理解错误' : '应用不足';
+      else if (gap > 0) problem = '空白 + 错误';
+      return {
+        code: topic.code,
+        title: topic.title,
+        topic: topic.topic,
+        section: topic.section,
+        sectionName: topic.sectionName,
+        category: topic.category,
+        n: topic.rows.length,
+        correct: c,
+        wrong: w,
+        unknown: u,
+        gap,
+        gapRate: topic.rows.length ? gap / topic.rows.length : 0,
+        conceptWrong,
+        appliedWrong,
+        problem,
+        ids: topic.ids,
+      };
+    }).sort((a, b) => b.gapRate - a.gapRate || b.gap - a.gap || a.code.localeCompare(b.code));
+
+    const gaps = topics.filter((topic) => topic.gap > 0);
+    const strengths = topics
+      .filter((topic) => topic.gap === 0 && topic.n >= 1)
+      .sort((a, b) => b.n - a.n || a.code.localeCompare(b.code))
+      .slice(0, 8);
+
+    const classification = {
+      knowledge: unknown,
+      understanding: rows.filter((row) => row.status === 'wrong' && row.type === 'Concept').length,
+      application: rows.filter((row) => row.status === 'wrong' && row.type !== 'Concept').length,
+    };
+
+    const recommendations = gaps.slice(0, 8).map((topic) => {
+      let action;
+      if (topic.problem === '知识空白') {
+        action = `先回看 ${topic.code} 的定义/公式，用自己的话复述，再做 2 道同知识点题。`;
+      } else if (topic.problem === '理解错误') {
+        action = `对比正确概念与干扰项，写出“为什么错”，再回看 ${topic.code} 的易错点。`;
+      } else if (topic.problem === '应用不足') {
+        action = `重做 ${topic.code} 的公式/建模步骤：先写变量和公式，再代入，检查单位与边界。`;
+      } else {
+        action = `先补 ${topic.code} 的定义，再做 2 道变式题；把错因写回复习页对应框。`;
+      }
+      return {
+        code: topic.code,
+        title: topic.title,
+        section: topic.section,
+        sectionName: topic.sectionName,
+        problem: topic.problem,
+        gap: topic.gap,
+        unknown: topic.unknown,
+        wrong: topic.wrong,
+        n: topic.n,
+        action,
+        minutes: Math.min(30, 8 + topic.gap * 4 + (topic.n >= 3 ? 4 : 0)),
+        ids: topic.ids,
+      };
+    });
+
+    let band;
+    if (accuracy >= 0.9) band = { key: 'good', label: '状态稳', note: '整体掌握较好，把剩余漏洞逐个清掉即可。' };
+    else if (accuracy >= 0.8) band = { key: 'good', label: '基本稳', note: '基础扎实，但仍有可被命题人抓住的漏洞。' };
+    else if (accuracy >= 0.7) band = { key: 'mid', label: '有明确漏洞', note: '按 Session 优先级补漏，比继续刷整套更有效。' };
+    else if (accuracy >= 0.6) band = { key: 'mid', label: '风险较高', note: '先补高优先级章节，再重做错题与不知道的题。' };
+    else band = { key: 'bad', label: '需要系统补漏', note: '建议先按知识点清单复习，再开始下一组模考。' };
+
+    let headline;
+    if (total && unknown === total) headline = '全部题目都标记为「不知道」：这是一次诚实的基线诊断，先按下面的优先级补知识点。';
+    else if (total && unknown / total >= 0.35) headline = '知识空白较多：先把标为 E 的题对应知识点补上，再追求正确率。';
+    else if (total && wrong / total >= 0.25) headline = '主要问题不是空白，而是理解或应用偏差：重点复盘错题为什么错。';
+    else if (accuracy >= 0.85) headline = '整体掌握较好：把剩余漏洞逐个清掉即可。';
+    else headline = '整体有基础，但漏洞集中在少数章节：按优先级补漏。';
+
+    const previous = state.history.find((entry) => entry.id !== attempt.id);
+    const comparison = previous ? {
+      accuracy: previous.accuracy,
+      delta: (accuracy - previous.accuracy) * 100,
+      total: previous.total,
+      submittedAt: previous.submittedAt,
+    } : null;
+
+    return {
+      attemptId: attempt.id,
+      config: attempt.config,
+      startedAt: attempt.startedAt,
+      submittedAt: attempt.submittedAt,
+      durationSec: attempt.submittedAt
+        ? Math.max(0, Math.round((Date.parse(attempt.submittedAt) - Date.parse(attempt.startedAt)) / 1000))
+        : 0,
+      total, correct, wrong, unknown, unanswered, gapCount,
+      accuracy, effectiveAccuracy,
+      band, headline, classification, sections, types, topics, gaps, strengths, recommendations,
+      rows, comparison,
+    };
+  }
+
+  function priorityFor(gapRate, gap, n) {
+    if (!gap) return 'none';
+    if (n < 3) return 'mid';
+    if (gapRate >= 0.5) return 'high';
+    if (gapRate >= 0.25) return 'mid';
+    return 'low';
+  }
+
+  /* ------------------------------------------------------------------ */
+  /* persistence                                                         */
+  /* ------------------------------------------------------------------ */
+
+  function persistAttempt() {
+    if (!state.attempt) return;
+    if (!writeJson(ACTIVE_KEY, state.attempt)) {
+      toast('本机存储空间不足，当前进度可能无法自动保存。', 'bad');
+    }
+  }
+
+  function loadActive() {
+    const value = readJson(ACTIVE_KEY, null);
+    if (!value || !Array.isArray(value.questionIds) || !value.questionIds.length) return null;
+    if (!value.questionIds.every((id) => BY_ID.has(id))) return null;
+    if (!value.answers || typeof value.answers !== 'object') value.answers = {};
+    if (!value.flags || typeof value.flags !== 'object') value.flags = {};
+    value.current = clamp(value.current, 0, value.questionIds.length - 1);
+    if (!value.config) value.config = { mode: 'balanced', requestedCount: value.questionIds.length, label: '模考' };
+    return value;
+  }
+
+  function pushHistory(report) {
+    const entry = {
+      id: report.attemptId,
+      submittedAt: report.submittedAt,
+      mode: report.config ? report.config.mode : 'balanced',
+      requestedCount: report.config ? report.config.requestedCount : report.total,
+      total: report.total,
+      correct: report.correct,
+      wrong: report.wrong,
+      unknown: report.unknown,
+      accuracy: report.accuracy,
+      effectiveAccuracy: report.effectiveAccuracy,
+      topGap: report.gaps[0] ? {
+        code: report.gaps[0].code,
+        title: report.gaps[0].title,
+        section: report.gaps[0].section,
+        problem: report.gaps[0].problem,
+        gapRate: report.gaps[0].gapRate,
+      } : null,
+      sections: report.sections.map((section) => ({
+        id: section.id,
+        name: section.name,
+        n: section.n,
+        gap: section.gap,
+        gapRate: section.gapRate,
+      })),
+    };
+    state.history = [entry, ...state.history.filter((item) => item.id !== entry.id)].slice(0, 10);
+    writeJson(HISTORY_KEY, state.history);
+  }
+
+  /* ------------------------------------------------------------------ */
+  /* starting attempts                                                   */
+  /* ------------------------------------------------------------------ */
+
+  function startAttempt(options) {
+    const seed = Math.floor(Math.random() * 2147483647) + 1;
+    const requestedCount = Math.round(clamp(options.requestedCount || options.ids?.length || 100, 1, BANK.length));
+    let ids;
+    if (options.ids && options.ids.length) ids = shuffle(options.ids, seed);
+    else ids = sampleQuestionIds(requestedCount, options.mode || 'balanced', seed);
+    if (!ids.length) {
+      toast('没有可抽取的题目。', 'bad');
+      return;
+    }
+    const label = options.label || (options.mode === 'weak' ? '薄弱优先' : options.mode === 'section' ? `只练 ${options.section}` : '均衡覆盖');
+    state.attempt = {
+      id: uid(),
+      createdAt: nowIso(),
+      startedAt: nowIso(),
+      config: {
+        mode: options.mode || 'balanced',
+        requestedCount: ids.length,
+        baseCount: options.baseCount || requestedCount,
+        section: options.section || null,
+        label,
+        seed,
+      },
+      questionIds: ids,
+      answers: {},
+      flags: {},
+      current: 0,
+      submitted: false,
+      submittedAt: null,
+    };
+    state.screen = 'exam';
+    state.report = null;
+    state.filter = 'all';
+    persistAttempt();
+    render();
+    window.scrollTo({ top: 0, behavior: 'auto' });
+  }
+
+  function newBalancedAttempt() {
+    const count = state.setupCount;
+    const mode = state.setupMode === 'weak' && state.history.length ? 'weak' : 'balanced';
+    startAttempt({ requestedCount: count, mode, baseCount: count });
+  }
+
+  function restartSame() {
+    const report = state.report;
+    if (!report) return newBalancedAttempt();
+    const config = report.config || {};
+    if (config.mode === 'section' && config.section) {
+      const section = SECTIONS.find((item) => item.id === config.section);
+      if (section) {
+        const ids = shuffle(section.ids, Date.now()).slice(0, Math.min(10, section.ids.length));
+        startAttempt({ ids, mode: 'section', section: section.id, requestedCount: ids.length, baseCount: config.baseCount || 10, label: `只练 ${section.id} · ${section.name}` });
+        return;
+      }
+    }
+    const count = config.mode === 'retry' ? (config.baseCount || 20) : (config.requestedCount || state.setupCount);
+    const mode = config.mode === 'weak' && state.history.length ? 'weak' : 'balanced';
+    startAttempt({ requestedCount: count, mode, baseCount: count });
+  }
+
+  function practiceSection(sectionId) {
+    const section = SECTIONS.find((item) => item.id === sectionId);
+    if (!section) return;
+    const seed = Date.now();
+    const ids = shuffle(section.ids, seed).slice(0, Math.min(10, section.ids.length));
+    startAttempt({
+      ids,
+      mode: 'section',
+      section: section.id,
+      requestedCount: ids.length,
+      baseCount: state.report?.config?.baseCount || state.setupCount,
+      label: `只练 ${section.id} · ${section.name}`,
+    });
+  }
+
+  function practiceTopic(topicCode) {
+    const ids = BANK.filter((question) => question.topic === topicCode).map((question) => question.id);
+    if (!ids.length) return;
+    startAttempt({
+      ids,
+      mode: 'section',
+      section: BY_ID.get(ids[0]).section,
+      requestedCount: ids.length,
+      baseCount: state.report?.config?.baseCount || state.setupCount,
+      label: `知识点 ${topicCode}`,
+    });
+  }
+
+  function retryGaps() {
+    if (!state.report) return;
+    const ids = state.report.rows
+      .filter((row) => row.status === 'wrong' || row.status === 'unknown')
+      .map((row) => row.id);
+    if (!ids.length) {
+      toast('这次没有错题或「不知道」，不需要重练。', 'good');
+      return;
+    }
+    startAttempt({
+      ids,
+      mode: 'retry',
+      requestedCount: ids.length,
+      baseCount: state.report.config?.baseCount || state.report.total,
+      label: `错题重练 · ${ids.length} 题`,
+    });
+  }
+
+  /* ------------------------------------------------------------------ */
+  /* render: setup                                                       */
+  /* ------------------------------------------------------------------ */
+
+  function themeIcon() {
+    return document.documentElement.dataset.theme === 'dark' ? '☀' : '☾';
+  }
+
+  function renderSetup() {
+    const active = state.attempt;
+    const history = state.history;
+    const hasHistory = history.length > 0;
+    const count = clamp(state.setupCount, 10, 100);
+    state.setupCount = count;
+    const mode = state.setupMode === 'weak' && !hasHistory ? 'balanced' : state.setupMode;
+    state.setupMode = mode;
+    const estimated = Math.max(8, Math.round(count * 1.35));
+    const activeBanner = active && !active.submitted
+      ? `<div class="resume-banner">
+          <div><b>上次还有一份未完成的作答</b><p>已答 ${answeredCount(active)} / ${active.questionIds.length} 题 · ${formatDate(active.startedAt)} · 进度保存在本机</p></div>
+          <div class="btn-row"><button class="btn primary sm" id="resumeBtn">继续作答</button><button class="btn sm" id="discardBtn">放弃并重新开始</button></div>
+        </div>`
+      : active && active.submitted
+        ? `<div class="resume-banner">
+            <div><b>上次诊断已生成</b><p>${active.questionIds.length} 题 · ${formatDate(active.submittedAt)} · 可查看报告或开始新一组</p></div>
+            <div class="btn-row"><button class="btn primary sm" id="viewReportBtn">查看上次诊断</button></div>
+          </div>`
+        : '';
+
+    const historyHtml = history.length
+      ? history.slice(0, 6).map((item) => `
+          <div class="history-row">
+            <div class="h-top"><b>${esc(formatDate(item.submittedAt))}</b> <span class="h-date">· ${esc(item.mode === 'retry' ? '错题重练' : item.mode === 'weak' ? '薄弱优先' : '均衡覆盖')} · ${item.total} 题</span></div>
+            <div><b>${Math.round(item.accuracy * 100)}%</b> <span class="muted">正确</span> · ${item.unknown} 不知道</div>
+            <div class="muted">${item.topGap ? `最弱：${esc(item.topGap.code)} ${esc(item.topGap.title)}` : '全部正确'}</div>
+          </div>`).join('')
+      : `<div class="history-empty">还没有诊断记录。完成第一组后，这里会保留最近 10 次的成绩和最弱 Session，用于「薄弱优先」出题。</div>`;
+
+    const covered = SECTIONS.map((section) => `<span class="scope-chip">${esc(section.id)} ${esc(section.name)}</span>`).join('');
+
+    $('#app').innerHTML = `
+      <header class="site-head">
+        <a class="brand" href="./" aria-label="ISOM 3770 gap check">
+          <span class="brand-mark">37</span>
+          <span class="brand-text"><b>ISOM 3770 · Midterm</b><span>Pre-exam gap check</span></span>
+        </a>
+        <div class="head-tools">
+          <a class="btn sm" href="${reviewHref()}" target="_blank" rel="noopener">复习页 ↗</a>
+          <button class="icon-btn" type="button" data-theme-toggle aria-label="切换深浅色">${themeIcon()}</button>
+        </div>
+      </header>
+      <main class="shell setup" id="main">
+        ${activeBanner}
+        <section class="hero">
+          <div class="hero-main">
+            <div class="eyebrow">ISOM 3770 · Global Supply Chain Management</div>
+            <h1>考前<em>查缺补漏</em><br>一次诚实的诊断</h1>
+            <p class="lead">从 ${BANK.length} 道英文单选题中按你的选择抽题。不确定就选 <b>E「不知道」</b>，不要猜；交卷后按 Session、题型和知识点定位漏洞，并给出下一步复习顺序。</p>
+            <div class="hero-badges">
+              <span class="badge blue">A–E 单选 · E = 不知道</span>
+              <span class="badge">English questions</span>
+              <span class="badge teal">交卷后统一公布答案</span>
+              <span class="badge">自动保存 · 可断点继续</span>
+              <span class="badge amber">导出诊断 JSON</span>
+            </div>
+            <div class="btn-row">
+              <button class="btn primary lg" id="heroStart">开始 ${count} 题诊断 <span aria-hidden="true">→</span></button>
+              <a class="btn" href="${reviewHref()}" target="_blank" rel="noopener">先看复习页</a>
+            </div>
+          </div>
+          <aside class="hero-side" aria-label="题库概况">
+            <div class="mini-card"><div class="big">${BANK.length}<small>题</small></div><h3>题库覆盖</h3><p>12 个 Session · 69 个知识点 · 5 种题型；按上一版复习范围排除 S13、Gravity Model 与独立 Z/Loss 表。</p></div>
+            <div class="mini-card"><div class="big">20<small>MC × 4.5</small></div><h3>真实考试形式</h3><p>期中为 20 道选择题 + 1 道长题（10 分）。本工具用于查缺补漏，不是原卷。</p></div>
+            <div class="mini-card"><div class="big">0<small>外部依赖</small></div><h3>离线可用</h3><p>不调用 API；答题进度和诊断历史只保存在当前浏览器。</p></div>
+          </aside>
+        </section>
+
+        <div class="setup-grid">
+          <section class="card config-card" aria-labelledby="configTitle">
+            <div class="eyebrow">Exam setup</div>
+            <h2 id="configTitle">设置这次诊断</h2>
+            <p class="sub">题量由你决定；默认 100 题覆盖全部题库。题量越少，越适合考前快速定位。</p>
+
+            <div class="field">
+              <div class="field-label"><span class="lab">题目数量</span><span class="hint">10–100 题</span></div>
+              <div class="count-row">
+                <div class="presets" id="presets">
+                  ${[20, 40, 60, 80, 100].map((value) => `<button type="button" class="preset ${value === count ? 'on' : ''}" data-count="${value}">${value}</button>`).join('')}
+                </div>
+                <label class="count-box"><span class="count-prefix">自定义</span><input id="countInput" type="number" min="10" max="100" step="1" value="${count}" inputmode="numeric" aria-label="自定义题目数量"><span>题</span></label>
+              </div>
+            </div>
+
+            <div class="field">
+              <div class="field-label"><span class="lab">出题方式</span><span class="hint">${hasHistory ? `参考最近 ${history.length} 次诊断` : '完成一次后解锁薄弱优先'}</span></div>
+              <div class="mode-list" role="radiogroup" aria-label="出题方式">
+                <label class="mode-option ${mode === 'balanced' ? 'on' : ''}" data-mode="balanced">
+                  <input type="radio" name="mode" value="balanced" ${mode === 'balanced' ? 'checked' : ''}>
+                  <span class="mode-dot" aria-hidden="true"></span>
+                  <span><b>均衡覆盖</b><small>按各 Session 题量比例抽取，尽量覆盖全范围。</small></span>
+                </label>
+                <label class="mode-option ${mode === 'weak' ? 'on' : ''} ${hasHistory ? '' : 'disabled'}" data-mode="weak">
+                  <input type="radio" name="mode" value="weak" ${mode === 'weak' ? 'checked' : ''} ${hasHistory ? '' : 'disabled'}>
+                  <span class="mode-dot" aria-hidden="true"></span>
+                  <span><b>薄弱优先</b><small>${hasHistory ? '按上次各 Session 的漏洞率加权，弱项多出题。' : '完成一次诊断后可用。'}</small></span>
+                </label>
+              </div>
+            </div>
+
+            <div class="config-summary">
+              <span>本次抽取 <b>${count}</b> 题</span>
+              <span>·</span>
+              <span>${count >= SECTIONS.length ? '覆盖全部 12 个 Session' : '随机覆盖部分 Session'}</span>
+              <span>·</span>
+              <span>预计 <b>${estimated}</b> 分钟</span>
+            </div>
+
+            <div class="start-row">
+              <button class="btn primary lg" id="startBtn">开始 ${count} 题诊断</button>
+              <span class="note">${active && !active.submitted ? '开始新一组会覆盖上面未完成的作答。' : '交卷前不显示答案；所有题目（含 E）作答后才能交卷。'}</span>
+            </div>
+          </section>
+
+          <aside class="card how-card" aria-labelledby="howTitle">
+            <div class="eyebrow teal">How it works</div>
+            <h2 id="howTitle" style="font-size:19px;margin-top:5px">怎么用才有效</h2>
+            <ol class="how-list">
+              <li><b>不要猜。</b>不会就选 E。只有区分「不知道」和「答错」，诊断才能分清知识空白、理解错误和应用不足。</li>
+              <li><b>一次做完。</b>题号可以跳转，进度自动保存；中途关掉浏览器也能继续。</li>
+              <li><b>先看诊断，再重练。</b>交卷后按高优先级 Session 补漏，再用「错题重练」验证，而不是立刻刷下一套。</li>
+            </ol>
+            <div class="rule-callout"><b>交卷条件：</b>所有题都必须有选择。E 也是有效作答，但会计入「不知道」，不会伪装成错误。</div>
+            <div class="history-card" style="padding:16px 0 0;margin-top:4px;box-shadow:none;border:0;background:transparent">
+              <div class="card-head" style="margin-bottom:8px"><h3 style="font-size:13px">最近诊断</h3>${history.length ? '<button class="btn ghost sm" id="clearHistory">清空</button>' : ''}</div>
+              <div class="history-list">${historyHtml}</div>
+            </div>
+          </aside>
+        </div>
+
+        <section class="card scope-card" aria-labelledby="scopeTitle">
+          <div class="card-head" style="margin-bottom:0">
+            <div><div class="eyebrow">Scope</div><h2 id="scopeTitle" style="font-size:18px;margin-top:3px">这次考什么 / 不考什么</h2></div>
+            <span class="badge">按上一版复习范围</span>
+          </div>
+          <div class="scope-grid">
+            <div class="scope-col"><h3>Covered</h3><div class="scope-chips">${covered}</div></div>
+            <div class="scope-col"><h3>Excluded</h3><div class="scope-chips"><span class="scope-chip off">S13 考试形式说明</span><span class="scope-chip off">Gravity Model</span><span class="scope-chip off">独立 Z &amp; Loss Function 表</span></div><p class="small muted" style="margin-top:8px">S13 只说明考试形式，不进入题库；Gravity Model 与独立 Z/Loss 表按复习范围排除。Newsvendor 的临界比与 z 值计算仍可能考。</p></div>
+          </div>
+        </section>
+
+        <footer class="small muted" style="padding:22px 2px 0;display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap">
+          <span>ISOM 3770 · Pre-exam gap check · v${APP_VERSION}</span>
+          <span>答案与解析基于课程复习材料；本页不替代课堂讲解。</span>
+        </footer>
+      </main>`;
+
+    bindSetupEvents();
+  }
+
+  function bindSetupEvents() {
+    const start = () => {
+      if (state.attempt && !state.attempt.submitted) {
+        openDialog({
+          title: '覆盖未完成的作答？',
+          body: `<p>当前有一份未完成作答（已答 ${answeredCount(state.attempt)} / ${state.attempt.questionIds.length} 题）。开始新一组会覆盖它，但已交卷的诊断历史不受影响。</p>`,
+          actions: [
+            { label: '取消', kind: '' },
+            { label: '覆盖并开始', kind: 'primary', onClick: newBalancedAttempt },
+          ],
+        });
+        return;
+      }
+      newBalancedAttempt();
+    };
+
+    $('#heroStart')?.addEventListener('click', start);
+    $('#startBtn')?.addEventListener('click', start);
+
+    $('#countInput')?.addEventListener('input', (event) => {
+      if (event.target.value === '') return;
+      const value = Math.round(clamp(event.target.value, 10, 100));
+      state.setupCount = value;
+      $$('#presets .preset').forEach((button) => {
+        button.classList.toggle('on', Number(button.dataset.count) === value);
+      });
+      const summary = $('.config-summary');
+      if (summary) {
+        const estimated = Math.max(8, Math.round(value * 1.35));
+        summary.innerHTML = `<span>本次抽取 <b>${value}</b> 题</span><span>·</span><span>${value >= SECTIONS.length ? '覆盖全部 12 个 Session' : '随机覆盖部分 Session'}</span><span>·</span><span>预计 <b>${estimated}</b> 分钟</span>`;
+      }
+      const startButton = $('#startBtn');
+      if (startButton) startButton.textContent = `开始 ${value} 题诊断`;
+      const heroButton = $('#heroStart');
+      if (heroButton) heroButton.innerHTML = `开始 ${value} 题诊断 <span aria-hidden="true">→</span>`;
+    });
+
+    $('#countInput')?.addEventListener('blur', (event) => {
+      const value = Math.round(clamp(event.target.value || state.setupCount, 10, 100));
+      event.target.value = String(value);
+      state.setupCount = value;
+    });
+
+    $$('#presets .preset').forEach((button) => {
+      button.addEventListener('click', () => {
+        const value = Number(button.dataset.count);
+        state.setupCount = value;
+        const input = $('#countInput');
+        if (input) input.value = String(value);
+        $$('#presets .preset').forEach((item) => item.classList.toggle('on', item === button));
+        const summary = $('.config-summary');
+        if (summary) {
+          const estimated = Math.max(8, Math.round(value * 1.35));
+          summary.innerHTML = `<span>本次抽取 <b>${value}</b> 题</span><span>·</span><span>${value >= SECTIONS.length ? '覆盖全部 12 个 Session' : '随机覆盖部分 Session'}</span><span>·</span><span>预计 <b>${estimated}</b> 分钟</span>`;
+        }
+        const startButton = $('#startBtn');
+        if (startButton) startButton.textContent = `开始 ${value} 题诊断`;
+        const heroButton = $('#heroStart');
+        if (heroButton) heroButton.innerHTML = `开始 ${value} 题诊断 <span aria-hidden="true">→</span>`;
+      });
+    });
+
+    $$('.mode-option').forEach((button) => {
+      button.addEventListener('click', () => {
+        if (button.classList.contains('disabled')) return;
+        state.setupMode = button.dataset.mode;
+        $$('.mode-option').forEach((item) => item.classList.toggle('on', item === button));
+      });
+    });
+
+    $('#resumeBtn')?.addEventListener('click', () => {
+      if (!state.attempt) return;
+      state.screen = state.attempt.submitted ? 'report' : 'exam';
+      if (state.attempt.submitted) state.report = analyze(state.attempt);
+      render();
+      window.scrollTo({ top: 0, behavior: 'auto' });
+    });
+
+    $('#viewReportBtn')?.addEventListener('click', () => {
+      if (!state.attempt) return;
+      state.report = analyze(state.attempt);
+      state.screen = 'report';
+      render();
+      window.scrollTo({ top: 0, behavior: 'auto' });
+    });
+
+    $('#discardBtn')?.addEventListener('click', () => {
+      openDialog({
+        title: '放弃未完成的作答？',
+        body: '<p>当前进度会被清除，且不能恢复。已交卷的诊断历史不受影响。</p>',
+        actions: [
+          { label: '取消', kind: '' },
+          { label: '清除并重新开始', kind: 'danger', onClick: () => {
+            state.attempt = null;
+            try { localStorage.removeItem(ACTIVE_KEY); } catch (_) { /* ignore */ }
+            newBalancedAttempt();
+          } },
+        ],
+      });
+    });
+
+    $('#clearHistory')?.addEventListener('click', () => {
+      openDialog({
+        title: '清空诊断历史？',
+        body: '<p>会删除最近 10 次的成绩与 Session 漏洞记录；当前未完成作答不受影响。清空后「薄弱优先」暂时不可用。</p>',
+        actions: [
+          { label: '取消', kind: '' },
+          { label: '清空历史', kind: 'danger', onClick: () => {
+            state.history = [];
+            try { localStorage.removeItem(HISTORY_KEY); } catch (_) { /* ignore */ }
+            renderSetup();
+            toast('诊断历史已清空。', 'good');
+          } },
+        ],
+      });
+    });
+  }
+
+  /* ------------------------------------------------------------------ */
+  /* render: exam                                                        */
+  /* ------------------------------------------------------------------ */
+
+  function renderExam() {
+    const attempt = state.attempt;
+    if (!attempt) { state.screen = 'setup'; render(); return; }
+    $('#app').innerHTML = `
+      <header class="exam-head">
+        <div class="exam-head-inner">
+          <div class="exam-title"><span class="dot" aria-hidden="true"></span>ISOM 3770 · 查缺补漏</div>
+          <div class="exam-progress">
+            <div class="progress-track" aria-hidden="true"><i id="headBar"></i></div>
+            <span class="progress-label" id="headProgressText">0 / ${attempt.questionIds.length} 已答</span>
+          </div>
+          <span class="timer" id="timer" aria-label="已用时间">00:00</span>
+          <button class="btn sm" id="exitBtn" type="button">退出</button>
+          <button class="btn primary sm" id="submitTop" type="button" disabled>交卷</button>
+        </div>
+      </header>
+      <main class="exam-layout" id="main">
+        <section class="card q-card" aria-labelledby="qtext">
+          <div class="q-meta" id="qmeta"></div>
+          <h1 class="q-text" id="qtext" tabindex="-1"></h1>
+          <div class="options" id="options" role="radiogroup" aria-labelledby="qtext"></div>
+          <div class="q-actions">
+            <div class="left">
+              <button class="btn sm" id="prevBtn" type="button">← 上一题</button>
+              <button class="btn sm" id="nextBtn" type="button">下一题 →</button>
+            </div>
+            <div class="right">
+              <button class="btn sm flag-btn" id="flagBtn" type="button">标记</button>
+              <button class="btn sm ghost" id="firstUnanswered" type="button">跳到未答</button>
+            </div>
+          </div>
+          <div class="keyhint"><span><span class="kbd">A</span>–<span class="kbd">E</span> 选择</span><span><span class="kbd">←</span><span class="kbd">→</span> 翻题</span><span><span class="kbd">F</span> 标记</span></div>
+        </section>
+        <aside class="side" aria-label="答题卡">
+          <div class="card side-card">
+            <h3>进度</h3>
+            <div class="side-stats">
+              <div class="side-stat blue"><b id="pAnswered">0</b><span>已答</span></div>
+              <div class="side-stat amber"><b id="pUnknown">0</b><span>不知道</span></div>
+              <div class="side-stat"><b id="pFlagged">0</b><span>标记</span></div>
+            </div>
+            <button class="btn primary side-submit" id="submitSide" type="button" disabled>交卷并诊断</button>
+            <div class="side-note" id="sideNote">所有题目（含 E）作答后才能交卷。</div>
+          </div>
+          <div class="card side-card palette-card">
+            <details class="palette-wrap" id="paletteWrap" open>
+              <summary><span class="side-title">题号导航</span></summary>
+              <div class="palette" id="palette" role="navigation" aria-label="题号"></div>
+              <div class="palette-legend"><span><i class="a"></i>已答</span><span><i class="u"></i>不知道</span><span><i class="f"></i>标记</span><span><i></i>未答</span></div>
+            </details>
+          </div>
+          <button class="btn ghost side-exit" id="exitSide" type="button">保存并退出</button>
+        </aside>
+      </main>
+      <div id="live" class="sr-only" aria-live="polite"></div>`;
+
+    bindExamEvents();
+    const paletteWrap = $('#paletteWrap');
+    if (paletteWrap && window.matchMedia('(max-width: 860px)').matches) paletteWrap.open = false;
+    renderQuestion();
+    updateTimer();
+  }
+
+  function bindExamEvents() {
+    $('#prevBtn')?.addEventListener('click', () => moveQuestion(-1));
+    $('#nextBtn')?.addEventListener('click', () => moveQuestion(1));
+    $('#flagBtn')?.addEventListener('click', toggleFlag);
+    $('#firstUnanswered')?.addEventListener('click', jumpToFirstUnanswered);
+    $('#submitTop')?.addEventListener('click', requestSubmit);
+    $('#submitSide')?.addEventListener('click', requestSubmit);
+    $('#exitBtn')?.addEventListener('click', requestExit);
+    $('#exitSide')?.addEventListener('click', requestExit);
+    $('#palette')?.addEventListener('click', (event) => {
+      const button = event.target.closest('[data-jump]');
+      if (!button) return;
+      jumpTo(Number(button.dataset.jump));
+    });
+  }
+
+  function currentQuestion() {
+    if (!state.attempt) return null;
+    const id = state.attempt.questionIds[state.attempt.current];
+    return BY_ID.get(id) || null;
+  }
+
+  function renderQuestion() {
+    const attempt = state.attempt;
+    const question = currentQuestion();
+    if (!attempt || !question) return;
+    const index = attempt.current;
+    const total = attempt.questionIds.length;
+    const meta = $('#qmeta');
+    if (meta) {
+      meta.innerHTML = `
+        <span class="chip primary">Q ${index + 1} / ${total}</span>
+        <span class="chip">${esc(question.section)} · ${esc(question.sectionName)}</span>
+        <span class="chip">${esc(question.code)} ${esc(question.topicTitle)}</span>
+        <span class="chip amber">${esc(question.type)} · ${esc(typeLabel(question.type))}</span>
+        <span class="chip">${esc(difficultyLabel(question.difficulty))}</span>`;
+    }
+    const text = $('#qtext');
+    if (text) text.textContent = question.question;
+    const options = $('#options');
+    if (options) {
+      options.replaceChildren();
+      const choices = question.options.concat(["不知道 / I don't know"]);
+      choices.forEach((choice, choiceIndex) => {
+        const button = document.createElement('button');
+        button.type = 'button';
+        button.className = 'option' + (choiceIndex === 4 ? ' dontknow' : '');
+        button.dataset.opt = String(choiceIndex);
+        button.setAttribute('role', 'radio');
+        button.setAttribute('aria-checked', String(attempt.answers[question.id] === choiceIndex));
+        const letter = document.createElement('span');
+        letter.className = 'letter';
+        letter.textContent = LETTERS[choiceIndex];
+        const content = document.createElement('span');
+        content.className = 'opt-text';
+        const textSpan = document.createElement('span');
+        textSpan.textContent = choice;
+        content.append(textSpan);
+        if (choiceIndex === 4) {
+          const note = document.createElement('span');
+          note.className = 'opt-note';
+          note.textContent = '不确定时请选此项；用于识别知识空白，不要盲猜。';
+          content.append(note);
+        }
+        button.append(letter, content);
+        button.addEventListener('click', () => selectOption(choiceIndex));
+        options.append(button);
+      });
+    }
+    const prev = $('#prevBtn');
+    const next = $('#nextBtn');
+    if (prev) prev.disabled = index === 0;
+    if (next) next.disabled = index === total - 1;
+    const flag = $('#flagBtn');
+    if (flag) {
+      flag.classList.toggle('on', !!attempt.flags[question.id]);
+      flag.textContent = attempt.flags[question.id] ? '已标记' : '标记';
+    }
+    paintOptions();
+    paintPalette();
+    paintProgress();
+  }
+
+  function paintOptions() {
+    const attempt = state.attempt;
+    const question = currentQuestion();
+    if (!attempt || !question) return;
+    $$('#options [data-opt]').forEach((button) => {
+      const selected = attempt.answers[question.id] === Number(button.dataset.opt);
+      button.classList.toggle('selected', selected);
+      button.setAttribute('aria-checked', String(selected));
+    });
+  }
+
+  function paintPalette() {
+    const attempt = state.attempt;
+    const palette = $('#palette');
+    if (!attempt || !palette) return;
+    const fragment = document.createDocumentFragment();
+    attempt.questionIds.forEach((id, index) => {
+      const question = BY_ID.get(id);
+      const answer = attempt.answers[id];
+      const button = document.createElement('button');
+      button.type = 'button';
+      button.className = 'pnum';
+      if (Number.isInteger(answer)) button.classList.add(answer === 4 ? 'unknown' : 'answered');
+      if (attempt.flags[id]) button.classList.add('flagged');
+      if (index === attempt.current) button.classList.add('current');
+      button.textContent = String(index + 1);
+      button.dataset.jump = String(index);
+      button.title = `${index + 1}. ${question.section} · ${question.code} ${question.topicTitle}`;
+      button.setAttribute('aria-label', `第 ${index + 1} 题，${question.section}，${Number.isInteger(answer) ? (answer === 4 ? '不知道' : '已答') : '未答'}${attempt.flags[id] ? '，已标记' : ''}`);
+      fragment.append(button);
+    });
+    palette.replaceChildren(fragment);
+  }
+
+  function paintProgress() {
+    const attempt = state.attempt;
+    if (!attempt) return;
+    const total = attempt.questionIds.length;
+    const answered = answeredCount(attempt);
+    const unknown = unknownCount(attempt);
+    const flagged = flaggedCount(attempt);
+    const setText = (selector, value) => { const element = $(selector); if (element) element.textContent = String(value); };
+    setText('#pAnswered', answered);
+    setText('#pUnknown', unknown);
+    setText('#pFlagged', flagged);
+    setText('#headProgressText', `${answered} / ${total} 已答`);
+    const bar = $('#headBar');
+    if (bar) bar.style.width = `${total ? (answered / total) * 100 : 0}%`;
+    const disabled = answered !== total;
+    ['#submitTop', '#submitSide'].forEach((selector) => {
+      const button = $(selector);
+      if (button) button.disabled = disabled;
+    });
+    const side = $('#submitSide');
+    if (side) side.textContent = disabled ? `还差 ${total - answered} 题` : '交卷并诊断';
+    const note = $('#sideNote');
+    if (note) note.textContent = disabled ? '所有题目（含 E）作答后才能交卷。' : '已全部作答，可以交卷。';
+    const first = $('#firstUnanswered');
+    if (first) {
+      const hasUnanswered = attempt.questionIds.some((id) => !isAnswered(attempt, id));
+      first.disabled = !hasUnanswered;
+      first.textContent = hasUnanswered ? '跳到未答' : '已全部作答';
+    }
+  }
+
+  function selectOption(choiceIndex) {
+    const attempt = state.attempt;
+    const question = currentQuestion();
+    if (!attempt || !question || attempt.submitted) return;
+    attempt.answers[question.id] = choiceIndex;
+    persistAttempt();
+    paintOptions();
+    paintPalette();
+    paintProgress();
+    const live = $('#live');
+    if (live) live.textContent = `第 ${attempt.current + 1} 题已选择 ${LETTERS[choiceIndex]}${choiceIndex === 4 ? '，不知道' : ''}。`;
+  }
+
+  function moveQuestion(delta) {
+    const attempt = state.attempt;
+    if (!attempt) return;
+    const next = attempt.current + delta;
+    if (next < 0 || next >= attempt.questionIds.length) return;
+    jumpTo(next);
+  }
+
+  function jumpTo(index) {
+    const attempt = state.attempt;
+    if (!attempt) return;
+    attempt.current = clamp(index, 0, attempt.questionIds.length - 1);
+    persistAttempt();
+    renderQuestion();
+    const text = $('#qtext');
+    if (text) text.focus({ preventScroll: true });
+    window.scrollTo({ top: 0, behavior: 'auto' });
+  }
+
+  function jumpToFirstUnanswered() {
+    const attempt = state.attempt;
+    if (!attempt) return;
+    const index = attempt.questionIds.findIndex((id) => !isAnswered(attempt, id));
+    if (index < 0) {
+      toast('所有题目都已作答。', 'good');
+      return;
+    }
+    jumpTo(index);
+  }
+
+  function toggleFlag() {
+    const attempt = state.attempt;
+    const question = currentQuestion();
+    if (!attempt || !question) return;
+    if (attempt.flags[question.id]) delete attempt.flags[question.id];
+    else attempt.flags[question.id] = true;
+    persistAttempt();
+    renderQuestion();
+  }
+
+  function requestExit() {
+    openDialog({
+      title: '保存并退出？',
+      body: `<p>当前进度会保存在本机，下次打开可从「继续作答」恢复。已答 ${answeredCount(state.attempt)} / ${state.attempt.questionIds.length} 题。</p>`,
+      actions: [
+        { label: '继续作答', kind: '' },
+        { label: '保存并退出', kind: 'primary', onClick: () => {
+          persistAttempt();
+          state.screen = 'setup';
+          render();
+          window.scrollTo({ top: 0, behavior: 'auto' });
+        } },
+      ],
+    });
+  }
+
+  function requestSubmit() {
+    const attempt = state.attempt;
+    if (!attempt) return;
+    const total = attempt.questionIds.length;
+    const answered = answeredCount(attempt);
+    const unknown = unknownCount(attempt);
+    const flagged = flaggedCount(attempt);
+    if (answered < total) {
+      const first = attempt.questionIds.findIndex((id) => !isAnswered(attempt, id));
+      openDialog({
+        title: `还有 ${total - answered} 题未作答`,
+        body: `<p>交卷前必须给每道题一个选择。不会的题请选 <b>E「不知道」</b>，不要留空，也不要猜。</p>`,
+        actions: [
+          { label: '继续作答', kind: '' },
+          { label: '跳到第一道未答', kind: 'primary', onClick: () => jumpTo(first) },
+        ],
+      });
+      return;
+    }
+    openDialog({
+      title: '确认交卷？',
+      body: `<p>交卷后会立即显示答案、逐题解析和知识漏洞诊断，且本次作答不能再修改。</p>
+        <div class="dialog-stats">
+          <span class="badge blue">${total} 题</span>
+          <span class="badge amber">${unknown} 题不知道</span>
+          <span class="badge">${flagged} 题标记</span>
+        </div>`,
+      actions: [
+        { label: '再检查一下', kind: '' },
+        { label: '确认交卷并诊断', kind: 'primary', onClick: submitAttempt },
+      ],
+    });
+  }
+
+  function submitAttempt() {
+    const attempt = state.attempt;
+    if (!attempt) return;
+    if (answeredCount(attempt) !== attempt.questionIds.length) {
+      toast('还有题目未作答。', 'bad');
+      return;
+    }
+    attempt.submitted = true;
+    attempt.submittedAt = nowIso();
+    const report = analyze(attempt);
+    state.report = report;
+    pushHistory(report);
+    persistAttempt();
+    state.screen = 'report';
+    state.filter = 'all';
+    render();
+    window.scrollTo({ top: 0, behavior: 'auto' });
+  }
+
+  function updateTimer() {
+    const timer = $('#timer');
+    if (!timer || !state.attempt) return;
+    if (state.attempt.submitted) {
+      timer.textContent = formatDuration(Math.max(0, (Date.parse(state.attempt.submittedAt) - Date.parse(state.attempt.startedAt)) / 1000));
+      return;
+    }
+    timer.textContent = formatDuration((Date.now() - Date.parse(state.attempt.startedAt)) / 1000);
+  }
+
+  /* ------------------------------------------------------------------ */
+  /* render: report                                                      */
+  /* ------------------------------------------------------------------ */
+
+  function renderReport() {
+    const attempt = state.attempt;
+    let report = state.report;
+    if (!report && attempt) report = analyze(attempt);
+    if (!report) { state.screen = 'setup'; render(); return; }
+    state.report = report;
+
+    const accuracyPct = Math.round(report.accuracy * 1000) / 10;
+    const comparison = report.comparison;
+    const deltaClass = comparison ? (comparison.delta >= 0 ? 'teal' : 'red') : '';
+    const deltaText = comparison
+      ? `较上次 ${comparison.delta >= 0 ? '+' : ''}${comparison.delta.toFixed(1)} pp`
+      : '首次诊断';
+    const submitted = formatDate(report.submittedAt);
+
+    const sectionRows = report.sections.map((section) => `
+      <tr>
+        <td><b>${esc(section.id)}</b> · ${esc(section.name)}</td>
+        <td class="num">${section.n}</td>
+        <td class="num">${section.correct}</td>
+        <td class="num">${section.wrong}</td>
+        <td class="num">${section.unknown}</td>
+        <td><div class="bar-cell"><div class="mini-track"><i style="width:${Math.round(section.gapRate * 100)}%"></i></div><span>${Math.round(section.gapRate * 100)}%</span></div></td>
+        <td>${priorityBadge(section.priority)}</td>
+        <td><button class="btn sm" type="button" data-practice-section="${esc(section.id)}" title="只练 ${esc(section.id)} · 10 题" aria-label="只练 ${esc(section.id)}">练</button></td>
+      </tr>`).join('');
+
+    const typeRows = report.types.map((type) => `
+      <tr>
+        <td><b>${esc(typeLabel(type.type))}</b> <span class="muted small">${esc(type.type)}</span></td>
+        <td class="num">${type.n}</td>
+        <td class="num">${type.correct}</td>
+        <td class="num">${type.wrong}</td>
+        <td class="num">${type.unknown}</td>
+        <td><div class="bar-cell"><div class="mini-track"><i style="width:${Math.round(type.gapRate * 100)}%"></i></div><span>${Math.round(type.gapRate * 100)}%</span></div></td>
+      </tr>`).join('');
+
+    const topicRows = report.topics.map((topic) => `
+      <tr>
+        <td><b>${esc(topic.code)}</b><br><span class="muted small">${esc(topic.title)}</span></td>
+        <td>${esc(topic.section)}</td>
+        <td class="num">${topic.n}</td>
+        <td class="num">${topic.correct}</td>
+        <td class="num">${topic.wrong}</td>
+        <td class="num">${topic.unknown}</td>
+        <td>${problemBadge(topic.problem)}</td>
+        <td><a class="section-link" href="${reviewHref(topic.section)}" target="_blank" rel="noopener">复习</a>${topic.gap ? ` <button class="btn sm ghost" type="button" data-practice-topic="${esc(topic.topic)}">练</button>` : ''}</td>
+      </tr>`).join('');
+
+    const gapCards = report.gaps.length ? report.gaps.slice(0, 8).map((gap) => `
+      <div class="gap-card ${gap.gapRate >= 0.5 ? '' : gap.gapRate >= 0.25 ? 'med' : 'low'}">
+        <div class="gap-top"><b><span class="gap-code">${esc(gap.code)}</span>${esc(gap.title)}</b>${problemBadge(gap.problem)}</div>
+        <p>${esc(gap.sectionName)} · ${gap.n} 题中 ${gap.gap} 个漏洞（答错 ${gap.wrong} / 不知道 ${gap.unknown}）</p>
+        <div class="gap-act"><b>下一步：</b>${esc(gap.problem === '知识空白' ? `先回看 ${gap.code} 的定义/公式，再用自己的话复述；随后做 2 道同知识点题。` : gap.problem === '理解错误' ? `对比正确概念与干扰项，写出「为什么错」；回到 ${gap.code} 的易错点。` : gap.problem === '应用不足' ? `重做 ${gap.code} 的公式/建模步骤：先写变量与公式，再代入，检查单位和边界。` : `先补 ${gap.code} 的定义，再做 2 道变式题；把错因写回复习页对应框。`)}</div>
+        <button class="btn sm" type="button" data-practice-topic="${esc(gap.topic)}">练这些题</button>
+      </div>`).join('') : '<div class="empty-state">本次没有识别到知识漏洞。可以换一组题，或进入复习页看易错点。</div>';
+
+    const strengths = report.strengths.length
+      ? report.strengths.map((topic) => `<span class="strength-chip">${esc(topic.code)} ${esc(topic.title)}</span>`).join('')
+      : '<span class="muted small">本次没有达到「全对」的知识点；先按上面的优先级补漏。</span>';
+
+    const defaultFilter = report.total >= 50 && report.gapCount > 0 ? 'gaps' : 'all';
+    const reviewFilters = [
+      ['all', `全部 ${report.total}`],
+      ['gaps', `错题+不知道 ${report.gapCount}`],
+      ['wrong', `答错 ${report.wrong}`],
+      ['unknown', `不知道 ${report.unknown}`],
+      ['flagged', `标记 ${flaggedCount(attempt)}`],
+      ['correct', `正确 ${report.correct}`],
+    ];
+
+    $('#app').innerHTML = `
+      <header class="site-head">
+        <a class="brand" href="./" aria-label="返回设置">
+          <span class="brand-mark">37</span>
+          <span class="brand-text"><b>ISOM 3770 · Diagnostic</b><span>Knowledge gap report</span></span>
+        </a>
+        <div class="head-tools">
+          <button class="btn sm" type="button" id="printBtn">打印 / PDF</button>
+          <button class="icon-btn" type="button" data-theme-toggle aria-label="切换深浅色">${themeIcon()}</button>
+        </div>
+      </header>
+      <main class="shell report" id="main">
+        <section class="report-hero">
+          <div class="report-hero-grid">
+            <div>
+              <div class="eyebrow">Diagnostic report · ${esc(submitted)}</div>
+              <h1>考前知识漏洞诊断</h1>
+              <p class="lead">${esc(report.headline)}</p>
+              <div class="btn-row" style="margin-top:10px">
+                <span class="band ${report.band.key}">${esc(report.band.label)}</span>
+                <span class="badge ${deltaClass}">${esc(deltaText)}</span>
+                <span class="badge">${esc(modeLabel(report.config))} · ${report.total} 题</span>
+                <span class="badge">用时 ${formatDuration(report.durationSec)}</span>
+              </div>
+              <div class="report-actions">
+                <button class="btn primary" type="button" id="exportBtn">导出诊断 JSON</button>
+                <button class="btn" type="button" id="copyBtn">复制 JSON</button>
+                <button class="btn" type="button" id="retryBtn" ${report.gapCount ? '' : 'disabled'}>重练错题与不知道</button>
+                <button class="btn" type="button" id="restartBtn">再练一组</button>
+                <button class="btn ghost" type="button" id="setupBtn">返回设置</button>
+              </div>
+            </div>
+            <div>
+              <div class="score-block"><span class="score-num">${accuracyPct}</span><span class="score-den">%</span></div>
+              <div class="score-cap">全卷正确率 · ${report.correct} / ${report.total}</div>
+              <div class="score-cap">有效正确率（不含不知道）· ${Math.round(report.effectiveAccuracy * 1000) / 10}%</div>
+              <div class="band ${report.band.key}" style="margin-top:12px">${esc(report.band.note)}</div>
+            </div>
+          </div>
+          <div class="stack" aria-label="答题结果分布">
+            <i class="s-correct" style="width:${(report.correct / report.total) * 100}%"></i>
+            <i class="s-wrong" style="width:${(report.wrong / report.total) * 100}%"></i>
+            <i class="s-unknown" style="width:${(report.unknown / report.total) * 100}%"></i>
+            <i class="s-unanswered" style="width:${(report.unanswered / report.total) * 100}%"></i>
+          </div>
+          <div class="stack-legend"><span><i style="background:var(--green)"></i>正确 ${report.correct}</span><span><i style="background:var(--red)"></i>答错 ${report.wrong}</span><span><i style="background:var(--amber)"></i>不知道 ${report.unknown}</span>${report.unanswered ? `<span><i style="background:var(--line-strong)"></i>未答 ${report.unanswered}</span>` : ''}</div>
+        </section>
+
+        <section class="stats-grid" aria-label="整体成绩">
+          <div class="stat-card correct"><span>正确</span><b>${report.correct}</b><small>${pct(report.accuracy)} 全卷</small></div>
+          <div class="stat-card wrong"><span>答错</span><b>${report.wrong}</b><small>理解或应用偏差</small></div>
+          <div class="stat-card unknown"><span>不知道</span><b>${report.unknown}</b><small>主动标记的知识空白</small></div>
+          <div class="stat-card rate"><span>有效正确率</span><b>${Math.round(report.effectiveAccuracy * 100)}%</b><small>排除 E 后：${report.correct}/${report.correct + report.wrong || 0}</small></div>
+        </section>
+
+        <div class="report-grid">
+          <section class="card panel">
+            <h2>一、把漏洞分成三类</h2>
+            <p class="panel-sub">「不知道」按知识空白计；答错再按题型分为理解错误和应用不足。三者复习动作不同。</p>
+            <div class="class-grid">
+              <div class="class-card knowledge"><span>知识空白</span><b>${report.classification.knowledge}</b><small>选 E 的题：先补定义、公式和例子。</small></div>
+              <div class="class-card understanding"><span>理解错误</span><b>${report.classification.understanding}</b><small>概念题答错：对比干扰项，复述正确表述。</small></div>
+              <div class="class-card application"><span>应用不足</span><b>${report.classification.application}</b><small>计算/建模/情境/案例答错：重做步骤。</small></div>
+            </div>
+            <div class="divider"></div>
+            <h2>二、章节诊断</h2>
+            <p class="panel-sub">按漏洞率从高到低。题数少于 3 的章节最多标为中，避免小样本误导。</p>
+            <div class="table-wrap">
+              <table class="data compact">
+                <thead><tr><th>Session</th><th class="num">题数</th><th class="num">正确</th><th class="num">答错</th><th class="num">不知道</th><th>漏洞率</th><th>优先级</th><th>练</th></tr></thead>
+                <tbody>${sectionRows || '<tr><td colspan="8" class="empty-state">没有章节数据。</td></tr>'}</tbody>
+              </table>
+            </div>
+            <div class="tip-box"><b>怎么读：</b>先看「高」优先级章节，再点该行的「练」做 10 题验证。不要只按章节题数排序——S6 题多不代表它最弱。</div>
+
+            <div class="divider"></div>
+            <h2>五、已经稳的部分</h2>
+            <p class="panel-sub">这些知识点本次全对，可以暂时少花时间。</p>
+            <div class="strength-list">${strengths}</div>
+          </section>
+
+          <aside class="card panel">
+            <h2>三、题型诊断</h2>
+            <p class="panel-sub">同一章节可能「概念会、计算不会」，这里看能力类型。</p>
+            <div class="table-wrap">
+              <table class="data" style="min-width:0">
+                <thead><tr><th>题型</th><th class="num">题</th><th class="num">对</th><th class="num">错</th><th class="num">不知道</th><th>漏洞率</th></tr></thead>
+                <tbody>${typeRows || '<tr><td colspan="6" class="empty-state">没有题型数据。</td></tr>'}</tbody>
+              </table>
+            </div>
+
+            <div class="divider"></div>
+            <h2>四、优先补漏</h2>
+            <p class="panel-sub">按漏洞数量、不知道数量和章节优先级排序；建议从上往下做。</p>
+            <div class="gap-list">${gapCards}</div>
+
+          </aside>
+        </div>
+
+        <section class="card panel" style="margin-top:18px">
+          <h2>六、知识点逐项诊断</h2>
+          <p class="panel-sub">每个知识点对应复习页的一个知识框。点「复习」回到对应 Session，点「练」只做该知识点的题。</p>
+          <div class="table-wrap">
+            <table class="data" style="min-width:760px">
+              <thead><tr><th>知识点</th><th>Session</th><th class="num">题数</th><th class="num">正确</th><th class="num">答错</th><th class="num">不知道</th><th>问题类型</th><th>动作</th></tr></thead>
+              <tbody>${topicRows || '<tr><td colspan="8" class="empty-state">没有知识点数据。</td></tr>'}</tbody>
+            </table>
+          </div>
+        </section>
+
+        <section class="card review-panel">
+          <div class="card-head" style="margin-bottom:0">
+            <div><h2>七、逐题解析</h2><p class="panel-sub" style="margin-bottom:0">交卷后解锁。答错和「不知道」优先看；每道题都标了对应知识点。</p></div>
+            <span class="badge">${report.total} 题</span>
+          </div>
+          <div class="review-tools">
+            <div class="filters" id="reviewFilters">
+              ${reviewFilters.map(([key, label]) => `<button class="filter ${key === defaultFilter ? 'on' : ''}" type="button" data-filter="${key}">${label}</button>`).join('')}
+            </div>
+            <span class="muted small">${defaultFilter === 'gaps' ? '默认显示错题与不知道；点「全部」看完整解析。' : '按 E 的题不会显示成“答错”，而是单独归为知识空白。'}</span>
+          </div>
+          <div class="review-list" id="reviewList"></div>
+        </section>
+
+        <footer class="small muted" style="padding:22px 2px 0;display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap">
+          <span>ISOM 3770 · Pre-exam gap check · v${APP_VERSION}</span>
+          <span>导出的 JSON 包含答题明细、章节/题型/知识点诊断和复习建议。</span>
+        </footer>
+      </main>`;
+
+    bindReportEvents();
+    renderReview(defaultFilter);
+  }
+
+  function bindReportEvents() {
+    $('#exportBtn')?.addEventListener('click', () => {
+      const payload = buildExportPayload();
+      if (!payload) return;
+      downloadJson(payload);
+    });
+    $('#copyBtn')?.addEventListener('click', async () => {
+      const payload = buildExportPayload();
+      if (!payload) return;
+      const text = JSON.stringify(payload, null, 2);
+      try {
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          await navigator.clipboard.writeText(text);
+        } else {
+          throw new Error('clipboard unavailable');
+        }
+        toast('诊断 JSON 已复制，可直接粘贴给聊天 AI。', 'good');
+      } catch (_) {
+        const textarea = document.createElement('textarea');
+        textarea.value = text;
+        textarea.style.position = 'fixed';
+        textarea.style.opacity = '0';
+        document.body.append(textarea);
+        textarea.select();
+        try {
+          document.execCommand('copy');
+          toast('诊断 JSON 已复制。', 'good');
+        } catch (error) {
+          toast('复制失败，请用「导出诊断 JSON」下载文件。', 'bad');
+        }
+        textarea.remove();
+      }
+    });
+    $('#retryBtn')?.addEventListener('click', retryGaps);
+    $('#restartBtn')?.addEventListener('click', restartSame);
+    $('#setupBtn')?.addEventListener('click', () => {
+      state.screen = 'setup';
+      render();
+      window.scrollTo({ top: 0, behavior: 'auto' });
+    });
+    $('#printBtn')?.addEventListener('click', () => window.print());
+    $('#reviewFilters')?.addEventListener('click', (event) => {
+      const button = event.target.closest('[data-filter]');
+      if (!button) return;
+      const filter = button.dataset.filter;
+      state.filter = filter;
+      $$('#reviewFilters .filter').forEach((item) => item.classList.toggle('on', item === button));
+      renderReview(filter);
+    });
+  }
+
+  function renderReview(filter) {
+    const report = state.report;
+    const attempt = state.attempt;
+    const list = $('#reviewList');
+    if (!report || !attempt || !list) return;
+    const rows = report.rows.filter((row) => {
+      if (filter === 'gaps') return row.status === 'wrong' || row.status === 'unknown';
+      if (filter === 'wrong') return row.status === 'wrong';
+      if (filter === 'unknown') return row.status === 'unknown';
+      if (filter === 'correct') return row.status === 'correct';
+      if (filter === 'flagged') return !!attempt.flags[row.id];
+      return true;
+    });
+
+    if (!rows.length) {
+      list.innerHTML = `<div class="empty-state">这个筛选下没有题目。</div>`;
+      return;
+    }
+
+    list.innerHTML = rows.map((row) => {
+      const selectedText = row.selected === null
+        ? '未作答'
+        : `<b>${LETTERS[row.selected]}.</b> ${esc(row.selected === 4 ? "不知道 / I don't know" : row.options[row.selected])}`;
+      const options = row.options.map((option, index) => {
+        const classes = ['review-opt'];
+        if (index === row.answer) classes.push('correct');
+        if (index === row.selected && index !== row.answer) classes.push('picked-wrong');
+        return `<div class="${classes.join(' ')}"><span class="rl">${LETTERS[index]}.</span><span>${esc(option)}</span></div>`;
+      }).join('');
+      const unknownRow = row.selected === 4 && row.answer !== 4
+        ? `<div class="review-opt picked-unknown"><span class="rl">E.</span><span>不知道 / I don't know（你的选择）</span></div>`
+        : '';
+      return `
+        <article class="review-item ${row.status}">
+          <div class="review-top">
+            <span class="rid">#${row.id}</span>
+            <span class="badge">${esc(row.section)} · ${esc(row.code)}</span>
+            <span class="badge">${esc(row.type)}</span>
+            <span class="badge">${esc(difficultyLabel(row.difficulty))}</span>
+            ${statusBadge(row.status)}
+          </div>
+          <div class="review-q">${esc(row.question)}</div>
+          <div class="review-opts">${options}${unknownRow}</div>
+          <div class="review-explain"><b>正确答案：</b>${LETTERS[row.answer]}. ${esc(row.options[row.answer])}<br><b>你的选择：</b>${selectedText}<br><b>解析：</b>${esc(row.explain)}<br><b>重点复习建议：</b>${esc(reviewTip(row))}</div>
+          <div class="review-meta"><span>${esc(row.sectionName)} · ${esc(row.code)} ${esc(row.topicTitle)}</span><a href="${reviewHref(row.section)}" target="_blank" rel="noopener">回复习页看这一节 ↗</a></div>
+        </article>`;
+    }).join('');
+  }
+
+  /* ------------------------------------------------------------------ */
+  /* export                                                              */
+  /* ------------------------------------------------------------------ */
+
+  function buildExportPayload() {
+    const report = state.report;
+    const attempt = state.attempt;
+    if (!report || !attempt) return null;
+    return {
+      schemaVersion: 'isom3770.gapcheck.v1',
+      app: {
+        name: 'ISOM 3770 Pre-exam Gap Check',
+        version: APP_VERSION,
+        exportedAt: nowIso(),
+        course: 'ISOM 3770 Global Supply Chain Management',
+        scopeNote: 'Sessions 1–12; excludes S13, Gravity Model, and standalone Z & Loss Function table.',
+      },
+      exam: {
+        attemptId: report.attemptId,
+        config: report.config,
+        startedAt: report.startedAt,
+        submittedAt: report.submittedAt,
+        durationSec: report.durationSec,
+        total: report.total,
+      },
+      summary: {
+        total: report.total,
+        correct: report.correct,
+        wrong: report.wrong,
+        unknown: report.unknown,
+        unanswered: report.unanswered,
+        gapCount: report.gapCount,
+        accuracy: round3(report.accuracy),
+        accuracyPercent: round1(report.accuracy * 100),
+        effectiveAccuracy: round3(report.effectiveAccuracy),
+        effectiveAccuracyPercent: round1(report.effectiveAccuracy * 100),
+        band: report.band,
+        headline: report.headline,
+        classification: report.classification,
+      },
+      sections: report.sections.map((section) => ({
+        id: section.id,
+        name: section.name,
+        n: section.n,
+        correct: section.correct,
+        wrong: section.wrong,
+        unknown: section.unknown,
+        gap: section.gap,
+        gapRate: round3(section.gapRate),
+        gapRatePercent: round1(section.gapRate * 100),
+        priority: section.priority,
+      })),
+      types: report.types.map((type) => ({
+        type: type.type,
+        label: typeLabel(type.type),
+        n: type.n,
+        correct: type.correct,
+        wrong: type.wrong,
+        unknown: type.unknown,
+        gap: type.gap,
+        gapRate: round3(type.gapRate),
+        gapRatePercent: round1(type.gapRate * 100),
+      })),
+      topics: report.topics.map((topic) => ({
+        code: topic.code,
+        topic: topic.topic,
+        title: topic.title,
+        section: topic.section,
+        sectionName: topic.sectionName,
+        n: topic.n,
+        correct: topic.correct,
+        wrong: topic.wrong,
+        unknown: topic.unknown,
+        gap: topic.gap,
+        gapRate: round3(topic.gapRate),
+        gapRatePercent: round1(topic.gapRate * 100),
+        problem: topic.problem,
+        questionIds: topic.ids,
+      })),
+      recommendations: report.recommendations,
+      strengths: report.strengths.map((topic) => ({ code: topic.code, title: topic.title, section: topic.section, n: topic.n })),
+      comparison: report.comparison ? {
+        ...report.comparison,
+        deltaPoints: round1(report.comparison.delta),
+      } : null,
+      answers: report.rows.map((row) => ({
+        id: row.id,
+        section: row.section,
+        sectionName: row.sectionName,
+        topic: row.topic,
+        code: row.code,
+        topicTitle: row.topicTitle,
+        category: row.category,
+        type: row.type,
+        difficulty: row.difficulty,
+        question: row.question,
+        options: row.options,
+        selectedIndex: row.selected,
+        selectedLetter: row.selected === null ? null : LETTERS[row.selected],
+        selectedText: row.selected === null ? null : row.selected === 4 ? "不知道 / I don't know" : row.options[row.selected],
+        correctIndex: row.answer,
+        correctLetter: LETTERS[row.answer],
+        correctText: row.options[row.answer],
+        status: row.status,
+        statusLabel: statusLabel(row.status),
+        explanation: row.explain,
+        reviewTip: reviewTip(row),
+        flagged: !!attempt.flags[row.id],
+      })),
+    };
+  }
+
+  function round1(value) {
+    return Math.round(Number(value) * 10) / 10;
+  }
+
+  function round3(value) {
+    return Math.round(Number(value) * 1000) / 1000;
+  }
+
+  function downloadJson(payload) {
+    const text = JSON.stringify(payload, null, 2);
+    const date = new Date().toISOString().slice(0, 10);
+    const filename = `ISOM3770_gapcheck_${date}_${payload.summary.total}Q.json`;
+    const blob = new Blob([text], { type: 'application/json;charset=utf-8' });
+    const url = URL.createObjectURL(blob);
+    const anchor = document.createElement('a');
+    anchor.href = url;
+    anchor.download = filename;
+    document.body.append(anchor);
+    anchor.click();
+    anchor.remove();
+    window.setTimeout(() => URL.revokeObjectURL(url), 1500);
+    toast(`已导出 ${filename}，可上传到对话做进一步分析。`, 'good');
+  }
+
+  /* ------------------------------------------------------------------ */
+  /* dialog + global events                                              */
+  /* ------------------------------------------------------------------ */
+
+  function openDialog({ title, body, actions }) {
+    const dialog = $('#dialog');
+    if (!dialog) return;
+    if (dialog.open) dialog.close();
+    dialog.innerHTML = `
+      <div class="dialog-body"><h2>${esc(title)}</h2>${body}</div>
+      <div class="dialog-actions"></div>`;
+    const actionBar = $('.dialog-actions', dialog);
+    (actions || [{ label: '知道了', kind: 'primary' }]).forEach((action) => {
+      const button = document.createElement('button');
+      button.type = 'button';
+      button.className = `btn ${action.kind || ''}`.trim();
+      button.textContent = action.label;
+      button.addEventListener('click', () => {
+        if (action.onClick) action.onClick();
+        if (action.close !== false) dialog.close();
+      });
+      actionBar.append(button);
+    });
+    dialog.showModal();
+  }
+
+  function closeDialog() {
+    const dialog = $('#dialog');
+    if (dialog?.open) dialog.close();
+  }
+
+  function toggleTheme() {
+    const next = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
+    document.documentElement.dataset.theme = next;
+    try { localStorage.setItem(THEME_KEY, next); } catch (_) { /* ignore */ }
+    $$('[data-theme-toggle]').forEach((button) => { button.textContent = next === 'dark' ? '☀' : '☾'; });
+  }
+
+  function bindGlobalEvents() {
+    $('#app').addEventListener('click', (event) => {
+      const themeButton = event.target.closest('[data-theme-toggle]');
+      if (themeButton) { toggleTheme(); return; }
+
+      const sectionButton = event.target.closest('[data-practice-section]');
+      if (sectionButton) { practiceSection(sectionButton.dataset.practiceSection); return; }
+
+      const topicButton = event.target.closest('[data-practice-topic]');
+      if (topicButton) { practiceTopic(topicButton.dataset.practiceTopic); return; }
+    });
+
+    document.addEventListener('keydown', (event) => {
+      if (state.screen !== 'exam') return;
+      if ($('#dialog')?.open) return;
+      if (event.metaKey || event.ctrlKey || event.altKey) return;
+      const tag = (event.target.tagName || '').toLowerCase();
+      if (['input', 'textarea', 'select'].includes(tag) || event.target.isContentEditable) return;
+      if (event.key === 'ArrowLeft') { event.preventDefault(); moveQuestion(-1); return; }
+      if (event.key === 'ArrowRight') { event.preventDefault(); moveQuestion(1); return; }
+      const letterIndex = LETTERS.indexOf(event.key.toUpperCase());
+      if (letterIndex >= 0) { event.preventDefault(); selectOption(letterIndex); return; }
+      if (['1', '2', '3', '4', '5'].includes(event.key)) { event.preventDefault(); selectOption(Number(event.key) - 1); return; }
+      if (event.key.toLowerCase() === 'f') { event.preventDefault(); toggleFlag(); }
+    });
+
+    const dialog = $('#dialog');
+    dialog.addEventListener('close', () => {
+      if (!dialog.open) dialog.innerHTML = '';
+    });
+  }
+
+  /* ------------------------------------------------------------------ */
+  /* render + init                                                       */
+  /* ------------------------------------------------------------------ */
+
+  function render() {
+    if (state.screen === 'setup') renderSetup();
+    else if (state.screen === 'exam') renderExam();
+    else renderReport();
+  }
+
+  function init() {
+    try {
+      const storedTheme = localStorage.getItem(THEME_KEY);
+      if (storedTheme === 'dark' || storedTheme === 'light') document.documentElement.dataset.theme = storedTheme;
+    } catch (_) { /* ignore */ }
+    state.history = readJson(HISTORY_KEY, []);
+    if (!Array.isArray(state.history)) state.history = [];
+    state.history = state.history.filter((entry) => entry && entry.id && Number.isFinite(entry.total));
+
+    const active = loadActive();
+    if (active) {
+      state.attempt = active;
+      if (active.submitted) {
+        state.report = analyze(active);
+        state.screen = 'report';
+      } else {
+        state.screen = 'exam';
+      }
+    }
+
+    bindGlobalEvents();
+    render();
+    window.setInterval(updateTimer, 1000);
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+})();
+</script>
+</body>
+</html>

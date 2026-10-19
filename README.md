@@ -48,6 +48,13 @@ python3 scripts/build_summary.py examples/knowledge-summary-demo/cards.json \
 
 只需 Python 3 标准库；生成的 HTML 不引用任何外部脚本、字体或样式。
 
+## 软件平台与考试工具
+
+仓库里还有两个可直接使用的实现，和上面的技能协议分开维护：
+
+- **`personal-learning-platform/`**：React/Vite + Hono 学习工作台，可运行在 Node 或 Cloudflare Workers。AI 讲解、练习评估和**考试速查表**：按考试范围与知识点生成严格两页 A4（正面、反面各三栏），公式与易错点可高亮，可打印或存 PDF。开发和部署见 [`personal-learning-platform/README.md`](personal-learning-platform/README.md)。
+- **`isom3770-gapcheck/`**：ISOM 3770 考前**查缺补漏练习**。单文件、离线可用；10–100 题，全英文 A–E 单选（E = 不知道），交卷后按 Session、题型和 69 个知识点诊断，可导出 JSON。直接打开根目录的 [`ISOM3770_Midterm_GapCheck.html`](ISOM3770_Midterm_GapCheck.html) 即可，说明见 [`isom3770-gapcheck/README.md`](isom3770-gapcheck/README.md)。
+
 ## 目录结构
 
 ```
@@ -61,6 +68,8 @@ personal-learning/            唯一源目录（技能本体）
 ├── shared/                   与软件平台共享的教学引擎与策略（生成副本）
 ├── examples/                 公开演示数据
 └── data/                     你的私人数据（不进仓库，只有 README）
+personal-learning-platform/   软件平台（React/Vite + Hono；含考试速查表生成）
+isom3770-gapcheck/            ISOM 3770 查缺补漏练习源码（根目录另有构建好的单文件）
 docs/                         架构说明、使用指南、历史文档
 scripts/                      维护工具：audit.sh、audit_state.py、release.sh、verify_release.py
 ielts-learning-os/            独立维护的 IELTS 子系统
@@ -75,7 +84,7 @@ SYSTEM-MAINTENANCE.md         维护者手册
 
 ## 维护者
 
-修改协议、模板或脚本后：更新 `VERSION.md` → `scripts/audit.sh` → `scripts/release.sh` → 提交。详见 [SYSTEM-MAINTENANCE.md](SYSTEM-MAINTENANCE.md)。可选的软件平台在单独项目中开发，`personal-learning/shared/` 是其共享教学引擎的生成副本。
+修改协议、模板或脚本后：更新 `VERSION.md` → `scripts/audit.sh` → `scripts/release.sh` → 提交。详见 [SYSTEM-MAINTENANCE.md](SYSTEM-MAINTENANCE.md)。软件平台在 `personal-learning-platform/`，`personal-learning/shared/` 是其共享教学引擎的生成副本。
 
 ## 许可证
 
