@@ -1,0 +1,1062 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="generator" content="Personal Learning OS · knowledge-summary-template v2.1">
+<title>基础统计 · 知识归纳（演示） · 知识归纳</title>
+<!--
+  Personal Learning OS — 知识归纳 HTML 模板（单文件、零外部依赖）
+  用法：把符合 plos-knowledge-summary/1 的 JSON 放进下方 <script id="plos-data"> 中，
+  或运行 `python3 scripts/build_summary.py <cards.json> --state <state.md>` 自动注入。
+  规则见 references/knowledge-summary.md。浏览、自测与本机勾选都不是掌握证据。
+-->
+<style>
+:root{--paper:#fbf6ec;--paper-dot:#efe6d4;--card:#fffdf8;--side:#fff8ea;--ink:#3b3a36;--muted:#837c70;--accent:#d9693c;--accent2:#3f7cc0;--green:#4e9a5a;--line:#eadfcb;--shadow:#e3d6bd;--warn:#fff1e6;--weak:#ffe9a8;--weak-ink:#7a5a00;--weak-line:#b98a00;--quiz:#eef6ff;--fx:#f7f2ff;--fx-line:#c9b8ea;--hl:#ffe7d3;--term:#1f4f86;--sidew:290px;
+ --hand:"Patrick Hand","Caveat","Kalam","Segoe Print","Bradley Hand","Comic Sans MS",cursive;
+ --sans:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans CJK SC","Source Han Sans SC",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+ --l0:#9b948a;--l1:#c0675a;--l2:#c9952c;--l3:#4e9a5a;--l4:#3f7cc0;--l5:#7b5cc4}
+[data-theme=dark]{--paper:#1d1c1a;--paper-dot:#2a2926;--card:#262522;--side:#22211e;--ink:#ece6da;--muted:#a59d90;--accent:#f08a5d;--accent2:#7fb0e6;--green:#7cc489;--line:#3d3a34;--shadow:#11100f;--warn:#3a2c22;--weak:#4a3d14;--weak-ink:#f3d77d;--weak-line:#c9a43a;--quiz:#1f2a36;--fx:#2b2638;--fx-line:#4f4470;--hl:#3b2e24;--term:#9cc5f2}
+@media (prefers-color-scheme:dark){:root:not([data-theme=light]){--paper:#1d1c1a;--paper-dot:#2a2926;--card:#262522;--side:#22211e;--ink:#ece6da;--muted:#a59d90;--accent:#f08a5d;--accent2:#7fb0e6;--green:#7cc489;--line:#3d3a34;--shadow:#11100f;--warn:#3a2c22;--weak:#4a3d14;--weak-ink:#f3d77d;--weak-line:#c9a43a;--quiz:#1f2a36;--fx:#2b2638;--fx-line:#4f4470;--hl:#3b2e24;--term:#9cc5f2}}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:15.5px;line-height:1.68;background-image:radial-gradient(var(--paper-dot) 1px,transparent 1px);background-size:22px 22px}
+a{color:var(--accent2)}
+button{font:inherit;color:inherit}
+.hand{font-family:var(--hand)}
+/* ---------- sidebar ---------- */
+#side{position:fixed;top:0;left:0;bottom:0;width:var(--sidew);background:var(--side);border-right:2px dashed var(--line);padding:16px 14px 30px;overflow-y:auto;z-index:20;transition:transform .25s}
+#side h1{font-family:var(--hand);font-size:27px;line-height:1.1;margin:0 0 4px;color:var(--accent);font-weight:700}
+#side .sub{font-size:12.5px;color:var(--muted);margin-bottom:10px}
+#search{width:100%;padding:9px 12px;border:2px solid var(--line);border-radius:12px;font-size:14px;background:var(--card);color:var(--ink);outline:none;font-family:inherit}
+#search:focus{border-color:var(--accent)}
+.btnrow{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0}
+.btn{border:2px solid var(--ink);background:var(--card);border-radius:10px 14px 9px 13px;padding:3px 10px;font-family:var(--hand);font-size:15px;cursor:pointer;box-shadow:2px 2px 0 var(--ink);transition:transform .1s}
+.btn:hover{transform:translate(-1px,-1px)}.btn:active{transform:translate(1px,1px);box-shadow:1px 1px 0 var(--ink)}
+.btn.on{background:var(--weak)}
+.btn:focus-visible,.head:focus-visible,.chip:focus-visible{outline:3px solid var(--accent2);outline-offset:2px}
+select.sel{width:100%;padding:6px 10px;border:2px solid var(--line);border-radius:10px;background:var(--card);color:var(--ink);font-family:inherit;font-size:13.5px}
+.prog{margin:10px 0 12px}
+.bar{height:12px;border:2px solid var(--ink);border-radius:8px;overflow:hidden;background:var(--card)}
+.bar>i{display:block;height:100%;background:repeating-linear-gradient(45deg,#8fca8f,#8fca8f 6px,#a9d8a6 6px,#a9d8a6 12px);width:0;transition:width .3s}
+.prog small{color:var(--muted);display:block;line-height:1.4;margin-top:3px}
+#toc{list-style:none;margin:0;padding:0}
+#toc li a{display:flex;justify-content:space-between;gap:6px;text-decoration:none;color:var(--ink);padding:5px 8px;border-radius:8px;font-size:14px}
+#toc li a:hover,#toc li a.cur{background:var(--hl)}
+#toc li a b{font-family:var(--hand);font-weight:400;color:var(--accent);min-width:30px;display:inline-block}
+#toc .cnt{font-size:12px;color:var(--muted);white-space:nowrap}
+#toc .sep{border-top:2px dashed var(--line);margin:8px 0}
+/* ---------- main ---------- */
+main{margin-left:var(--sidew);padding:22px 34px 80px;max-width:1240px}
+.hero{background:var(--card);border:2px solid var(--ink);border-radius:18px 24px 16px 22px;padding:18px 24px;box-shadow:4px 5px 0 var(--shadow);margin-bottom:22px}
+.hero h2{font-family:var(--hand);font-size:36px;margin:0;line-height:1.1}
+.hero p{margin:6px 0}
+.pill{display:inline-block;font-size:12.5px;border:1.5px solid var(--ink);border-radius:20px;padding:0 9px;margin:2px 4px 2px 0;background:var(--card)}
+.legend{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:12.5px;color:var(--muted);margin-top:8px}
+.note{font-size:12.5px;color:var(--muted)}
+.box{border:2px solid var(--ink);border-radius:16px 12px 18px 14px;padding:14px 18px;margin:16px 0 26px}
+.box h3{margin:0 0 8px;font-family:var(--hand);font-size:27px;font-weight:400}
+.weakbox{background:var(--weak);box-shadow:3px 4px 0 var(--weak-line)}
+.weakgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(300px,100%),1fr));gap:10px}
+.wk{background:var(--card);border:1.5px dashed var(--weak-line);border-radius:12px;padding:8px 12px;font-size:14px;cursor:pointer}
+.wk b.t{display:block;font-size:15px}
+.treebox{background:var(--card);box-shadow:3px 4px 0 var(--shadow)}
+.tree{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(270px,100%),1fr));gap:12px}
+.branch{border-left:3px solid var(--accent);padding:2px 0 2px 10px}
+.branch>a{font-weight:700;text-decoration:none;color:var(--ink);display:block;margin-bottom:4px}
+.branch>a .n{font-family:var(--hand);color:var(--accent);margin-right:6px}
+.chips{display:flex;flex-wrap:wrap;gap:5px}
+.chip{display:inline-flex;align-items:center;gap:5px;font-size:13px;border:1.5px solid var(--line);border-radius:14px;padding:1px 9px;background:var(--paper);cursor:pointer;color:var(--ink);text-decoration:none}
+.chip:hover{border-color:var(--accent)}
+.chip .rt{font-size:11px;color:var(--muted)}
+.dot{width:9px;height:9px;border-radius:50%;display:inline-block;background:var(--l0);flex:none}
+.relbar{display:none;background:var(--quiz);border:2px dashed var(--accent2);border-radius:12px;padding:8px 14px;margin:0 0 16px}
+.relbar.on{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+section.sec{margin:34px 0 10px}
+section.sec>h2{font-family:var(--hand);font-weight:400;font-size:29px;margin:0 0 4px;display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
+section.sec>h2 .n{background:var(--accent);color:#fff;border-radius:10px 14px 8px 12px;padding:0 10px;font-size:23px}
+section.sec>h2 .zh{font-family:var(--sans);font-size:15px;color:var(--muted)}
+section.sec>.secsum{color:var(--muted);margin:0 0 6px;font-size:14px}
+.cards{display:grid;grid-template-columns:1fr;gap:14px;margin-top:12px}
+.card{background:var(--card);border:2px solid var(--ink);border-radius:14px 18px 13px 16px;box-shadow:3px 4px 0 var(--shadow);overflow:hidden}
+.card.weak{border-color:var(--weak-line);box-shadow:3px 4px 0 var(--weak-line)}
+.card.focus{outline:4px solid var(--accent2);outline-offset:2px}
+.card.done .head{background:color-mix(in srgb,var(--green) 12%,transparent)}
+.head{display:flex;align-items:center;gap:10px;padding:10px 16px;cursor:pointer;user-select:none}
+.head:hover{background:var(--hl)}
+.head .tag{font-family:var(--hand);font-size:15px;background:var(--card);border:1.5px solid var(--ink);border-radius:8px;padding:0 7px;white-space:nowrap}
+.head .ttl{flex:1;min-width:0}
+.head .t1{font-weight:800;font-size:16.5px;display:block;line-height:1.3}
+.head .t2{color:var(--muted);font-size:13.5px}
+.head .core{display:block;font-size:13.5px;margin-top:2px}
+.badges{display:flex;gap:5px;flex-wrap:wrap;align-items:center}
+.bd{font-size:12px;border:1.5px solid currentColor;border-radius:8px;padding:0 6px;white-space:nowrap;font-weight:600;background:var(--card)}
+.bd.star{background:var(--weak);color:var(--weak-ink);border-color:var(--weak-line)}
+.bd.pend{color:var(--l2);border-style:dashed}
+.bd.due{color:var(--accent)}
+.bd.unrec{color:var(--l0);border-style:dotted}
+.head .chev{font-family:var(--hand);font-size:26px;transition:transform .2s;line-height:1}
+.card.open .chev{transform:rotate(90deg)}
+.mast{display:flex;align-items:center;gap:4px;font-size:12.5px;white-space:nowrap;border:1.5px dashed var(--green);border-radius:10px;padding:1px 8px;color:var(--green);background:var(--card)}
+.mast input{accent-color:var(--green);width:15px;height:15px;cursor:pointer}
+.body{display:none;border-top:2px dashed var(--line);padding:16px 18px 18px}
+.card.open .body{display:grid;grid-template-columns:minmax(240px,380px) 1fr;gap:22px;animation:pop .25s ease}
+.card.open .body.nofig{grid-template-columns:1fr}
+@keyframes pop{from{opacity:0;transform:translateY(-4px)}to{opacity:1}}
+.illu{position:sticky;top:12px;align-self:start}
+.illu .frame{background:var(--paper);border:2px solid var(--ink);border-radius:14px 10px 16px 12px;padding:6px;box-shadow:2px 3px 0 var(--shadow)}
+svg.sketch{width:100%;height:auto;display:block}
+.illu .cap{font-family:var(--hand);font-size:17px;text-align:center;color:var(--muted)}
+.blk{margin:0 0 14px}
+.blk h4{margin:0 0 4px;font-family:var(--hand);font-weight:400;font-size:20px;color:var(--accent);display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.blk p{margin:4px 0}
+.blk ul,.blk ol{margin:4px 0;padding-left:22px}
+.blk li{margin:2px 0}
+.blk b,.blk strong{color:var(--term)}
+.crit{background:color-mix(in srgb,var(--green) 10%,var(--card));border-left:5px solid var(--green);border-radius:8px;padding:6px 12px 6px 6px}
+.fx{background:var(--fx);border:1.5px solid var(--fx-line);border-radius:12px;padding:8px 12px;margin:6px 0;overflow-x:auto}
+.fx .fnote{font-size:12.5px;color:var(--muted);margin-top:2px}
+table.vars,table.mini{border-collapse:collapse;width:100%;font-size:14px;margin:6px 0;background:var(--card)}
+table.vars td,table.vars th,table.mini td,table.mini th{border:1.5px solid var(--line);padding:4px 8px;text-align:left;vertical-align:top}
+table.vars th,table.mini th{background:var(--hl);font-weight:700}
+table.vars td:first-child,table.vars th:first-child{white-space:nowrap;width:1%}
+.traps{background:var(--warn);border-left:5px solid var(--accent);border-radius:8px;padding:6px 12px 6px 6px}
+.quiz{background:var(--quiz);border:1.5px dashed var(--accent2);border-radius:12px;padding:10px 12px}
+.quiz .q{font-weight:600}
+.quiz textarea{width:100%;min-height:58px;margin-top:8px;border:1.5px solid var(--line);border-radius:10px;padding:6px 10px;font:inherit;font-size:14px;background:var(--card);color:var(--ink)}
+.quiz .ans{display:none;margin-top:8px;background:var(--card);border-radius:10px;padding:8px 10px;border:1.5px solid var(--accent2)}
+.quiz.show .ans{display:block;animation:pop .25s}
+.quiz .btn{margin-top:8px;font-size:14px}
+.src{font-size:11.5px;border-radius:6px;padding:0 6px;font-weight:600;font-family:var(--sans);white-space:nowrap;border:1px solid}
+.src.source{color:#3b7a46;border-color:#3b7a46}
+.src.computed{color:#2f68a8;border-color:#2f68a8}
+.src.outside{color:#b0562a;border-color:#b0562a;border-style:dashed}
+.ref{font-size:12px;color:var(--muted)}
+.hidden{display:none!important}
+mark{background:#ffe08a;color:#3b3a36;padding:0 1px;border-radius:3px}
+/* ---------- math fallback ---------- */
+.m{font-family:"Cambria Math","STIX Two Math","Latin Modern Math","Times New Roman",serif;font-size:1.06em;white-space:nowrap}
+.m i{font-style:italic}
+.fr{display:inline-flex;flex-direction:column;vertical-align:middle;text-align:center;margin:0 2px;font-size:.92em}
+.fr>span:first-child{border-bottom:1px solid currentColor;padding:0 3px}
+.fr>span:last-child{padding:0 3px}
+.sq{border-top:1px solid currentColor;padding:0 2px}
+.ov{border-top:1px solid currentColor}
+.fx .m{display:block;text-align:center;font-size:1.15em;white-space:normal}
+code.texsrc{display:block;font-size:11.5px;color:var(--muted);margin-top:3px;white-space:pre-wrap}
+/* ---------- sheet / traps ---------- */
+.sheet{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(340px,100%),1fr));gap:14px;margin-top:12px}
+.grp{background:var(--card);border:2px solid var(--ink);border-radius:14px 18px 12px 16px;padding:10px 14px;box-shadow:3px 4px 0 var(--shadow)}
+.grp h3{margin:0 0 6px;font-family:var(--hand);font-weight:400;font-size:21px;color:var(--accent)}
+.grp .row{border-bottom:1px dashed var(--line);padding:5px 0;overflow-x:auto}
+.grp .row:last-child{border:none}
+.grp .row .d{font-size:12.5px;color:var(--muted)}
+.tables{display:flex;gap:14px;flex-wrap:wrap;margin-top:14px}
+.tables .tw{flex:1 1 220px}
+.tables caption{font-weight:700;text-align:left;padding:4px 0}
+.trapsum{columns:2 360px;column-gap:24px;margin-top:10px}
+.tg{break-inside:avoid;margin:0 0 12px;background:var(--card);border:1.5px solid var(--line);border-radius:12px;padding:8px 12px}
+.tg h4{margin:0 0 4px;font-family:var(--hand);font-weight:400;font-size:19px;color:var(--accent)}
+.tg li{font-size:14px;margin:3px 0}
+.gaps li{font-size:14px}
+#menuBtn{display:none;position:fixed;top:10px;left:10px;z-index:30}
+#toTop{position:fixed;right:18px;bottom:18px;z-index:15}
+.empty{display:none;padding:20px;text-align:center;font-family:var(--hand);font-size:24px;color:var(--muted)}
+footer{margin-top:40px;color:var(--muted);font-size:13px}
+@media (max-width:900px){
+ #side{transform:translateX(-105%);box-shadow:4px 0 20px rgba(0,0,0,.25)}
+ body.menu #side{transform:none}
+ #menuBtn{display:block}
+ main{margin-left:0;padding:56px 12px 70px}
+ .card.open .body{grid-template-columns:1fr}
+ .illu{position:static}
+ .head{flex-wrap:wrap;gap:8px}
+ .head .ttl{flex-basis:calc(100% - 60px)}
+ .hero h2{font-size:29px}
+}
+@media print{
+ body{background:#fff;color:#000}
+ #side,#menuBtn,#toTop,.btn,.mast,.relbar,.quiz textarea{display:none!important}
+ main{margin:0;padding:0;max-width:none}
+ .card,.hero,.box,.grp{box-shadow:none!important;break-inside:avoid}
+ .card .body{display:block!important}
+ .illu{position:static;max-width:360px}
+ .quiz .ans{display:block!important}
+ .hidden{display:block!important}
+ section.sec.hidden,.card.hidden{display:block!important}
+}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+<filter id="skf" x="-3%" y="-3%" width="106%" height="106%"><feTurbulence type="fractalNoise" baseFrequency="0.035" numOctaves="2" seed="4" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="2.2" xChannelSelector="R" yChannelSelector="G"/></filter>
+</defs></svg>
+<button id="menuBtn" class="btn" aria-controls="side">☰ 目录</button>
+<aside id="side" aria-label="目录与筛选">
+ <h1 id="sTitle">知识归纳</h1>
+ <div class="sub" id="sSub"></div>
+ <input id="search" type="search" placeholder="🔍 搜索 Search（中英文 / 公式）" aria-label="搜索知识点">
+ <div class="btnrow">
+  <button class="btn" id="expAll">全部展开</button>
+  <button class="btn" id="colAll">全部收起</button>
+  <button class="btn" id="fWeak" aria-pressed="false">★ 薄弱 / 待复习</button>
+  <button class="btn" id="fTodo" aria-pressed="false">未自评复习</button>
+ </div>
+ <select class="sel" id="fLevel" aria-label="按掌握度筛选">
+  <option value="">掌握度：全部</option>
+  <option value="unrec">未记录</option>
+  <option value="low">L0–1 接触</option>
+  <option value="l2">L2 首次独立</option>
+  <option value="high">L3+ 可用以上</option>
+  <option value="pend">含待核验</option>
+ </select>
+ <div class="btnrow">
+  <button class="btn" id="themeBtn" title="浅色 / 深色">◐ 主题</button>
+  <button class="btn" id="printBtn" title="打印或另存为 PDF">⎙ 打印</button>
+ </div>
+ <div class="prog"><div class="bar"><i id="pbar"></i></div><small id="ptxt"></small></div>
+ <ul id="toc"></ul>
+</aside>
+<main id="main">
+ <div class="hero" id="hero"></div>
+ <div class="relbar" id="relbar"></div>
+ <div class="box weakbox" id="weakbox"><h3>★ 先看薄弱点 Weak spots first</h3><div class="weakgrid" id="weakgrid"></div></div>
+ <div class="box treebox" id="treebox"><h3>🗂 知识分类树 Overview</h3><div class="tree" id="tree"></div><p class="note">点知识点直接展开对应卡片；卡片内“查看关联”只显示它与先修 / 对比 / 应用节点。</p></div>
+ <div id="sections"></div>
+ <div class="empty" id="empty">没有匹配的知识点 · No cards match</div>
+ <section class="sec" id="formulas"><h2><span class="n">∑</span>公式与表格<span class="zh">Formula sheet</span></h2><div class="sheet" id="sheet"></div><div class="tables" id="tables"></div></section>
+ <section class="sec" id="traps"><h2><span class="n">⚠</span>易错点汇总<span class="zh">Traps summary</span></h2><div class="trapsum" id="trapsum"></div></section>
+ <section class="sec" id="gaps"><h2><span class="n">◌</span>资料覆盖缺口<span class="zh">Coverage gaps</span></h2><ul class="gaps" id="gaplist"></ul></section>
+ <footer id="foot"></footer>
+</main>
+<button id="toTop" class="btn" title="回到顶部">↑</button>
+
+<!-- 数据区：build_summary.py 会整体替换这个 JSON；手动使用时直接粘贴（注意把 "</" 写成 "<\/"）。 -->
+<script type="application/json" id="plos-data">
+{
+ "schema": "plos-knowledge-summary/1",
+ "meta": {
+  "project": "stats-demo",
+  "id": "stats-overview",
+  "title": "基础统计 · 知识归纳（演示）",
+  "subtitle": "从描述数据到推断决策 · 公开演示数据，不对应任何真实课程或学习者",
+  "scope": "范围：演示用 7 个知识点",
+  "intro": "每张卡片点开可看：<b>一句话核心<\/b>、详解、<b>结构判据<\/b>（怎么认出该用它）、例子、公式与变量、易错点、关联节点和“先答再看”的自测。",
+  "pills": [
+   "演示数据",
+   "离线可用",
+   "支持打印"
+  ],
+  "sources": [
+   "演示讲义（虚构）第 1–3 讲"
+  ],
+  "generated": "2026-10-19",
+  "generator": "build_summary.py"
+ },
+ "sections": [
+  {
+   "id": "describe",
+   "n": "1",
+   "title": "描述数据",
+   "en": "Describing data",
+   "summary": "先回答“数据长什么样”：中心在哪、散得多开。"
+  },
+  {
+   "id": "sampling",
+   "n": "2",
+   "title": "分布与抽样",
+   "en": "Distributions & sampling",
+   "summary": "把单个数值放进分布里看位置，再理解样本统计量本身也会波动。"
+  },
+  {
+   "id": "infer",
+   "n": "3",
+   "title": "推断与决策",
+   "en": "Inference & decisions",
+   "summary": "用样本对总体下结论，并清楚结论的边界。"
+  }
+ ],
+ "cards": [
+  {
+   "id": "center",
+   "node": "1 描述数据 > 均值与中位数",
+   "sec": "describe",
+   "stateTopic": "Center and spread",
+   "title": "均值与中位数",
+   "en": "Mean vs median",
+   "origin": "source",
+   "sourceRef": "演示讲义第 1 讲 p.3–5",
+   "core": "均值用到每个数值的大小，中位数只看排序位置；有极端值时两者会分开。",
+   "explain": "<p><b>Mean<\/b>（均值）= 所有数值之和 ÷ 个数，每个数都“拉”它一下；<b>Median<\/b>（中位数）是排序后正中间的数，只关心位置。<\/p><p>数据右偏（少数特别大）时，均值被拉向大值，通常 <b>mean &gt; median<\/b>。<\/p>",
+   "criteria": [
+    "问题关心“总量/平均分摊”→ 用均值；关心“典型个体”且有极端值 → 用中位数",
+    "看到收入、房价、等待时间这类有长尾的数据，先想到两者会分开"
+   ],
+   "why": "<p>报告“平均工资”时选错指标，会把少数高收入者的影响误读成普遍水平。<\/p>",
+   "example": {
+    "text": "<p>5 位员工月薪（千元）：8, 9, 10, 11, 62。均值 = 20，中位数 = 10。<\/p>",
+    "origin": "computed"
+   },
+   "formulas": [
+    {
+     "tex": "\\bar{x}=\\frac{1}{n}\\sum_{i=1}^{n}x_i",
+     "note": "均值：每个数值等权相加",
+     "origin": "source"
+    }
+   ],
+   "vars": [
+    [
+     "\\bar{x}",
+     "样本均值"
+    ],
+    [
+     "n",
+     "样本量"
+    ]
+   ],
+   "traps": [
+    "把“均值大于中位数”当作计算错误——其实常是右偏信号",
+    {
+     "text": "中位数对极端值稳健，但并不是“更准确”，只是回答不同问题",
+     "origin": "outside"
+    }
+   ],
+   "related": [
+    {
+     "id": "spread",
+     "type": "part"
+    },
+    {
+     "id": "normal-z",
+     "type": "apply"
+    }
+   ],
+   "quiz": {
+    "q": "某城市房价均值 900 万、中位数 600 万。分布更可能是左偏还是右偏？为什么？",
+    "a": "<b>右偏。<\/b>少数极贵房产把均值往上拉，中位数只看位置不受影响。",
+    "origin": "outside"
+   },
+   "figure": {
+    "type": "compare",
+    "left": {
+     "title": "Mean 均值",
+     "points": [
+      "用到每个数值",
+      "受极端值影响",
+      "适合总量分摊"
+     ]
+    },
+    "right": {
+     "title": "Median 中位数",
+     "points": [
+      "只看排序位置",
+      "对极端值稳健",
+      "适合典型个体"
+     ]
+    },
+    "caption": "均值 vs 中位数"
+   }
+  },
+  {
+   "id": "spread",
+   "node": "1 描述数据 > 标准差：离散程度",
+   "sec": "describe",
+   "stateTopic": "Center and spread",
+   "title": "标准差：离散程度",
+   "en": "Standard deviation",
+   "origin": "source",
+   "sourceRef": "演示讲义第 1 讲 p.6–8",
+   "core": "标准差衡量数据离均值“典型地”有多远；它描述波动，不描述好坏或盈利概率。",
+   "explain": "<p><b>Standard deviation<\/b>（标准差）先算每个值离均值的距离，平方后取平均（样本用 n−1），再开根号回到原单位。<\/p>",
+   "criteria": [
+    "问题问“稳不稳定、风险多大、波动多大”→ 想到标准差",
+    "比较两组数据的离散程度，且单位相同"
+   ],
+   "why": "<p>风险决策里，同样的期望收益，标准差越大意味着结果越分散——上下两个方向都更分散。<\/p>",
+   "example": {
+    "text": "<p>A 组 {10,10,10} 标准差为 0；B 组 {0,10,20} 标准差为 10。两组均值都是 10。<\/p>",
+    "origin": "computed"
+   },
+   "formulas": [
+    {
+     "tex": "s=\\sqrt{\\frac{1}{n-1}\\sum_{i=1}^{n}(x_i-\\bar{x})^2}",
+     "note": "样本标准差；平方是为了不让正负偏差抵消",
+     "origin": "source"
+    }
+   ],
+   "vars": [
+    [
+     "s",
+     "样本标准差"
+    ],
+    [
+     "x_i-\\bar{x}",
+     "第 i 个值的偏差"
+    ]
+   ],
+   "traps": [
+    "把“标准差大”理解为“更可能赚钱”——它只说明分散，两个方向都有",
+    "忘记样本标准差除以 n−1"
+   ],
+   "related": [
+    {
+     "id": "center",
+     "type": "prereq"
+    },
+    {
+     "id": "normal-z",
+     "type": "apply"
+    },
+    {
+     "id": "sampling",
+     "type": "apply"
+    }
+   ],
+   "quiz": {
+    "q": "两个项目期望利润相同，项目 B 的标准差更大。能否说 B 盈利的概率更高？",
+    "a": "<b>不能。<\/b>标准差只说明结果更分散；盈利概率要看分布在 0 以上的部分。",
+    "origin": "outside"
+   }
+  },
+  {
+   "id": "normal-z",
+   "node": "2 分布与抽样 > 正态分布与 z 值",
+   "sec": "sampling",
+   "stateTopic": "Normal distribution and z-score",
+   "title": "正态分布与 z 值",
+   "en": "Normal distribution & z-score",
+   "origin": "source",
+   "sourceRef": "演示讲义第 2 讲 p.2–6",
+   "core": "z 值把任何正态变量换算成“离均值几个标准差”，于是都能查同一张表。",
+   "explain": "<p><b>z-score<\/b> = (x − μ) / σ。z = 1.5 表示比均值高 1.5 个标准差。<b>Φ(z)<\/b> 是标准正态在 z 左侧的面积，即 P(Z ≤ z)。<\/p>",
+   "criteria": [
+    "题目给了均值和标准差、问“低于/高于某值的比例”→ 先标准化",
+    "要比较不同单位/量纲的两个成绩的相对位置"
+   ],
+   "why": "<p>标准化让“不同考试的分数”“不同产品的需求”可以放到同一把尺子上比较。<\/p>",
+   "example": {
+    "text": "<p>某考试 μ = 70、σ = 10，得 85 分：z = 1.5，Φ(1.5) ≈ 0.933，约超过 93% 的人。<\/p>",
+    "origin": "computed"
+   },
+   "formulas": [
+    {
+     "tex": "z=\\frac{x-\\mu}{\\sigma}",
+     "origin": "source"
+    },
+    {
+     "tex": "P(X\\le x)=\\Phi(z)",
+     "note": "查表得到左侧面积",
+     "origin": "source"
+    }
+   ],
+   "vars": [
+    [
+     "\\mu",
+     "总体均值"
+    ],
+    [
+     "\\sigma",
+     "总体标准差"
+    ],
+    [
+     "\\Phi",
+     "标准正态累积分布函数"
+    ]
+   ],
+   "traps": [
+    "把 Φ(z) 当成右侧面积；问“高于”时要用 1 − Φ(z)",
+    "z 为负只表示低于均值，不是计算错误"
+   ],
+   "related": [
+    {
+     "id": "spread",
+     "type": "prereq"
+    },
+    {
+     "id": "ci",
+     "type": "apply"
+    }
+   ],
+   "quiz": {
+    "q": "μ = 50、σ = 5，求 X > 60 的概率（写出 z 和用哪一侧面积）。",
+    "a": "z = 2；求右侧：1 − Φ(2) ≈ 1 − 0.977 = 0.023。",
+    "origin": "computed"
+   },
+   "figure": {
+    "type": "curve",
+    "shade": "left",
+    "cut": 0.68,
+    "marker": "x",
+    "leftLabel": "Φ(z) = P(X ≤ x)",
+    "caption": "左侧面积 = Φ(z)"
+   }
+  },
+  {
+   "id": "sampling",
+   "node": "2 分布与抽样 > 抽样分布与标准误",
+   "sec": "sampling",
+   "stateTopic": "Sampling distribution",
+   "title": "抽样分布与标准误",
+   "en": "Sampling distribution & standard error",
+   "origin": "source",
+   "sourceRef": "演示讲义第 2 讲 p.9–12",
+   "core": "样本均值本身也是随机的；样本越大，它围绕真实均值的波动（标准误）越小。",
+   "explain": "<p>反复抽很多个样本，每次算一个 x̄，这些 x̄ 组成的分布叫 <b>sampling distribution<\/b>。它的标准差叫 <b>standard error<\/b>（标准误）= σ/√n。<\/p>",
+   "criteria": [
+    "问题在比较“单个观测的波动”与“平均值的波动”→ 区分 σ 与 σ/√n",
+    "看到“样本量加倍/增至四倍”→ 标准误按 √n 缩小"
+   ],
+   "why": "<p>它解释了为什么大样本的结论更可靠，也是置信区间和假设检验的地基。<\/p>",
+   "example": {
+    "text": "<p>σ = 20：n = 25 时标准误 = 4；n = 100 时标准误 = 2。样本量变 4 倍，标准误减半。<\/p>",
+    "origin": "computed"
+   },
+   "formulas": [
+    {
+     "tex": "SE(\\bar{x})=\\frac{\\sigma}{\\sqrt{n}}",
+     "origin": "source"
+    }
+   ],
+   "traps": [
+    "以为样本量翻倍标准误减半——实际要变 4 倍",
+    "把标准误和标准差混用"
+   ],
+   "related": [
+    {
+     "id": "spread",
+     "type": "prereq"
+    },
+    {
+     "id": "ci",
+     "type": "apply"
+    },
+    {
+     "id": "p-value",
+     "type": "apply"
+    }
+   ],
+   "quiz": {
+    "q": "想把标准误降到原来的 1/3，样本量要变成原来的几倍？",
+    "a": "<b>9 倍<\/b>，因为 SE ∝ 1/√n。",
+    "origin": "computed"
+   },
+   "figure": {
+    "type": "flow",
+    "steps": [
+     "总体",
+     "抽很多个样本",
+     "每个样本算 x̄",
+     "x̄ 的分布"
+    ],
+    "caption": "抽样分布是怎么来的"
+   }
+  },
+  {
+   "id": "ci",
+   "node": "3 推断与决策 > 置信区间",
+   "sec": "infer",
+   "stateTopic": "Confidence interval",
+   "title": "置信区间",
+   "en": "Confidence interval",
+   "origin": "source",
+   "sourceRef": "演示讲义第 3 讲 p.2–5",
+   "core": "95% 指的是“这种构造方法”长期有 95% 的区间覆盖真值，不是某个具体区间含真值的概率。",
+   "explain": "<p>区间 = 点估计 ± 临界值 × 标准误。置信水平越高，临界值越大，区间越宽。<\/p>",
+   "criteria": [
+    "题目要“估计范围”而不是“判断是否不同”→ 置信区间",
+    "看到“精度不够”→ 想到增大 n 或接受更低置信水平"
+   ],
+   "why": "<p>只报一个点估计会掩盖不确定性；区间让决策者看到可能的范围。<\/p>",
+   "example": {
+    "text": "<p>x̄ = 52、SE = 2，95% 区间 ≈ 52 ± 1.96×2 = [48.1, 55.9]。<\/p>",
+    "origin": "computed"
+   },
+   "formulas": [
+    {
+     "tex": "\\bar{x}\\pm z_{\\alpha/2}\\cdot\\frac{\\sigma}{\\sqrt{n}}",
+     "note": "σ 已知时的均值区间",
+     "origin": "source"
+    }
+   ],
+   "traps": [
+    "说“真值有 95% 概率落在这个区间里”",
+    "以为区间越窄越好而忽略置信水平被降低"
+   ],
+   "related": [
+    {
+     "id": "sampling",
+     "type": "prereq"
+    },
+    {
+     "id": "normal-z",
+     "type": "prereq"
+    },
+    {
+     "id": "p-value",
+     "type": "contrast"
+    }
+   ],
+   "quiz": {
+    "q": "其他条件不变，把置信水平从 95% 提高到 99%，区间会变宽还是变窄？",
+    "a": "<b>变宽<\/b>：临界值从 1.96 增大到约 2.58。",
+    "origin": "source"
+   }
+  },
+  {
+   "id": "p-value",
+   "node": "3 推断与决策 > 假设检验与 p-value",
+   "sec": "infer",
+   "stateTopic": "Hypothesis testing and p-value",
+   "weak": "条件方向曾答反：把 p-value 当成 P(H0 为真)",
+   "title": "假设检验与 p-value",
+   "en": "Hypothesis test & p-value",
+   "origin": "source",
+   "sourceRef": "演示讲义第 3 讲 p.6–11",
+   "core": "p-value 是“假设 H0 成立时，看到这么极端或更极端结果的概率”，条件在 H0 上。",
+   "explain": "<p>先假设 <b>H0<\/b>（没有差异）成立，在这个世界里算检验统计量达到观测值或更极端的尾部概率，这就是 <b>p-value<\/b>。p 小于预设的 α 时拒绝 H0。<\/p><p>它<b>不是<\/b> P(H0 为真 | 数据)。<\/p>",
+   "criteria": [
+    "题目问“差异是否可能只是偶然”→ 假设检验",
+    "检查条件方向：P(数据 | H0) 还是 P(H0 | 数据)？前者才是 p-value"
+   ],
+   "why": "<p>把 p-value 读反，会把“数据在 H0 下少见”夸大成“H0 几乎不可能为真”。<\/p>",
+   "example": {
+    "text": "<p>新页面转化率检验得 p = 0.03、α = 0.05：拒绝 H0。正确解读是“若两版真的一样，看到这么大差异的概率约 3%”。<\/p>",
+    "origin": "source"
+   },
+   "formulas": [
+    {
+     "tex": "p=P(T\\ge t_{obs}\\mid H_0)",
+     "note": "单侧示例；双侧取两边尾部",
+     "origin": "source"
+    }
+   ],
+   "traps": [
+    "p = 0.03 ≠ “H0 为真的概率是 3%”",
+    "不显著 ≠ 证明没有差异",
+    {
+     "text": "统计显著不等于差异大到有商业价值",
+     "origin": "outside"
+    }
+   ],
+   "related": [
+    {
+     "id": "sampling",
+     "type": "prereq"
+    },
+    {
+     "id": "ci",
+     "type": "contrast"
+    },
+    {
+     "id": "causation",
+     "type": "related"
+    }
+   ],
+   "quiz": {
+    "q": "判断对错：p = 0.03 表示 H0 为真的概率是 3%。",
+    "a": "<b>错。<\/b>p-value 以 H0 为条件：P(这么极端的数据 | H0)，不是 P(H0 | 数据)。",
+    "origin": "source"
+   },
+   "figure": {
+    "type": "curve",
+    "shade": "right",
+    "cut": 0.82,
+    "marker": "t_obs",
+    "rightLabel": "p-value",
+    "center": "H0 下的分布",
+    "caption": "p-value 是 H0 分布的尾部面积"
+   }
+  },
+  {
+   "id": "causation",
+   "node": "3 推断与决策 > 相关不等于因果",
+   "sec": "infer",
+   "title": "相关不等于因果",
+   "en": "Correlation is not causation",
+   "origin": "outside",
+   "core": "两个变量一起变，可能是第三个因素在同时推动它们；要因果结论需要实验或更强的设计。",
+   "explain": "<p>常见替代解释：<b>confounder<\/b>（混杂变量）、反向因果、巧合。随机对照实验通过随机分组切断混杂。<\/p>",
+   "criteria": [
+    "结论里出现“导致/提升/造成”而数据只是观察到的相关 → 检查混杂与方向"
+   ],
+   "why": "<p>商业决策若把相关当因果，投入可能完全无效。<\/p>",
+   "example": {
+    "text": "<p>冰淇淋销量和溺水人数同涨——共同原因是气温。<\/p>",
+    "origin": "outside"
+   },
+   "traps": [
+    "看到很高的相关系数就推断因果"
+   ],
+   "related": [
+    {
+     "id": "p-value",
+     "type": "related"
+    }
+   ],
+   "quiz": {
+    "q": "门店发现“装修过的店销量更高”。至少给出一种非因果解释。",
+    "a": "混杂：总部优先装修本来就旺的店（选址好）；或反向：销量高的店才有预算装修。",
+    "origin": "outside"
+   },
+   "figure": {
+    "type": "tree",
+    "root": "相关",
+    "children": [
+     "因果",
+     "混杂变量",
+     "反向因果",
+     "巧合"
+    ],
+    "caption": "相关背后的几种可能"
+   }
+  }
+ ],
+ "tables": [
+  {
+   "title": "常用 z 临界值",
+   "origin": "source",
+   "head": [
+    "置信水平",
+    "z"
+   ],
+   "rows": [
+    [
+     "90%",
+     "1.645"
+    ],
+    [
+     "95%",
+     "1.96"
+    ],
+    [
+     "99%",
+     "2.576"
+    ]
+   ]
+  }
+ ],
+ "coverageGaps": [
+  {
+   "source": "演示讲义第 2 讲 p.7 图",
+   "issue": "正态曲线面积图为图片，文本提取不到数值",
+   "action": "卡片里的示意图为重绘，数值以讲义为准"
+  }
+ ],
+ "status": {
+  "source": "state.md（演示）",
+  "asOf": "2026-10-19",
+  "items": {
+   "center": {
+    "topic": "Center and spread",
+    "mastery": 3,
+    "pending": null,
+    "evidence": "累积证据：独立解释均值/中位数差异；无提示应用偏态收入数据；2026-10-12 ≥2天无提示复测通过",
+    "merged": true,
+    "nextReview": "2026-10-26"
+   },
+   "spread": {
+    "topic": "Center and spread",
+    "mastery": 3,
+    "pending": null,
+    "evidence": "累积证据：独立解释均值/中位数差异；无提示应用偏态收入数据；2026-10-12 ≥2天无提示复测通过",
+    "merged": true,
+    "nextReview": "2026-10-26"
+   },
+   "normal-z": {
+    "topic": "Normal distribution and z-score",
+    "mastery": 4,
+    "pending": "缺少≥2天无提示复测",
+    "evidence": "历史记录；待按 v1.2 核验：缺少≥2天无提示复测",
+    "merged": false
+   },
+   "sampling": {
+    "topic": "Sampling distribution",
+    "mastery": 2,
+    "pending": null,
+    "evidence": "2026-10-15 无提示首次正确解释 n 增大时标准误变小",
+    "merged": false,
+    "nextReview": "2026-10-18"
+   },
+   "ci": {
+    "topic": "Confidence interval",
+    "mastery": 1,
+    "pending": null,
+    "evidence": "讲解过 95% 区间含义，尚未独立作答",
+    "merged": false
+   },
+   "p-value": {
+    "topic": "Hypothesis testing and p-value",
+    "mastery": 1,
+    "pending": null,
+    "evidence": "2026-10-16 把 p-value 当作 P(H0 为真)；讲解后即时改正（辅助成功）",
+    "merged": false,
+    "nextReview": "2026-10-18",
+    "weak": true,
+    "weakReason": "最近一次检索失败（Last Fail 2026-10-16）"
+   }
+  }
+ }
+}
+</script>
+
+<script>
+/* ===================== sketch：手绘风 SVG 工具（种子固定，可复现） ===================== */
+const SK=(()=>{
+ const C={ink:'currentColor',red:'#d9534f',blue:'#3f7cc0',green:'#4e9a5a',orange:'#e08a3c',purple:'#8e6cc8',grey:'#9b948a',yellow:'#e9c46a'};
+ let seed=7;const rnd=()=>{seed=(seed*9301+49297)%233280;return seed/233280;};const j=a=>(rnd()-.5)*2*a;
+ const esc=s=>String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+ function rough(x1,y1,x2,y2,o={}){const c=o.c||C.ink,w=o.w||2,len=Math.hypot(x2-x1,y2-y1),b=Math.min(3,len*.02+.6);let s='';
+  for(let k=0;k<(o.single?1:2);k++){const mx=(x1+x2)/2+j(b),my=(y1+y2)/2+j(b);
+   s+=`<path d="M${(x1+j(1)).toFixed(1)},${(y1+j(1)).toFixed(1)} Q${mx.toFixed(1)},${my.toFixed(1)} ${(x2+j(1)).toFixed(1)},${(y2+j(1)).toFixed(1)}" stroke="${c}" stroke-width="${k?w*.6:w}" fill="none" stroke-linecap="round" opacity="${k?.55:1}"${o.dash?` stroke-dasharray="${o.dash}"`:''}/>`;}
+  return s;}
+ function rect(x,y,w,h,o={}){let s='';if(o.fill)s+=`<path d="M${x+j(2)},${y+j(2)} L${x+w+j(2)},${y+j(2)} L${x+w+j(2)},${y+h+j(2)} L${x+j(2)},${y+h+j(2)} Z" fill="${o.fill}" opacity="${o.op||.55}" stroke="none"/>`;
+  return s+rough(x,y,x+w,y,o)+rough(x+w,y,x+w,y+h,o)+rough(x+w,y+h,x,y+h,o)+rough(x,y+h,x,y,o);}
+ function circle(cx,cy,r,o={}){let s='';for(let k=0;k<2;k++){let d='';const n=18,off=rnd()*6;for(let i=0;i<=n+1;i++){const t=off+i/n*Math.PI*2,rr=r+j(r*.06+.8);d+=(i?'L':'M')+(cx+rr*Math.cos(t)).toFixed(1)+','+(cy+rr*Math.sin(t)).toFixed(1);}
+  s+=`<path d="${d}" stroke="${o.c||C.ink}" stroke-width="${k?1.2:(o.w||2)}" fill="${k?'none':(o.fill||'none')}" fill-opacity="${o.op||.5}" opacity="${k?.5:1}" stroke-linejoin="round"/>`;}return s;}
+ function arrow(x1,y1,x2,y2,o={}){const c=o.c||C.ink,a=Math.atan2(y2-y1,x2-x1),h=o.head||9;
+  return rough(x1,y1,x2,y2,o)+rough(x2,y2,x2-h*Math.cos(a-.45),y2-h*Math.sin(a-.45),{c,w:o.w||2,single:true})+rough(x2,y2,x2-h*Math.cos(a+.45),y2-h*Math.sin(a+.45),{c,w:o.w||2,single:true});}
+ function poly(pts,o={}){let s='';for(let k=0;k<(o.single?1:2);k++){let d='';pts.forEach((p,i)=>{d+=(i?'L':'M')+(p[0]+j(.8)).toFixed(1)+','+(p[1]+j(.8)).toFixed(1);});if(o.close)d+='Z';
+  s+=`<path d="${d}" stroke="${o.c||C.ink}" stroke-width="${k?1.1:(o.w||2)}" fill="${(!k&&o.fill)?o.fill:'none'}" fill-opacity="${o.op||.35}" opacity="${k?.5:1}" stroke-linejoin="round" stroke-linecap="round"/>`;}return s;}
+ function text(x,y,t,o={}){return `<text x="${x}" y="${y}" font-family="'Patrick Hand','Caveat','Segoe Print','Bradley Hand','PingFang SC','Microsoft YaHei',cursive" font-size="${o.s||17}" fill="${o.c||C.ink}" text-anchor="${o.a||'middle'}" font-weight="${o.b?700:400}">${esc(t)}</text>`;}
+ function label(x,y,w,t,o={}){const max=Math.max(4,Math.floor(w/((o.s||16)*.62)));const words=String(t);const lines=[];let cur='';
+  for(const ch of words.split(/(\s+)/)){if((cur+ch).length>max&&cur.trim()){lines.push(cur.trim());cur=ch.trimStart();}else cur+=ch;}
+  if(cur.trim())lines.push(cur.trim());const out=[];lines.forEach(l=>{for(let i=0;i<l.length;i+=max)out.push(l.slice(i,i+max));});
+  const sz=o.s||16;return out.slice(0,3).map((l,i)=>text(x,y+(i-(Math.min(out.length,3)-1)/2)*sz*1.05+sz*.35,l,{...o,s:sz})).join('');}
+ function box(x,y,w,h,t,o={}){return rect(x,y,w,h,{fill:o.fill||'#fff3d6',c:o.c,w:o.w})+label(x+w/2,y+h/2,w-8,t,{s:o.s||16});}
+ function normalPts(x0,x1,base,mu,sd,amp,step=3){const p=[];for(let x=x0;x<=x1;x+=step){const z=(x-mu)/sd;p.push([x,base-amp*Math.exp(-z*z/2)]);}return p;}
+ function wrap(inner,w=420,h=220){return `<svg class="sketch" viewBox="0 0 ${w} ${h}" xmlns="http://www.w3.org/2000/svg" role="img"><g filter="url(#skf)">${inner}</g></svg>`;}
+ function reseed(n){seed=n||7;}
+ return {C,rough,rect,circle,arrow,poly,text,label,box,normalPts,wrap,reseed};
+})();
+
+/* ===================== 通用示意图：flow / cycle / tree / compare / curve / svg ===================== */
+const FILLS=['#fde2c8','#e6f0d8','#dbe8f6','#f3dcef','#fff3b0','#e2dcf5'];
+const FIG={
+ flow(f){const st=(f.steps||[]).slice(0,6),n=st.length||1,W=420,bw=Math.min(110,(W-20-(n-1)*22)/n);let s='';const tot=n*bw+(n-1)*22,x0=(W-tot)/2;
+  st.forEach((t,i)=>{const x=x0+i*(bw+22);s+=SK.box(x,80,bw,60,t,{fill:FILLS[i%6],s:15});if(i<n-1)s+=SK.arrow(x+bw+3,110,x+bw+19,110,{head:7});});
+  if(f.title)s+=SK.text(W/2,40,f.title,{s:19,b:1});return SK.wrap(s,W,200);},
+ cycle(f){const st=(f.steps||[]).slice(0,6),n=st.length||1,cx=210,cy=118,R=78;let s='';
+  st.forEach((t,i)=>{const a=-Math.PI/2+i*2*Math.PI/n,x=cx+R*Math.cos(a),y=cy+R*Math.sin(a);s+=SK.box(x-52,y-20,104,40,t,{fill:FILLS[i%6],s:14});
+   const b=a+2*Math.PI/n,ma=(a+b)/2;s+=SK.arrow(cx+(R-8)*Math.cos(ma-.25),cy+(R-8)*Math.sin(ma-.25),cx+(R-8)*Math.cos(ma+.2),cy+(R-8)*Math.sin(ma+.2),{head:6,w:1.6});});
+  if(f.title)s+=SK.text(cx,cy+6,f.title,{s:17,b:1});return SK.wrap(s,420,236);},
+ tree(f){const ch=(f.children||[]).slice(0,6),n=ch.length||1;let s=SK.box(150,14,120,44,f.root||'',{fill:'#fff0a0',s:16});const bw=Math.min(110,(400-(n-1)*10)/n),tot=n*bw+(n-1)*10,x0=(420-tot)/2;
+  ch.forEach((t,i)=>{const x=x0+i*(bw+10);s+=SK.rough(210,58,x+bw/2,128,{w:1.4,single:true});s+=SK.box(x,128,bw,52,t,{fill:FILLS[i%6],s:14});});return SK.wrap(s,420,200);},
+ compare(f){const L=f.left||{},R=f.right||{};let s=SK.rect(12,14,190,190,{fill:'#dbe8f6'})+SK.rect(218,14,190,190,{fill:'#fde2c8'});
+  s+=SK.text(107,40,L.title||'A',{s:19,b:1})+SK.text(313,40,R.title||'B',{s:19,b:1});
+  (L.points||[]).slice(0,4).forEach((p,i)=>{s+=SK.label(107,72+i*36,176,'• '+p,{s:14});});(R.points||[]).slice(0,4).forEach((p,i)=>{s+=SK.label(313,72+i*36,176,'• '+p,{s:14});});
+  if(f.vs!==false)s+=SK.text(210,114,'vs',{s:18,c:SK.C.red,b:1});return SK.wrap(s,420,218);},
+ curve(f){const base=180,mu=210,sd=55;let s=SK.rough(20,base,400,base,{w:1.6});const pts=SK.normalPts(30,390,base,mu,sd,140);const cut=f.cut===undefined?250:30+(360*Math.min(1,Math.max(0,f.cut)));
+  const left=pts.filter(p=>p[0]<=cut),right=pts.filter(p=>p[0]>=cut);
+  const area=(arr,col)=>arr.length?SK.poly([[arr[0][0],base],...arr,[arr[arr.length-1][0],base]],{fill:col,c:'none',close:true,single:true,op:.45}):'';
+  if(f.shade==='left'||f.shade==='both')s+=area(left,'#9ad0a0');if(f.shade==='right'||f.shade==='both')s+=area(right,'#f4a49c');
+  s+=SK.poly(pts,{w:2.2});s+=SK.rough(cut,base+6,cut,30,{c:SK.C.red,w:1.8,dash:'5 4'});
+  if(f.marker)s+=SK.text(cut,24,f.marker,{s:17,c:SK.C.red,b:1});if(f.leftLabel)s+=SK.text(110,150,f.leftLabel,{s:15,c:SK.C.green});if(f.rightLabel)s+=SK.text(335,150,f.rightLabel,{s:15,c:SK.C.red});
+  s+=SK.text(mu,base+20,f.center||'μ',{s:16});return SK.wrap(s,420,210);},
+ svg(f){return sanitize(String(f.svg||''),true);}
+};
+
+/* ===================== 安全：只保留排版标签，去掉脚本与事件 ===================== */
+function sanitize(html,allowSvg){
+ const t=document.createElement('template');t.innerHTML=String(html==null?'':html);
+ t.content.querySelectorAll('script,style,iframe,object,embed,link,meta,base,form'+(allowSvg?'':',svg')).forEach(n=>n.remove());
+ t.content.querySelectorAll('*').forEach(el=>{[...el.attributes].forEach(a=>{const n=a.name.toLowerCase(),v=a.value.trim().toLowerCase();
+  if(n.startsWith('on')||((n==='href'||n==='src'||n==='xlink:href')&&(v.startsWith('javascript:')||v.startsWith('data:text'))))el.removeAttribute(a.name);});});
+ return t.innerHTML;}
+
+/* ===================== 数学：有 KaTeX（本地内联）则用之，否则轻量降级渲染 ===================== */
+const SYM={alpha:'α',beta:'β',gamma:'γ',delta:'δ',epsilon:'ε',varepsilon:'ε',zeta:'ζ',eta:'η',theta:'θ',lambda:'λ',mu:'μ',nu:'ν',xi:'ξ',pi:'π',rho:'ρ',sigma:'σ',tau:'τ',phi:'φ',varphi:'φ',chi:'χ',psi:'ψ',omega:'ω',
+ Gamma:'Γ',Delta:'Δ',Theta:'Θ',Lambda:'Λ',Pi:'Π',Sigma:'Σ',Phi:'Φ',Psi:'Ψ',Omega:'Ω',le:' ≤ ',leq:' ≤ ',ge:' ≥ ',geq:' ≥ ',ne:' ≠ ',neq:' ≠ ',approx:' ≈ ',sim:' ~ ',equiv:' ≡ ',propto:' ∝ ',
+ times:' × ',cdot:'·',div:' ÷ ',pm:' ± ',mp:' ∓ ',infty:'∞',sum:'∑',prod:'∏',int:'∫',partial:'∂',nabla:'∇',to:' → ',rightarrow:' → ',leftarrow:' ← ',Rightarrow:' ⇒ ',Leftarrow:' ⇐ ',iff:' ⇔ ',implies:' ⇒ ',
+ in:' ∈ ',notin:' ∉ ',subset:' ⊂ ',subseteq:' ⊆ ',cup:' ∪ ',cap:' ∩ ',emptyset:'∅',forall:'∀',exists:'∃',neg:'¬',land:' ∧ ',lor:' ∨ ',mid:' | ',vert:'|',ldots:'…',dots:'…',cdots:'⋯',
+ prime:'′',circ:'∘',quad:'\u2003',qquad:'\u2003\u2003',lfloor:'⌊',rfloor:'⌋',lceil:'⌈',rceil:'⌉',langle:'⟨',rangle:'⟩',max:'max',min:'min',log:'log',ln:'ln',exp:'exp',lim:'lim',Pr:'Pr',sin:'sin',cos:'cos',arg:'arg'};
+function escH(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+function tex2html(src){
+ src=String(src);let i=0;const n=src.length;
+ const raw=()=>{while(src[i]===' ')i++;if(src[i]!=='{'){return src[i++]||'';}let d=0,s=i+1;for(;i<n;i++){if(src[i]==='{')d++;else if(src[i]==='}'){d--;if(!d)break;}}const r=src.slice(s,i);i++;return r;};
+ const arg=()=>{while(src[i]===' ')i++;if(src[i]==='{'){i++;return grp();}return atom();};
+ function grp(){let o='';while(i<n){if(src[i]==='}'){i++;return o;}o+=atom();}return o;}
+ function atom(){const ch=src[i];
+  if(ch==='{'){i++;return grp();}
+  if(ch==='}'){i++;return '';}
+  if(ch==='\\'){i++;const m=/^[a-zA-Z]+/.exec(src.slice(i));
+   if(!m){const c=src[i++];return {',':'\u2009',';':' ',':':' ','!':'',' ':' ','{':'{','}':'}','%':'%','_':'_','&':'&amp;','#':'#','$':'$','|':'‖','\\':'<br>'}[c]??escH(c||'');}
+   const name=m[0];i+=name.length;
+   if(/^[dt]?frac$/.test(name)){const a=arg(),b=arg();return `<span class="fr"><span>${a}</span><span>${b}</span></span>`;}
+   if(name==='binom'){const a=arg(),b=arg();return `(<span class="fr" style="--x:0"><span style="border:0">${a}</span><span>${b}</span></span>)`;}
+   if(name==='sqrt'){let idx='';if(src[i]==='['){const k=src.indexOf(']',i);idx=src.slice(i+1,k);i=k+1;}const a=arg();return (idx?`<sup>${escH(idx)}</sup>`:'')+`√<span class="sq">${a}</span>`;}
+   if(['text','mathrm','operatorname','mbox','textrm','textup'].includes(name))return `<span style="font-style:normal">${escH(raw())}</span>`;
+   if(['textbf','mathbf','boldsymbol'].includes(name))return `<b>${tex2html(raw())}</b>`;
+   if(['textit','mathit'].includes(name))return `<i>${escH(raw())}</i>`;
+   if(['bar','overline'].includes(name))return `<span class="ov">${arg()}</span>`;
+   if(name==='hat'||name==='widehat')return arg()+'\u0302';
+   if(name==='tilde'||name==='widetilde')return arg()+'\u0303';
+   if(name==='vec')return arg()+'\u20d7';
+   if(name==='underbrace'||name==='overbrace')return arg();
+   if(['left','right','big','Big','bigl','bigr','Bigl','Bigr','displaystyle','textstyle','limits','nolimits'].includes(name))return '';
+   if(SYM[name]!==undefined)return SYM[name];
+   return escH('\\'+name);}
+  if(ch==='^'||ch==='_'){i++;const a=arg();return ch==='^'?`<sup>${a}</sup>`:`<sub>${a}</sub>`;}
+  i++;
+  if(/[a-zA-Z]/.test(ch))return `<i>${ch}</i>`;
+  if(ch==='-')return ' − ';if(ch==='+')return ' + ';if(ch==='=')return ' = ';if(ch==='<')return ' &lt; ';if(ch==='>')return ' &gt; ';
+  if(ch==='~')return ' ';if(ch===' '||ch==='\n')return '';if(ch==='&')return ' ';
+  return escH(ch);}
+ let o='';while(i<n)o+=atom();return o.replace(/ {2,}/g,' ');}
+function math(tex,display){
+ if(window.katex&&katex.renderToString){try{return katex.renderToString(String(tex),{displayMode:!!display,throwOnError:false});}catch(e){}}
+ return `<span class="m"${display?'':''}>${tex2html(tex)}</span>`;}
+/* 公式定界符：行内 \( ... \)，独立行 \[ ... \]（不用 $，避免与货币符号冲突；美元写 \$） */
+const unent=t=>t.replace(/&lt;/g,'<').replace(/&gt;/g,'>').replace(/&quot;/g,'"').replace(/&#39;/g,"'").replace(/&amp;/g,'&');
+function inlineMath(html){return String(html).replace(/\\\[([\s\S]+?)\\\]|\\\(([\s\S]+?)\\\)/g,(m,a,b)=>a!==undefined?`<div class="fx">${math(unent(a),true)}</div>`:math(unent(b),false));}
+const rich=h=>inlineMath(sanitize(h));
+
+/* ===================== 主程序 ===================== */
+(function(){
+ const $=s=>document.querySelector(s);
+ let D={};try{D=JSON.parse(document.getElementById('plos-data').textContent);}catch(e){D={meta:{title:'数据解析失败',subtitle:String(e)},sections:[],cards:[]};}
+ const meta=D.meta||{},SECTIONS=D.sections||[],CARDS=D.cards||[],ST=(D.status&&D.status.items)||{},asOf=(D.status&&D.status.asOf)||'';
+ const ORIGIN={source:'课件原文',computed:'据课件计算',outside:'课外补充'};
+ const REL={prereq:'先修',contrast:'对比',apply:'应用',derive:'推导',part:'组成',related:'相关'};
+ const LS='plos-ks:'+(meta.project||'demo')+':'+(meta.id||meta.title||'summary');
+ let self={};try{self=JSON.parse(localStorage.getItem(LS)||'{}');}catch(e){}
+ const save=()=>{try{localStorage.setItem(LS,JSON.stringify(self));}catch(e){}};
+ const secMap={},cardMap={};SECTIONS.forEach(s=>secMap[s.id]=s);CARDS.forEach(c=>cardMap[c.id]=c);
+ const src=o=>o&&ORIGIN[o]?` <span class="src ${o}" title="内容来源标签">${ORIGIN[o]}</span>`:'';
+ const st=c=>ST[c.id]||null;
+ const isDue=c=>{const s=st(c);return !!(s&&s.nextReview&&asOf&&s.nextReview<=asOf);};
+ const isWeak=c=>!!(c.weak||(st(c)&&st(c).weak));
+ const lvlColor=s=>!s||s.mastery==null?'var(--l0)':`var(--l${Math.max(0,Math.min(5,s.mastery))})`;
+ const LVN=['未知','接触','首次独立','可用','变式','迁移'];
+ function badges(c){const s=st(c);let h='';
+  if(isWeak(c))h+=`<span class="bd star">★ 薄弱</span>`;
+  if(!s||s.mastery==null)h+=`<span class="bd unrec" title="state.md 中没有与该卡对应的条目">未记录</span>`;
+  else{h+=`<span class="bd" style="color:${lvlColor(s)}" title="${escH((s.topic?'state 条目：'+s.topic+'；':'')+(s.merged?'合并记录；':'')+'快照日期 '+asOf)}">L${s.mastery} ${LVN[s.mastery]||''}${s.merged?' · 合并':''}</span>`;
+   if(s.pending)h+=`<span class="bd pend" title="${escH('待按 v1.2 核验：'+s.pending)}">待核验</span>`;}
+  if(isDue(c))h+=`<span class="bd due" title="Next Review ${escH(st(c).nextReview)}">到期复习</span>`;
+  return h;}
+ function figure(c){if(!c.figure)return '';try{SK.reseed(13);const f=FIG[c.figure.type];return f?f(c.figure):'';}catch(e){console.error('figure',c.id,e);return '';}}
+ function list(arr){return `<ul>${arr.map(x=>`<li>${rich(typeof x==='string'?x:(x.text||''))}${typeof x==='object'?src(x.origin):''}</li>`).join('')}</ul>`;}
+ function cardHTML(c,idx){
+  const s=secMap[c.sec]||{n:'?'},fig=figure(c),q=c.quiz;
+  let h=`<article class="card${isWeak(c)?' weak':''}" id="${escH(c.id)}" data-sec="${escH(c.sec)}">
+  <div class="head" role="button" tabindex="0" aria-expanded="false">
+   <span class="tag">${escH(s.n)}.${idx+1}</span>
+   <span class="ttl"><span class="t1">${rich(c.title)}${c.en?` <span class="t2">${escH(c.en)}</span>`:''}</span>${c.core?`<span class="core">💡 ${rich(c.core)}</span>`:''}</span>
+   <span class="badges">${badges(c)}</span>
+   <label class="mast" title="仅保存在本机浏览器，用于自己跟进复习；不是掌握证据，不会改变 Mastery" onclick="event.stopPropagation()"><input type="checkbox" data-id="${escH(c.id)}" ${self[c.id]?'checked':''}> 已复习</label>
+   <span class="chev" aria-hidden="true">›</span>
+  </div>
+  <div class="body${fig?'':' nofig'}">`;
+  if(fig)h+=`<div class="illu"><div class="frame">${fig}</div><div class="cap">${escH(c.figure.caption||c.en||c.title)}</div></div>`;
+  h+=`<div class="content">`;
+  if(c.explain)h+=`<div class="blk"><h4>📖 详解 Explanation${src(c.origin)}</h4>${rich(c.explain)}</div>`;
+  if(c.criteria&&c.criteria.length)h+=`<div class="blk"><h4>🧭 结构判据 How to recognise it</h4><div class="crit">${list(c.criteria)}</div></div>`;
+  if(c.why)h+=`<div class="blk"><h4>🎯 为什么重要 Why it matters</h4>${rich(c.why)}</div>`;
+  if(c.example){const ex=typeof c.example==='string'?{text:c.example}:c.example;h+=`<div class="blk"><h4>🧪 例子 Example${src(ex.origin)}</h4>${rich(ex.text)}</div>`;}
+  if(c.formulas&&c.formulas.length){h+=`<div class="blk"><h4>∑ 公式 Formulas <span class="note">（理解结构即可，不要求死记）</span></h4>`+c.formulas.map(f=>`<div class="fx">${math(f.tex,true)}${f.note?`<div class="fnote">${rich(f.note)}${src(f.origin)}</div>`:src(f.origin)}</div>`).join('');
+   if(c.vars&&c.vars.length)h+=`<table class="vars"><tr><th>符号</th><th>含义</th></tr>`+c.vars.map(v=>`<tr><td>${math(v[0])}</td><td>${rich(v[1])}</td></tr>`).join('')+`</table>`;h+=`</div>`;}
+  if(c.traps&&c.traps.length)h+=`<div class="blk"><h4>⚠️ 易错点 Traps</h4><div class="traps">${list(c.traps)}</div></div>`;
+  if(c.related&&c.related.length){h+=`<div class="blk"><h4>🔗 关联 / 先修 Relations <button class="btn relbtn" data-rel="${escH(c.id)}">查看关联</button></h4><div class="chips">`+
+   c.related.map(r=>{const t=cardMap[r.id];return t?`<a class="chip" href="#${escH(r.id)}" data-go="${escH(r.id)}"><span class="dot" style="background:${lvlColor(st(t))}"></span>${rich(t.title)} <span class="rt">${REL[r.type]||escH(r.type||'相关')}</span></a>`:`<span class="chip" title="不在本页">${escH(r.label||r.id)} <span class="rt">${REL[r.type]||escH(r.type||'相关')} · 本页外</span></span>`;}).join('')+`</div></div>`;}
+  if(st(c)&&(st(c).evidence||st(c).pending))h+=`<div class="blk"><h4>📌 当前学习状态 <span class="note">（${escH(asOf||'')} state 快照，只读）</span></h4><p class="note">${st(c).topic?`条目：${escH(st(c).topic)}${st(c).merged?'（合并记录，不代表本卡单独评分）':''}<br>`:''}${st(c).pending?`待按 v1.2 核验：${escH(st(c).pending)}<br>`:''}${st(c).evidence?`证据摘要：${escH(st(c).evidence)}`:''}</p></div>`;
+  if(q&&q.q)h+=`<div class="blk quiz"><h4>❓ 先答再看 Self-test${src(q.origin)}</h4><div class="q">${rich(q.q)}</div><textarea placeholder="先写下你的答案（只留在本页，不会保存或上传）" aria-label="作答区"></textarea><button class="btn reveal">看答案</button><div class="ans">${rich(q.a)}<p class="note">自测不计入 Mastery。想让它成为学习证据，把你的作答发给对应课程助教。</p></div></div>`;
+  if(c.sourceRef)h+=`<p class="ref">出处：${escH(c.sourceRef)}</p>`;
+  return h+`</div></div></article>`;}
+
+ // ---- 顶部 ----
+ document.title=(meta.title||'知识归纳')+' · 知识归纳';
+ $('#sTitle').innerHTML=escH(meta.title||'知识归纳');
+ $('#sSub').innerHTML=[meta.subtitle,meta.scope].filter(Boolean).map(escH).join('<br>');
+ const counts={high:0,l2:0,low:0,unrec:0,pend:0};CARDS.forEach(c=>{const s=st(c);if(!s||s.mastery==null)counts.unrec++;else if(s.mastery>=3)counts.high++;else if(s.mastery===2)counts.l2++;else counts.low++;if(s&&s.pending)counts.pend++;});
+ $('#hero').innerHTML=`<h2>${escH(meta.title||'知识归纳')}</h2>${meta.subtitle?`<p>${escH(meta.subtitle)}</p>`:''}
+  ${meta.intro?`<p>${rich(meta.intro)}</p>`:''}
+  <p>${(meta.pills||[]).map(p=>`<span class="pill">${escH(p)}</span>`).join('')}<span class="pill">${CARDS.length} 个知识点</span><span class="pill">${SECTIONS.length} 个分类</span></p>
+  ${D.status?`<p class="note">掌握度快照来自 <code>${escH(D.status.source||'state.md')}</code>（${escH(asOf)}）：L3+ ${counts.high} · L2 ${counts.l2} · L0–1 ${counts.low} · 未记录 ${counts.unrec} · 待核验 ${counts.pend}。浏览、自测和“已复习”勾选都不会改变掌握度或 Next Action。</p>`:`<p class="note">本页未叠加学习状态；掌握度徽章显示为“未记录”。</p>`}
+  <div class="legend"><span><span class="src source">课件原文</span> 来自你的资料</span><span><span class="src computed">据课件计算</span> 资料给了数据、结果是推算的</span><span><span class="src outside">课外补充</span> 资料之外的补充，考试以课件为准</span></div>`;
+
+ // ---- 分节与卡片 ----
+ $('#sections').innerHTML=SECTIONS.map(s=>{const cs=CARDS.filter(c=>c.sec===s.id);
+  return `<section class="sec" id="sec-${escH(s.id)}"><h2><span class="n">${escH(s.n)}</span>${rich(s.title)}<span class="zh">${escH(s.en||'')} · ${cs.length} 个知识点</span></h2>${s.summary?`<p class="secsum">${rich(s.summary)}</p>`:''}<div class="cards">${cs.map((c,i)=>cardHTML(c,i)).join('')}</div></section>`;}).join('');
+ // ---- 分类树 ----
+ $('#tree').innerHTML=SECTIONS.map(s=>`<div class="branch"><a href="#sec-${escH(s.id)}"><span class="n">${escH(s.n)}</span>${rich(s.title)}</a><div class="chips">${CARDS.filter(c=>c.sec===s.id).map(c=>`<a class="chip" href="#${escH(c.id)}" data-go="${escH(c.id)}" title="${escH(c.core||'')}"><span class="dot" style="background:${lvlColor(st(c))}"></span>${rich(c.title)}${isWeak(c)?' ★':''}</a>`).join('')}</div></div>`).join('');
+ if(!SECTIONS.length)$('#treebox').classList.add('hidden');
+ // ---- 目录 ----
+ $('#toc').innerHTML=SECTIONS.map(s=>`<li><a href="#sec-${escH(s.id)}"><span><b>${escH(s.n)}</b>${rich(s.title)}</span><span class="cnt" id="cnt-${escH(s.id)}"></span></a></li>`).join('')+
+  `<li class="sep"></li><li><a href="#weakbox"><span><b>★</b>先看薄弱点</span></a></li><li><a href="#treebox"><span><b>🗂</b>知识分类树</span></a></li><li><a href="#formulas"><span><b>∑</b>公式与表格</span></a></li><li><a href="#traps"><span><b>⚠</b>易错点汇总</span></a></li>`+(D.coverageGaps&&D.coverageGaps.length?`<li><a href="#gaps"><span><b>◌</b>资料覆盖缺口</span></a></li>`:'');
+ // ---- 薄弱优先 ----
+ let weakItems=(D.weakFirst||[]).filter(w=>cardMap[w.card]);
+ const listed=new Set(weakItems.map(w=>w.card));
+ CARDS.forEach(c=>{if(!listed.has(c.id)&&(isWeak(c)||isDue(c)||(st(c)&&st(c).pending))){weakItems.push({card:c.id,why:isWeak(c)?(typeof c.weak==='string'?c.weak:(st(c)&&st(c).weakReason)||'state 记录的薄弱点'):isDue(c)?'已到复习时间（Next Review '+st(c).nextReview+'）':'历史等级待核验：'+st(c).pending});listed.add(c.id);}});
+ const rank=w=>{const c=cardMap[w.card];return isWeak(c)?0:isDue(c)?1:2;};weakItems.sort((a,b)=>rank(a)-rank(b));
+ if(weakItems.length)$('#weakgrid').innerHTML=weakItems.map(w=>{const c=cardMap[w.card];return `<div class="wk" data-go="${escH(c.id)}" role="button" tabindex="0"><b class="t">${rich(c.title)}</b><div class="badges">${badges(c)}</div>${rich(w.why||'')}</div>`;}).join('');
+ else $('#weakbox').classList.add('hidden');
+ // ---- 公式总表 ----
+ let sheet=D.formulaSheet;
+ if(!sheet){sheet=SECTIONS.map(s=>({group:`${s.n} · ${s.title}`,items:CARDS.filter(c=>c.sec===s.id).flatMap(c=>(c.formulas||[]).map(f=>({tex:f.tex,note:f.note,card:c.id})))})).filter(g=>g.items.length);}
+ $('#sheet').innerHTML=sheet.map(g=>`<div class="grp"><h3>${rich(g.group)}</h3>${g.items.map(it=>`<div class="row">${math(it.tex,true)}<div class="d">${rich(it.note||'')}${it.card&&cardMap[it.card]?` <a href="#${escH(it.card)}" data-go="${escH(it.card)}">↗</a>`:''}</div></div>`).join('')}</div>`).join('');
+ $('#tables').innerHTML=(D.tables||[]).map(t=>`<div class="tw"><table class="mini"><caption>${rich(t.title||'')}${src(t.origin)}</caption><tr>${(t.head||[]).map(x=>`<th>${rich(x)}</th>`).join('')}</tr>${(t.rows||[]).map(r=>`<tr>${r.map(x=>`<td>${rich(x)}</td>`).join('')}</tr>`).join('')}</table></div>`).join('');
+ if(!sheet.length&&!(D.tables||[]).length)$('#formulas').classList.add('hidden');
+ // ---- 易错点汇总 ----
+ const trapTxt=x=>typeof x==='string'?x:(x.text||'');
+ const tg=SECTIONS.map(s=>{const items=CARDS.filter(c=>c.sec===s.id).flatMap(c=>(c.traps||[]).map(t=>`<li>${rich(trapTxt(t))} <a href="#${escH(c.id)}" data-go="${escH(c.id)}">↗</a></li>`));return items.length?`<div class="tg"><h4>${escH(s.n)} · ${rich(s.title)}</h4><ul>${items.join('')}</ul></div>`:'';}).join('');
+ $('#trapsum').innerHTML=tg;if(!tg)$('#traps').classList.add('hidden');
+ // ---- 覆盖缺口 ----
+ if(D.coverageGaps&&D.coverageGaps.length)$('#gaplist').innerHTML=D.coverageGaps.map(g=>`<li><b>${escH(g.source||'')}</b>：${escH(g.issue||'')}${g.action?`（${escH(g.action)}）`:''}</li>`).join('');else $('#gaps').classList.add('hidden');
+ // ---- 页脚 ----
+ $('#foot').innerHTML=`${meta.sources&&meta.sources.length?`资料来源：${meta.sources.map(escH).join('；')}<br>`:''}生成：${escH(meta.generated||'')} ${meta.generator?'· '+escH(meta.generator):''} · Personal Learning OS 知识归纳模式。内容以资料为准；“课外补充”与“据课件计算”已单独标注。本页是浏览视图，不是学习证据。`;
+
+ // ===================== 交互 =====================
+ const setOpen=(card,open)=>{card.classList.toggle('open',open);card.querySelector('.head').setAttribute('aria-expanded',open);};
+ document.querySelectorAll('.card .head').forEach(hd=>{const card=hd.parentElement;
+  hd.addEventListener('click',()=>setOpen(card,!card.classList.contains('open')));
+  hd.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();setOpen(card,!card.classList.contains('open'));}});});
+ document.querySelectorAll('.reveal').forEach(b=>b.addEventListener('click',()=>{const q=b.parentElement;q.classList.toggle('show');b.textContent=q.classList.contains('show')?'收起答案':'看答案';}));
+ function goCard(id){const el=document.getElementById(id);if(!el)return;if(el.classList.contains('hidden'))clearFilters();setOpen(el,true);el.classList.add('focus');setTimeout(()=>el.classList.remove('focus'),1600);el.scrollIntoView({behavior:'smooth',block:'start'});document.body.classList.remove('menu');history.replaceState(null,'','#'+id);}
+ document.addEventListener('click',e=>{const g=e.target.closest('[data-go]');if(g){e.preventDefault();goCard(g.dataset.go);}});
+ document.addEventListener('keydown',e=>{const g=e.target.closest&&e.target.closest('.wk[data-go]');if(g&&(e.key==='Enter'||e.key===' ')){e.preventDefault();goCard(g.dataset.go);}});
+ function refresh(){const tot=CARDS.length||1,done=CARDS.filter(c=>self[c.id]).length;
+  $('#pbar').style.width=(done/tot*100)+'%';$('#ptxt').textContent=`本机自评已复习 ${done} / ${CARDS.length}（仅供自己跟进，不是掌握证据）`;
+  SECTIONS.forEach(s=>{const cs=CARDS.filter(c=>c.sec===s.id),d=cs.filter(c=>self[c.id]).length,w=cs.filter(isWeak).length,el=document.getElementById('cnt-'+s.id);if(el)el.textContent=`${w?'★'+w+' ':''}${d}/${cs.length}${cs.length&&d===cs.length?' ✓':''}`;});
+  CARDS.forEach(c=>{const el=document.getElementById(c.id);if(el)el.classList.toggle('done',!!self[c.id]);});}
+ document.querySelectorAll('.mast input').forEach(cb=>cb.addEventListener('change',()=>{if(cb.checked)self[cb.dataset.id]=1;else delete self[cb.dataset.id];save();refresh();apply();}));
+ refresh();
+ $('#expAll').onclick=()=>document.querySelectorAll('.card:not(.hidden)').forEach(c=>setOpen(c,true));
+ $('#colAll').onclick=()=>document.querySelectorAll('.card').forEach(c=>setOpen(c,false));
+ let onlyWeak=false,onlyTodo=false,relOf=null;
+ const tog=(btn,v)=>{btn.classList.toggle('on',v);btn.setAttribute('aria-pressed',v);};
+ $('#fWeak').onclick=e=>{onlyWeak=!onlyWeak;tog(e.currentTarget,onlyWeak);apply();};
+ $('#fTodo').onclick=e=>{onlyTodo=!onlyTodo;tog(e.currentTarget,onlyTodo);apply();};
+ $('#fLevel').onchange=apply;
+ document.querySelectorAll('.relbtn').forEach(b=>b.addEventListener('click',e=>{e.stopPropagation();relOf=b.dataset.rel;apply();$('#relbar').scrollIntoView({behavior:'smooth'});}));
+ function clearFilters(){onlyWeak=onlyTodo=false;relOf=null;tog($('#fWeak'),false);tog($('#fTodo'),false);$('#fLevel').value='';$('#search').value='';apply();}
+ const plain=h=>String(h||'').replace(/<[^>]+>/g,' ');
+ const index={};CARDS.forEach(c=>{const ex=c.example&&(c.example.text||c.example);index[c.id]=[c.id,c.title,c.en,c.core,c.explain,c.why,ex,(c.criteria||[]).map(trapTxt).join(' '),(c.formulas||[]).map(f=>f.tex+' '+(f.note||'')).join(' '),(c.vars||[]).map(v=>v.join(' ')).join(' '),(c.traps||[]).map(trapTxt).join(' '),c.quiz?c.quiz.q:'',(c.keywords||[]).join(' ')].map(plain).join(' ').toLowerCase();});
+ function levelOk(c,v){const s=st(c);if(!v)return true;if(v==='unrec')return !s||s.mastery==null;if(v==='pend')return !!(s&&s.pending);if(!s||s.mastery==null)return false;if(v==='low')return s.mastery<=1;if(v==='l2')return s.mastery===2;return s.mastery>=3;}
+ function apply(){const terms=$('#search').value.trim().toLowerCase().split(/\s+/).filter(Boolean),lv=$('#fLevel').value;let shown=0;
+  const relSet=relOf?new Set([relOf,...((cardMap[relOf]||{}).related||[]).map(r=>r.id),...CARDS.filter(c=>(c.related||[]).some(r=>r.id===relOf)).map(c=>c.id)]):null;
+  CARDS.forEach(c=>{const el=document.getElementById(c.id);let ok=terms.every(t=>index[c.id].includes(t));
+   if(onlyWeak&&!(isWeak(c)||isDue(c)))ok=false;if(onlyTodo&&self[c.id])ok=false;if(!levelOk(c,lv))ok=false;if(relSet&&!relSet.has(c.id))ok=false;
+   el.classList.toggle('hidden',!ok);if(ok)shown++;});
+  SECTIONS.forEach(s=>{const sec=document.getElementById('sec-'+s.id);sec.classList.toggle('hidden',!sec.querySelector('.card:not(.hidden)'));});
+  $('#empty').style.display=shown||!CARDS.length?'none':'block';
+  const filtering=!!(terms.length||onlyWeak||onlyTodo||lv||relSet);
+  ['#weakbox','#treebox','#formulas','#traps','#gaps'].forEach(id=>{const el=$(id);if(el.dataset.base===undefined)el.dataset.base=el.classList.contains('hidden')?'1':'0';el.classList.toggle('hidden',filtering||el.dataset.base==='1');});
+  const rb=$('#relbar');if(relSet){const c=cardMap[relOf];rb.innerHTML=`🔗 正在查看「${rich(c.title)}」及其关联节点（${relSet.size-1} 个） <button class="btn" id="relBack">返回总览</button>`;rb.classList.add('on');$('#relBack').onclick=clearFilters;if(document.getElementById(relOf))setOpen(document.getElementById(relOf),true);}else rb.classList.remove('on');}
+ let tmr;$('#search').addEventListener('input',()=>{clearTimeout(tmr);tmr=setTimeout(apply,120);});
+ $('#search').addEventListener('keydown',e=>{if(e.key==='Escape')clearFilters();});
+ $('#menuBtn').onclick=()=>document.body.classList.toggle('menu');
+ document.querySelectorAll('#toc a').forEach(a=>a.addEventListener('click',()=>document.body.classList.remove('menu')));
+ $('#toTop').onclick=()=>window.scrollTo({top:0,behavior:'smooth'});
+ // 主题
+ const TK='plos-ks-theme';const setTheme=t=>{if(t)document.documentElement.dataset.theme=t;else delete document.documentElement.dataset.theme;};
+ try{setTheme(localStorage.getItem(TK));}catch(e){}
+ $('#themeBtn').onclick=()=>{const dark=document.documentElement.dataset.theme?document.documentElement.dataset.theme==='dark':matchMedia('(prefers-color-scheme: dark)').matches;const t=dark?'light':'dark';setTheme(t);try{localStorage.setItem(TK,t);}catch(e){}};
+ $('#printBtn').onclick=()=>window.print();
+ // 目录高亮
+ if('IntersectionObserver' in window){const io=new IntersectionObserver(es=>es.forEach(en=>{if(en.isIntersecting){document.querySelectorAll('#toc a').forEach(a=>a.classList.toggle('cur',a.getAttribute('href')==='#'+en.target.id));}}),{rootMargin:'-20% 0px -70% 0px'});document.querySelectorAll('section.sec').forEach(s=>io.observe(s));}
+ // 深链接 #card-id
+ if(location.hash&&cardMap[decodeURIComponent(location.hash.slice(1))])setTimeout(()=>goCard(decodeURIComponent(location.hash.slice(1))),60);
+})();
+</script>
+</body>
+</html>

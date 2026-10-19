@@ -1,0 +1,43 @@
+{
+  "version": "2.0.0",
+  "mastery": {
+    "minimumRetentionDays": 2,
+    "reviewIntervalsDays": [3, 7, 14, 30]
+  },
+  "limits": {
+    "dailyInputTokens": 40000,
+    "dailyOutputTokens": 6000,
+    "dailyAsrSeconds": 60,
+    "dailyTtsCharacters": 1000,
+    "monthlyMaterialPages": 200,
+    "fileBytes": 20971520,
+    "filePages": 100,
+    "storageBytes": 262144000,
+    "globalStorageBytes": 8589934592
+  },
+  "budget": {
+    "totalFen": 30000,
+    "infrastructureFen": 7000,
+    "modelFen": 13000,
+    "voiceFen": 6000,
+    "reserveFen": 4000
+  },
+  "pricing": {
+    "inputFenPerMillion": 200,
+    "outputFenPerMillion": 800,
+    "asrFenPerSecond": 0.028,
+    "ttsFenPerCharacter": 0.008,
+    "searchFenPerRequest": 0.6
+  },
+  "rewards": {
+    "attemptXp": 20,
+    "explanationXp": 25,
+    "reviewXp": 30,
+    "dailyChallengeXp": 15,
+    "weeklyChallengeXp": 50,
+    "coinsPerEffectiveTask": 5,
+    "levelXp": 150
+  },
+  "strategies": ["framework", "example", "diagnostic"],
+  "goals": ["mastery", "exam", "habit"]
+}

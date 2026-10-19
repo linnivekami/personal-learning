@@ -4,7 +4,7 @@ set -eu
 ROOT_DIR=$(CDPATH= cd -- "$(dirname -- "$0")/.." && pwd)
 "$ROOT_DIR/scripts/audit.sh"
 
-TEMP_DIR=$(mktemp -d /private/tmp/personal-learning-release.XXXXXX)
+TEMP_DIR=$(mktemp -d "${TMPDIR:-/tmp}/personal-learning-release.XXXXXX")
 TEMP_PACKAGE="$TEMP_DIR/package.zip"
 trap 'rm -rf "$TEMP_DIR"' EXIT
 (cd "$ROOT_DIR" && zip -qr "$TEMP_PACKAGE" personal-learning)

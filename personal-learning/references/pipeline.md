@@ -27,7 +27,7 @@ PDF / PPT / Notes
 - 资料覆盖的主题
 - 可能的先修知识
 
-输出到 `material-index.md`。**不要**立刻生成"资料总结"。
+输出到 `material-index.md`。提取不到的表格、图片、扫描页或缺失讲次写入其“覆盖缺口”，不假装已读。**不要**立刻生成"资料总结"；用户要总览时用知识归纳模式（`knowledge-summary.md`）。
 
 ## 2. MAP（建立知识地图）
 
@@ -45,7 +45,7 @@ Regression
 └── Business Application
 ```
 
-输出到 `knowledge-map.md`。
+输出到 `knowledge-map.md`。重要节点可在末尾加稳定 ID（如 `` `#bayes` ``），供知识归纳卡片、讲解和练习对齐；ID 不是状态标记。
 
 ## 3. DIAGNOSE（诊断）
 

@@ -5,12 +5,12 @@
 
 ```
 <Top-Level Topic>
-├── Subtopic
-│   ├── Concept
-│   ├── Concept
-│   └── Business Application
-├── Subtopic
-│   └── Concept
+├── 1 Subtopic
+│   ├── Concept `#concept-id`
+│   ├── Concept `#concept-id`
+│   └── Business Application `#concept-id`
+├── 2 Subtopic
+│   └── Concept `#concept-id`
 └── Prerequisites
     ├── Concept
     └── Concept
@@ -21,7 +21,8 @@
 - **不写** `[3+]` / `[D]` / `[?]` 等状态标记
 - 需要掌握度 → 查 `state.md`
 - **结构变化时**更新本文件；**掌握度变化时不更新**本文件
-- 思维导图模式从本文件生成浏览视图，详见 `references/mind-map.md`；节点编号与临时状态标注不写回本文件。
+- 节点末尾的 `` `#id` `` 是可选的稳定 ID（小写、连字符），供知识归纳卡片、讲解与练习对齐；不是状态标记。
+- 知识归纳模式以本文件为分类骨架，详见 `references/knowledge-summary.md`；页面上的徽章与筛选不写回本文件。
 
 ## Prerequisites（先修知识）
 

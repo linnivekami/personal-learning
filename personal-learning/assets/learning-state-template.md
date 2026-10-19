@@ -24,7 +24,7 @@ Transfer:       [None / Partial / Good]
 ## Mastery
 
 > Mastery 累积条件以 `references/mastery-scale.md` 为准：2 无提示首次正确；3 独立解释、应用及≥2天复测；4 在3基础上有变式；5 在4基础上有新领域迁移。
-> Evidence 写能力范围、结果、辅助、日期和间隔；历史缺证据写“待按 v1.2 核验：<具体缺口>”。
+> Evidence 写能力范围、结果、辅助、日期和间隔；新的或变更的 Level ≥2 写 `累积证据：<能力与日期>`；历史缺证据写“待按 v1.2 核验：<具体缺口>”。
 > Confidence 关键任务按需采集；未问如实记未采集，旧值注明来源日期。偏差依据同题信心与表现，不按等级阈值推定。
 
 | Topic | Mastery (0–5) | Confidence (1–10) | 偏差 | Evidence | Last Verified |
