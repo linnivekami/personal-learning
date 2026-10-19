@@ -14,6 +14,19 @@
 - **多助教协作**：每门课可以有自己的助教 bot，只写自己的课程数据；协议由一个维护者统一管理和审计。
 - **适配任何 agent**：不依赖特定平台。只要 AI 能读写本地文件（Claude Code、Codex、Cursor、各类桌面 / 云端 agent 等），把 `SKILL.md` 交给它即可。
 
+## 安装到你的 AI 工具
+
+先下载：`git clone https://github.com/linnivekami/personal-learning.git`（或在 GitHub 页面点 Code → Download ZIP）。技能本体就是 `personal-learning/` 文件夹，核心是其中的 `SKILL.md`。
+
+| 工具 | 安装方式 |
+| --- | --- |
+| Claude Code | 复制到个人技能目录：`cp -r personal-learning ~/.claude/skills/`（只想在某个项目里用，就放到项目的 `.claude/skills/`）。之后说“继续学习”或“帮我快速了解这门课”即可触发。 |
+| Claude.ai / Claude 桌面版 | 运行 `scripts/release.sh` 生成 `personal-learning-skill.zip`，或自己把 `personal-learning/` 压缩成 zip，在设置的 Skills 里上传。注意：网页版不能长期保存你的 `data/`，每次结束前让它输出更新后的 `state.md` 自行保存。 |
+| Codex / Cursor / 其他能读写文件的 agent | 把仓库放进工作区，在对话开头说：“请读取 `personal-learning/SKILL.md` 并严格按它工作。”也可以把这句话写进 `AGENTS.md` 或项目规则文件。 |
+| 只能上传文件的聊天 AI | 上传 `SKILL.md`、你的 `learner-profile.md` 和目标课程的 `state.md`，结束前让它输出更新后的 `state.md` 全文。 |
+
+你的学习数据会写在 `personal-learning/data/` 下，这个目录已加入 `.gitignore`，不会被提交。
+
 ## 快速开始
 
 1. 克隆仓库，把 `personal-learning/` 作为技能目录交给你的 AI agent（或在对话开头让它读取 `personal-learning/SKILL.md`）。
@@ -63,3 +76,7 @@ SYSTEM-MAINTENANCE.md         维护者手册
 ## 维护者
 
 修改协议、模板或脚本后：更新 `VERSION.md` → `scripts/audit.sh` → `scripts/release.sh` → 提交。详见 [SYSTEM-MAINTENANCE.md](SYSTEM-MAINTENANCE.md)。可选的软件平台在单独项目中开发，`personal-learning/shared/` 是其共享教学引擎的生成副本。
+
+## 许可证
+
+[MIT](LICENSE)。可以自由使用、修改和分发，保留版权声明即可。课程资料与个人学习数据不在许可范围内。
