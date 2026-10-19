@@ -39,6 +39,14 @@ export function errorMessage(code: string, message: string) {
     CARD_SCOPE:
       "The model did not specify the assessed capabilities. This exercise was not published.",
     NO_SOURCES: "Import and parse materials first.",
+    CHEAT_SCOPE: "Choose at least one knowledge point in the exam scope.",
+    CHEAT_NOT_FOUND: "This cheat sheet does not exist or belongs to another account.",
+    CHEAT_THIN:
+      "The model returned too little material for a two-page sheet. Widen the exam scope and try again.",
+    CHEAT_SHORT:
+      "The model returned too few boxes for this side. Please generate again.",
+    CHEAT_GENERATION:
+      "The cheat sheet could not be generated. Try again or narrow the scope.",
     EMAIL_LIMIT:
       "Today’s email allowance is exhausted. Try another sign-in method.",
     ADMIN_REQUIRED: "Administrator access is required.",
@@ -125,6 +133,71 @@ export async function teachStream(
           .map((s) => s.slice(5).trim())
           .join("\n");
         if (data) onEvent(name, JSON.parse(data));
+      }
+    }
+  } finally {
+    reader.releaseLock();
+  }
+}
+
+/** Consume the cheat-sheet generation SSE stream and surface model errors. */
+export async function cheatStream(
+  path: string,
+  body: unknown,
+  onEvent: (name: string, data: unknown) => void,
+) {
+  const r = await fetch(`/api/v1${path}`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(body),
+  });
+  if (!r.ok) {
+    const d = (await r.json()) as { error?: { code: string; message: string } };
+    throw new RequestError(
+      d.error?.code ?? "REQUEST",
+      errorMessage(d.error?.code ?? "REQUEST", d.error?.message ?? "请求失败"),
+      r.status,
+    );
+  }
+  const reader = r.body?.getReader();
+  if (!reader) throw new Error("浏览器不支持流式读取。");
+  const decoder = new TextDecoder();
+  let buffer = "";
+  try {
+    while (true) {
+      const { done, value } = await reader.read();
+      if (done) break;
+      buffer += decoder.decode(value, { stream: true });
+      let end: number;
+      while ((end = buffer.indexOf("\n\n")) !== -1) {
+        const part = buffer.slice(0, end);
+        buffer = buffer.slice(end + 2);
+        const name =
+          part
+            .split("\n")
+            .find((s) => s.startsWith("event:"))
+            ?.slice(6)
+            .trim() ?? "message";
+        const data = part
+          .split("\n")
+          .filter((s) => s.startsWith("data:"))
+          .map((s) => s.slice(5).trim())
+          .join("\n");
+        if (!data) continue;
+        const parsed = JSON.parse(data) as {
+          code?: string;
+          message?: string;
+        };
+        if (name === "error")
+          throw new RequestError(
+            parsed.code ?? "CHEAT_GENERATION",
+            errorMessage(
+              parsed.code ?? "CHEAT_GENERATION",
+              parsed.message ?? "速查表生成失败。",
+            ),
+            502,
+          );
+        onEvent(name, parsed);
       }
     }
   } finally {

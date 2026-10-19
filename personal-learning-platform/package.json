@@ -1,11 +1,11 @@
 {
   "name": "personal-learning-platform",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "private": true,
   "type": "module",
   "scripts": {
     "dev": "node scripts/dev.mjs",
-    "build": "tsc --noEmit && vite build && node scripts/build-worker.mjs",
+    "build": "tsc --noEmit && vite build && node scripts/build-worker.mjs && node scripts/build-node.mjs",
     "test": "vitest run",
     "test:browser": "playwright test",
     "check": "tsc --noEmit && vitest run",
@@ -16,7 +16,10 @@
     "migrate:legacy": "node scripts/import-legacy.mjs",
     "configure": "node scripts/configure.mjs",
     "deploy": "npm run build && wrangler deploy",
-    "build:runner": "node scripts/build-runner.mjs"
+    "build:runner": "node scripts/build-runner.mjs",
+    "start": "node --enable-source-maps dist/node/server.mjs",
+    "dev:node": "npm run build && node --env-file-if-exists=.dev.vars --enable-source-maps dist/node/server.mjs",
+    "deploy:fly": "fly deploy"
   },
   "dependencies": {
     "@sqlite.org/sqlite-wasm": "^3.50.0-build1",

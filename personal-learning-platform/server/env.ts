@@ -12,6 +12,9 @@ export interface Env {
   BETTER_AUTH_SECRET?: string;
   GOOGLE_CLIENT_ID?: string;
   GOOGLE_CLIENT_SECRET?: string;
+  PATHLINE_ISSUER?: string;
+  PATHLINE_CLIENT_ID?: string;
+  PATHLINE_URL?: string;
   RESEND_API_KEY?: string;
   MAIL_FROM?: string;
   DEEPSEEK_API_KEY?: string;
@@ -21,6 +24,7 @@ export interface Env {
   CONVERTER_URL?: string;
   CONVERTER_TOKEN?: string;
   ADMIN_EMAILS?: string;
+  CLIENT_IP_HEADER?: string;
   VAPID_PUBLIC_KEY?: string;
   VAPID_PRIVATE_KEY?: string;
   VAPID_SUBJECT?: string;
@@ -43,3 +47,11 @@ export const uid = () => crypto.randomUUID();
 export const now = () => new Date().toISOString();
 export const json = <T>(value: string | undefined | null, fallback: T): T =>
   value ? (JSON.parse(value) as T) : fallback;
+export async function hash(s: string) {
+  return Array.from(
+    new Uint8Array(
+      await crypto.subtle.digest("SHA-256", new TextEncoder().encode(s)),
+    ),
+    (b) => b.toString(16).padStart(2, "0"),
+  ).join("");
+}

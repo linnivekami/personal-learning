@@ -27,6 +27,7 @@ export async function reserve(
     tts: number;
     pages: number;
   }> = {},
+  options: { outputLimit?: number } = {},
 ): Promise<Reservation> {
   const profile = await first<{ timezone: string }>(
     env,
@@ -112,7 +113,7 @@ export async function reserve(
       userId,
       day,
       r.output,
-      limits.dailyOutputTokens,
+      options.outputLimit ?? limits.dailyOutputTokens,
       userId,
       day,
       r.asr,

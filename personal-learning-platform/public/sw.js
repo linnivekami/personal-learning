@@ -1,4 +1,4 @@
-const CACHE = "personal-learning-shell-v1";
+const CACHE = "personal-learning-shell-v2";
 self.addEventListener("install", (event) => {
   event.waitUntil(
     caches

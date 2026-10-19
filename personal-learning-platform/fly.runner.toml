@@ -1,0 +1,31 @@
+# The isolated code-practice runtime: static /sandbox/ files only, on its own
+# origin so learner code can never reach the app's cookies or API. Same image
+# as the app, started in runner mode; it sleeps when idle.
+app = "personal-learning-runner-kevin"
+primary_region = "sin"
+
+[build]
+  dockerfile = "Dockerfile"
+
+[env]
+  RUNNER_ONLY = "1"
+  APP_ORIGIN = "https://personal-learning-kevin.fly.dev"
+  PORT = "8080"
+
+[http_service]
+  internal_port = 8080
+  force_https = true
+  auto_stop_machines = "stop"
+  auto_start_machines = true
+  min_machines_running = 0
+
+  [[http_service.checks]]
+    grace_period = "10s"
+    interval = "60s"
+    method = "GET"
+    path = "/sandbox/index.html"
+    timeout = "5s"
+
+[[vm]]
+  size = "shared-cpu-1x"
+  memory = "256mb"

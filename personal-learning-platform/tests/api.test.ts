@@ -522,11 +522,16 @@ describe("complete migration and derived participation", () => {
   it("teaching exposure uses actual strategy and never verifies a response", async () => {
     const c = await sample();
     t.env.DEEPSEEK_API_KEY = "test-model";
+    const calls: { url: string; body: any }[] = [];
     vi.stubGlobal(
       "fetch",
       vi.fn(
-        async () =>
-          new Response(
+        async (url: string | URL | Request, init?: RequestInit) => {
+          calls.push({
+            url: String(url),
+            body: JSON.parse(String(init?.body)),
+          });
+          return new Response(
             JSON.stringify({
               output_text: JSON.stringify({
                 title: "new explanation",
@@ -540,7 +545,8 @@ describe("complete migration and derived participation", () => {
               usage: { input_tokens: 100, output_tokens: 100 },
             }),
             { status: 200 },
-          ),
+          );
+        },
       ),
     );
     const r = await request(`/courses/${c.id}/teach`, "POST", {
@@ -551,6 +557,9 @@ describe("complete migration and derived participation", () => {
     });
     expect(r.status).toBe(200);
     expect(await r.text()).toContain("event: lesson");
+    expect(calls).toHaveLength(1);
+    expect(calls[0].url).toMatch(/\/responses$/);
+    expect(calls[0].body.model).toBe("deepseek-flash");
     const full = (await (await request(`/courses/${c.id}`)).json()) as {
       course: any;
     };
@@ -559,6 +568,84 @@ describe("complete migration and derived participation", () => {
       lastVerified: null,
     });
     expect(full.course.state.events.at(-1).strategy).toBe("example");
+  });
+  it("model policy cannot be overridden to a non-Flash model", async () => {
+    const c = await sample();
+    t.env.DEEPSEEK_API_KEY = "test-model";
+    // Even if a deployment tries to inject another model name, the server
+    // constant remains the only value sent to DeepSeek.
+    (t.env as unknown as Record<string, string>).DEEPSEEK_MODEL =
+      "deepseek-v4-pro";
+    let sent: any;
+    vi.stubGlobal(
+      "fetch",
+      vi.fn(async (_url: string, init?: RequestInit) => {
+        sent = JSON.parse(String(init?.body));
+        return new Response(
+          JSON.stringify({
+            output_text: JSON.stringify({
+              title: "new explanation",
+              position: "course",
+              purpose: "test",
+              connections: [],
+              body: "Connected explanation.",
+              cards: [],
+              sourceIds: [],
+            }),
+            usage: { input_tokens: 100, output_tokens: 100 },
+          }),
+          { status: 200 },
+        );
+      }),
+    );
+    const r = await request(`/courses/${c.id}/teach`, "POST", {
+      conceptId: "conditional",
+      kind: "explain",
+      request: "explain",
+      strategy: "example",
+    });
+    expect(r.status).toBe(200);
+    expect(await r.text()).toContain("event: lesson");
+    expect(sent.model).toBe("deepseek-flash");
+  });
+  it("retries once with Flash when structured output is invalid", async () => {
+    const c = await sample();
+    t.env.DEEPSEEK_API_KEY = "test-model";
+    let calls = 0;
+    vi.stubGlobal(
+      "fetch",
+      vi.fn(async () => {
+        calls++;
+        const output_text =
+          calls === 1
+            ? JSON.stringify({ title: "incomplete" })
+            : JSON.stringify({
+                title: "new explanation",
+                position: "course",
+                purpose: "test",
+                connections: [],
+                body: "Connected explanation.",
+                cards: [],
+                sourceIds: [],
+              });
+        return new Response(
+          JSON.stringify({
+            output_text,
+            usage: { input_tokens: 100, output_tokens: 100 },
+          }),
+          { status: 200 },
+        );
+      }),
+    );
+    const r = await request(`/courses/${c.id}/teach`, "POST", {
+      conceptId: "conditional",
+      kind: "explain",
+      request: "explain",
+      strategy: "example",
+    });
+    expect(r.status).toBe(200);
+    expect(await r.text()).toContain("event: lesson");
+    expect(calls).toBe(2);
   });
 });
 

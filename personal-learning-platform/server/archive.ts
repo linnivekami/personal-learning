@@ -136,6 +136,7 @@ export async function exportData(env: Env, user: string) {
     "notes",
     "materials",
     "sources",
+    "cheat_sheets",
     "activities",
     "purchases",
     "teaching_decisions",

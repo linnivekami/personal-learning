@@ -131,12 +131,56 @@ function deriveEvidence(events: LearningEvent[]) {
     )
       lastLearning = at;
   }
-  return { mastery: level, weaknesses: [...new Set(gaps.map((g) => g.text))] };
+  return {
+    mastery: level,
+    weaknesses: [...new Set(gaps.map((g) => g.text))],
+    seen,
+    retained,
+    capped: gaps.some((g) => g.downgraded),
+    lastLearning,
+  };
 }
 export function masteryFor(events: LearningEvent[]): number {
   if (new Set(events.map((e) => e.conceptId)).size > 1)
     throw new Error("Mastery evidence must belong to one concept.");
   return deriveEvidence(events).mastery;
+}
+export interface MasteryProgress {
+  level: number;
+  independent: { explanation: boolean; application: boolean };
+  retained: { explanation: boolean; application: boolean };
+  variation: boolean;
+  transfer: boolean;
+  /** A reliable delayed failure lowered the ceiling until it is re-proven. */
+  capped: boolean;
+  weaknesses: string[];
+  /** Earliest moment an unassisted retest can count as retention. */
+  retestFrom: string | null;
+}
+// Read-only explanation of the cumulative gates for one concept's events;
+// the level is the same derivation masteryFor and applyEvent use.
+export function masteryProgress(events: LearningEvent[]): MasteryProgress {
+  const d = deriveEvidence(events);
+  return {
+    level: d.mastery,
+    independent: {
+      explanation: d.seen.has("explanation"),
+      application: d.seen.has("application"),
+    },
+    retained: {
+      explanation: d.retained.has("explanation"),
+      application: d.retained.has("application"),
+    },
+    variation: d.seen.has("variation-evidence"),
+    transfer: d.seen.has("transfer-evidence"),
+    capped: d.capped,
+    weaknesses: d.weaknesses,
+    retestFrom: Number.isFinite(d.lastLearning)
+      ? new Date(
+          d.lastLearning + policy.mastery.minimumRetentionDays * DAY,
+        ).toISOString()
+      : null,
+  };
 }
 export function recommend(
   concept: Concept,

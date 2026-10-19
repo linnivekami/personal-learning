@@ -1,5 +1,22 @@
 # 部署
 
+## 0. Fly.io（当前线上环境）
+
+主应用 `personal-learning-kevin`（`fly.toml`，新加坡，1 GB 卷 `learning_data` 挂在 `/data`，SQLite + 文件存储），代码运行区 `personal-learning-runner-kevin`（`fly.runner.toml`，同一镜像以 `RUNNER_ONLY=1` 启动，只提供 `/sandbox/`，空闲自动休眠）。镜像只包含 `npm run build` 生成的单文件 `dist/node/server.mjs` 和 `migrations/`；启动时按 `d1_migrations` 记录自动迁移。
+
+```sh
+npm run build
+fly deploy --remote-only --depot=false -a personal-learning-kevin
+fly deploy --remote-only --depot=false -c fly.runner.toml -a personal-learning-runner-kevin
+```
+
+密钥用 `fly secrets set` 写入，不进仓库：`BETTER_AUTH_SECRET`（已随机生成）、`ADMIN_EMAILS`（填写 Pathline 断言的学校邮箱）、可选 `DEEPSEEK_API_KEY`、`RESEND_API_KEY` + `MAIL_FROM`、`DASHSCOPE_*`、`GOOGLE_CLIENT_SECRET`、`VAPID_PRIVATE_KEY`。卷有每日快照（保留 5 天）；管理后台的加密备份写在同一卷上，异地备份需另行配置。
+
+### Pathline 登录
+
+`fly.toml` 已设置 `PATHLINE_ISSUER=https://pathline-career.vercel.app`、`PATHLINE_CLIENT_ID=personal-learning`。Pathline 端需要把本站登记为 OIDC 客户端：`OIDC_LEARNING_CLIENT_ID=personal-learning`、`OIDC_LEARNING_REDIRECT_URIS=https://personal-learning-kevin.fly.dev/api/auth/callback/pathline`、`OIDC_LEARNING_AUDIENCE=personal-learning-api`（已于 2026-10-19 在 Pathline 生产环境配置）。本站每 10 分钟探测一次 Pathline 是否接受该客户端；未接受前登录框只显示“即将开放”，不会出现失败的按钮。只有已验证学校邮箱的 Pathline 账号可以登录；邮箱相同的已有账号自动合并。
+
+
 使用你自己的 Cloudflare 账号作为生产环境，以便直接管理 D1 Time Travel、Cron、Queues、R2 和账单。保留一个独立、无登录态的代码运行域。源码不包含第三方密钥或个人学习记录。
 
 ## 1. 本地配置
@@ -37,7 +54,7 @@ npx wrangler deploy
 
 ## 4. DeepSeek 与阿里云
 
-DeepSeek 设置 DEEPSEEK_API_KEY。适配层使用 `deepseek-flash` Responses API 和 Search / Fetch 接口；不自动切换更贵模型。先用测试账号验证结构化讲解、图像页识别、应用评估、超时和格式错误，再开放付费调用。
+DeepSeek 设置 DEEPSEEK_API_KEY。适配层使用 `deepseek-flash` Responses API 和 Search / Fetch 接口。模型名是服务端常量 `DEEPSEEK_MODEL`，请求数据、管理后台和环境变量都无法改写；没有 Pro 回退，Flash 调用失败即向用户报错。结构化结果不符合 schema 时自动用 Flash 重试一次，仍失败则不写入学习状态。先用测试账号验证结构化讲解、图像页识别、应用评估、超时和格式错误，再开放付费调用。
 
 阿里云使用新加坡地域工作空间；DASHSCOPE_BASE_URL 为工作空间控制台给出的 `/compatible-mode/v1` 地址，不能混用中国区密钥。语音模型为 qwen3-asr-flash、qwen3-tts-flash。录音编码为 PCM WAV，服务端校验真实时长；转写可修改后才提交证据。TTS 按段缓存，中文按两个计费字符核算。
 

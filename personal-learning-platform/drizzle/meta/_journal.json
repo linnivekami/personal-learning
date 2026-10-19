@@ -29,6 +29,13 @@
       "when": 1792281600003,
       "tag": "0003_teaching",
       "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "6",
+      "when": 1792281600004,
+      "tag": "0004_cheatsheet",
+      "breakpoints": true
     }
   ]
 }

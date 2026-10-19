@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { Mic, Square, Volume2, LoaderCircle } from "lucide-react";
 import { api, post } from "./api";
-import type { Language } from "../shared/types";
+import type { Language } from "../../shared/types";
 export function Recorder({
   onText,
   onError,

@@ -241,6 +241,9 @@ export function CodeRunner({
             isolated ? "allow-scripts allow-same-origin" : "allow-scripts"
           }
           title="Isolated code execution"
+          onLoad={() =>
+            frame.current?.contentWindow?.postMessage({ type: "ping" }, "*")
+          }
           className="runtime-frame"
         />
       )}

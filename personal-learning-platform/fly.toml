@@ -1,0 +1,57 @@
+# Personal Learning on Fly.io — see docs/DEPLOYMENT.md (Fly.io section).
+# Secrets (set with `fly secrets set`, never committed): BETTER_AUTH_SECRET and,
+# when available, DEEPSEEK_API_KEY, RESEND_API_KEY, MAIL_FROM, DASHSCOPE_API_KEY,
+# GOOGLE_CLIENT_SECRET, VAPID_PRIVATE_KEY, CONVERTER_TOKEN, and ADMIN_EMAILS
+# (kept out of this public file; use the address Pathline asserts).
+app = "personal-learning-kevin"
+primary_region = "sin"
+
+[build]
+  dockerfile = "Dockerfile"
+
+# One Machine owns the SQLite volume, so replace it in place.
+[deploy]
+  strategy = "immediate"
+
+[env]
+  APP_ENV = "production"
+  IDENTITY_MODE = "app"
+  APP_ORIGIN = "https://personal-learning-kevin.fly.dev"
+  # Code practice runs on its own origin (fly.runner.toml).
+  SANDBOX_ORIGIN = "https://personal-learning-runner-kevin.fly.dev"
+  # Students sign in with their Pathline account (verified university email).
+  # Pathline must list this client and the callback below in its OIDC config.
+  PATHLINE_ISSUER = "https://pathline-career.vercel.app"
+  PATHLINE_CLIENT_ID = "personal-learning"
+  CLIENT_IP_HEADER = "fly-client-ip"
+  MONTHLY_BUDGET_FEN = "30000"
+  DATA_DIR = "/data"
+  PORT = "8080"
+
+[[mounts]]
+  source = "learning_data"
+  destination = "/data"
+
+[http_service]
+  internal_port = 8080
+  force_https = true
+  # Reminders and background parsing run in-process every minute.
+  auto_stop_machines = "off"
+  auto_start_machines = true
+  min_machines_running = 1
+
+  [http_service.concurrency]
+    type = "requests"
+    soft_limit = 100
+    hard_limit = 150
+
+  [[http_service.checks]]
+    grace_period = "20s"
+    interval = "30s"
+    method = "GET"
+    path = "/api/v1/health"
+    timeout = "5s"
+
+[[vm]]
+  size = "shared-cpu-1x"
+  memory = "512mb"

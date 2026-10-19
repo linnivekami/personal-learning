@@ -1,0 +1,4 @@
+# Only the prebuilt Node bundle and migrations enter the image.
+*
+!dist/node/**
+!migrations/**

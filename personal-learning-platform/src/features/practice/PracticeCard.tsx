@@ -9,11 +9,15 @@ import {
   ArrowRight,
   Image as ImageIcon,
 } from "lucide-react";
-import type { LearningCard, Course, LearningEvent } from "../shared/types";
-import { RichText } from "./RichText";
-import { Recorder } from "./Voice";
-import { CodeRunner } from "./CodeRunner";
-import { api, post } from "./api";
+import type {
+  LearningCard,
+  Course,
+  LearningEvent,
+} from "../../../shared/types";
+import { RichText } from "../../lib/RichText";
+import { Recorder } from "../../lib/Voice";
+import { CodeRunner } from "../lab/CodeRunner";
+import { api, post } from "../../lib/api";
 type Tr = (a: string, b: string) => string;
 export function PracticeCard({
   card,

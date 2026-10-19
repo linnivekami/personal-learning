@@ -1,76 +1,11 @@
-import { DatabaseSync } from "node:sqlite";
-import { readFileSync, readdirSync } from "node:fs";
+import { createD1 } from "../server/runtime/d1";
+import { migrate } from "../server/runtime/migrate";
 import type { Env } from "../server/env";
+// Tests run the Worker code against the same node:sqlite D1 adapter the Node
+// (Fly.io) runtime uses, with an in-memory R2 stand-in.
 export function testEnvironment() {
-  const db = new DatabaseSync(":memory:");
-  for (const file of readdirSync("migrations")
-    .filter((f) => f.endsWith(".sql"))
-    .sort())
-    db.exec(readFileSync(`migrations/${file}`, "utf8"));
-  const prepare = (sql: string) => {
-    let args: unknown[] = [];
-    const execute = () => {
-      const statement = db.prepare(sql);
-      const values = args as (string | number | null | Uint8Array)[];
-      if (/^\s*(SELECT|PRAGMA|WITH)/i.test(sql) || /\bRETURNING\b/i.test(sql)) {
-        const results = statement.all(...values);
-        return {
-          success: true,
-          results,
-          meta: { changes: 0, last_row_id: 0, duration: 0 },
-        };
-      }
-      const r = statement.run(...values);
-      return {
-        success: true,
-        results: [],
-        meta: {
-          changes: Number(r.changes),
-          last_row_id: Number(r.lastInsertRowid),
-          duration: 0,
-        },
-      };
-    };
-    const result = {
-      bind(...params: unknown[]) {
-        args = params;
-        return result;
-      },
-      async all() {
-        return execute();
-      },
-      async first(column?: string) {
-        const row = execute().results[0] as Record<string, unknown> | undefined;
-        return row ? (column ? row[column] : row) : null;
-      },
-      async run() {
-        return execute();
-      },
-      async raw() {
-        return execute().results.map((r) => Object.values(r));
-      },
-      execute,
-    };
-    return result;
-  };
-  const d1 = {
-    prepare,
-    async batch(statements: ReturnType<typeof prepare>[]) {
-      db.exec("BEGIN");
-      try {
-        const result = statements.map((s) => s.execute());
-        db.exec("COMMIT");
-        return result;
-      } catch (e) {
-        db.exec("ROLLBACK");
-        throw e;
-      }
-    },
-    async exec(sql: string) {
-      db.exec(sql);
-      return { count: 1, duration: 0 };
-    },
-  };
+  const { d1, db } = createD1(":memory:");
+  migrate(db, "migrations");
   const objects = new Map<
     string,
     {

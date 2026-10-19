@@ -7,6 +7,7 @@
   "limits": {
     "dailyInputTokens": 40000,
     "dailyOutputTokens": 6000,
+    "cheatSheetOutputTokens": 12000,
     "dailyAsrSeconds": 60,
     "dailyTtsCharacters": 1000,
     "monthlyMaterialPages": 200,

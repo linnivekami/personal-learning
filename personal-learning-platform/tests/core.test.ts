@@ -3,6 +3,7 @@ import {
   applyEvent,
   emptyState,
   masteryFor,
+  masteryProgress,
   recommend,
   chooseNext,
   rewardState,
@@ -426,5 +427,51 @@ describe("rewards and billing", () => {
     expect(localDay(new Date("2026-10-18T20:00:00Z"), "America/New_York")).toBe(
       "2026-10-18",
     );
+  });
+});
+
+describe("mastery progress explanation", () => {
+  it("names the missing gate and the earliest retest", () => {
+    const p = masteryProgress([event({ ability: "explanation" }), event()]);
+    expect(p.level).toBe(2);
+    expect(p.independent).toEqual({ explanation: true, application: true });
+    expect(p.retained).toEqual({ explanation: false, application: false });
+    expect(p.retestFrom).toBe("2026-10-16T10:00:00.000Z");
+  });
+  it("agrees with masteryFor after a delayed review", () => {
+    const events = [
+      event({ ability: "explanation" }),
+      event(),
+      event({ ability: "variation" }),
+      event({ ability: "review", occurredAt: "2026-10-18T11:00:00.000Z" }),
+    ];
+    const p = masteryProgress(events);
+    expect(p.level).toBe(masteryFor(events));
+    expect(p.retained).toEqual({ explanation: true, application: true });
+    expect(p.variation).toBe(true);
+    expect(p.transfer).toBe(false);
+  });
+  it("ignores assisted and self-reported work for the gates", () => {
+    const p = masteryProgress([
+      event({ assistance: 2 }),
+      event({ source: "self_report", ability: "explanation" }),
+    ]);
+    expect(p.level).toBe(1);
+    expect(p.independent).toEqual({ explanation: false, application: false });
+  });
+  it("marks a reliable delayed failure as capped", () => {
+    const p = masteryProgress([
+      event({ ability: "explanation" }),
+      event(),
+      event({ ability: "review", occurredAt: "2026-10-18T10:00:00.000Z" }),
+      event({
+        outcome: "not_demonstrated",
+        misconception: "concept:confuses the reference set",
+        occurredAt: "2026-10-21T10:00:00.000Z",
+      }),
+    ]);
+    expect(p.level).toBe(2);
+    expect(p.capped).toBe(true);
+    expect(p.weaknesses).toEqual(["concept:confuses the reference set"]);
   });
 });

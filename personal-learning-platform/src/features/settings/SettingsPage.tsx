@@ -12,15 +12,45 @@ import {
   Settings,
   MessageSquare,
 } from "lucide-react";
-import type { AppUser, Usage, ReminderSettings } from "../shared/types";
-import { policy } from "../shared/core";
-import { api, post } from "./api";
-import { Page, Modal, type Configuration } from "./App";
-import { download } from "./Pages";
+import type { AppUser, Usage, ReminderSettings } from "../../../shared/types";
+import { policy } from "../../../shared/core";
+import { api, post } from "../../lib/api";
+import { Modal, Page, Pill } from "../../ui/primitives";
+import type { Configuration, PathlineLink } from "../../app/types";
+import { useI18n } from "../../app/i18n";
+import { useLearning } from "../../app/store";
+import { navigate } from "../../app/router";
+import { download } from "../../lib/format";
 type Tr = (a: string, b: string) => string;
-export function SettingsPage({
+export function SettingsPage() {
+  const { tr, language } = useI18n();
+  const L = useLearning();
+  return (
+    <SettingsView
+      key={L.user?.id ?? "guest"}
+      config={L.config}
+      user={L.user}
+      pathline={L.pathline}
+      profile={L.profile}
+      reminders={L.reminders}
+      usage={L.usage}
+      language={language}
+      tr={tr}
+      onError={L.notify}
+      refresh={L.refresh}
+      setReminders={L.setReminders}
+      onLogin={L.openLogin}
+      onLogout={() => {
+        L.signedOut();
+        navigate({ name: "today" });
+      }}
+    />
+  );
+}
+function SettingsView({
   config,
   user,
+  pathline,
   profile,
   reminders,
   usage,
@@ -34,6 +64,7 @@ export function SettingsPage({
 }: {
   config: Configuration | null;
   user: AppUser | null;
+  pathline: PathlineLink | null;
   profile: {
     timezone: string;
     name: string;
@@ -134,7 +165,7 @@ export function SettingsPage({
   return (
     <Page
       title={tr("按自己的节奏学习", "Learn at your own pace")}
-      subtitle={tr(
+      lead={tr(
         "设置学习时间、提醒方式和数据管理偏好。",
         "Set your learning rhythm, reminders and data preferences.",
       )}
@@ -159,6 +190,39 @@ export function SettingsPage({
         )
       }
     >
+      {user && (
+        <section className="settings-card account-card">
+          <h2>{tr("账号", "Account")}</h2>
+          <div className="account-row">
+            <span className="avatar" aria-hidden="true">
+              {(user.name || user.email).slice(0, 1).toUpperCase()}
+            </span>
+            <div>
+              <strong>{user.name}</strong>
+              <small>{user.email}</small>
+            </div>
+            {pathline?.linked ? (
+              <Pill tone="trust">
+                {tr("Pathline 已认证", "Pathline verified")}
+                {pathline.school ? ` · ${pathline.school.toUpperCase()}` : ""}
+              </Pill>
+            ) : (
+              <Pill>{tr("邮箱登录", "Email sign-in")}</Pill>
+            )}
+          </div>
+          {config?.pathlineUrl && (
+            <p className="form-help">
+              {tr(
+                "Personal Learning 与 Pathline 共用学校认证身份。职业路径、课程和社区在 Pathline。",
+                "Personal Learning shares Pathline's verified student identity. Career paths, courses and community live on Pathline.",
+              )}{" "}
+              <a className="link" href={config.pathlineUrl}>
+                {tr("打开 Pathline", "Open Pathline")} ↗
+              </a>
+            </p>
+          )}
+        </section>
+      )}
       <div className="settings-columns">
         <section className="settings-card">
           <h2>{tr("个人与学习时间", "Profile and schedule")}</h2>
@@ -350,7 +414,14 @@ export function SettingsPage({
                 <span>
                   {(
                     {
-                      model: tr("DeepSeek 教学", "DeepSeek teaching"),
+                      model: tr(
+                        "AI 讲解（DeepSeek）",
+                        "AI teaching (DeepSeek)",
+                      ),
+                      pathline: tr(
+                        "Pathline 账号登录",
+                        "Sign in with Pathline",
+                      ),
                       voice: tr("语音识别与朗读", "Voice messages"),
                       email: tr("邮件", "Email"),
                       google: "Google",
@@ -370,8 +441,8 @@ export function SettingsPage({
             ))}
             <p className="form-help">
               {tr(
-                "管理员在项目目录运行 npm run configure，安全填写服务配置。密钥不会显示在此页面。",
-                "Administrators can run npm run configure in the project to configure services securely.",
+                "管理员通过 fly secrets set（或 npm run configure）写入服务密钥；密钥不会显示在此页面。",
+                "Administrators set provider keys with fly secrets set (or npm run configure); keys never appear here.",
               )}
             </p>
           </section>

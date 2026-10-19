@@ -4,6 +4,11 @@ const parentWindow = parent;
 addEventListener("message", (event) => {
   if (event.source !== parentWindow) return;
   const d = event.data;
+  // The page may attach its listener after this frame loaded; it can ask again.
+  if (d?.type === "ping") {
+    parentWindow.postMessage({ type: "ready" }, "*");
+    return;
+  }
   if (d?.type === "stop") {
     worker?.terminate();
     worker = null;

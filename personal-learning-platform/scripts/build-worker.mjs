@@ -1,36 +1,10 @@
 import { build } from "esbuild";
-import { readFile, writeFile, readdir, mkdir, cp } from "node:fs/promises";
-import { resolve, extname } from "node:path";
+import { readFile, writeFile, mkdir, cp } from "node:fs/promises";
+import { resolve } from "node:path";
 import { fileURLToPath } from "node:url";
+import { clientAssets, embedAssets } from "./embedded-assets.mjs";
 const root = resolve(fileURLToPath(new URL("..", import.meta.url)));
-const types = {
-  ".html": "text/html; charset=utf-8",
-  ".js": "application/javascript",
-  ".mjs": "application/javascript",
-  ".css": "text/css; charset=utf-8",
-  ".svg": "image/svg+xml",
-  ".png": "image/png",
-  ".woff2": "font/woff2",
-  ".woff": "font/woff",
-  ".ttf": "font/ttf",
-  ".wasm": "application/wasm",
-  ".json": "application/json",
-  ".webmanifest": "application/manifest+json",
-};
-const assets = {};
-async function walk(dir, prefix = "") {
-  for (const entry of await readdir(dir, { withFileTypes: true })) {
-    const path = resolve(dir, entry.name),
-      url = `${prefix}/${entry.name}`;
-    if (entry.isDirectory()) await walk(path, url);
-    else
-      assets[url] = {
-        type: types[extname(path)] ?? "application/octet-stream",
-        body: (await readFile(path)).toString("base64"),
-      };
-  }
-}
-await walk(resolve(root, "dist/client"));
+const assets = await clientAssets(resolve(root, "dist/client"));
 await mkdir(resolve(root, "dist/server"), { recursive: true });
 await mkdir(resolve(root, "dist/.openai"), { recursive: true });
 await build({
@@ -46,17 +20,7 @@ await build({
   banner: {
     js: 'import { createRequire as __createRequire } from "node:module"; const require = __createRequire("/worker/index.js");',
   },
-  plugins: [
-    {
-      name: "embedded-client",
-      setup(build) {
-        build.onLoad({ filter: /generated-assets\.ts$/ }, () => ({
-          contents: `export const assets=${JSON.stringify(assets)};`,
-          loader: "ts",
-        }));
-      },
-    },
-  ],
+  plugins: [embedAssets(assets)],
 });
 await cp(
   resolve(root, ".openai/hosting.json"),
