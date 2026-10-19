@@ -1,3 +1,5 @@
+> **历史文档（只读）**：这是系统最初的 v1.0 设计稿，保留以说明设计来源。当前规则以 `personal-learning/` 下的 SKILL.md、references 与 VERSION.md 为准；与本文冲突时以现行文件为准。
+
 # Personal Learning  
 好。我们现在把前面的东西正式合并成 **Personal Learning OS v1.0**。  
 我会刻意把它设计成一个**可执行系统，而不是一份漂亮的学习方法论**。核心目标是：  

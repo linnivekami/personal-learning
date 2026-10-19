@@ -1,6 +1,8 @@
 # 个人学习数据（不公开）
 personal-learning/data/learner-profile.md
 personal-learning/data/projects/
+personal-learning/data/handoff-status.md
+personal-learning/data/*.local.md
 ielts-learning-os/data/
 /tests/
 archive/
@@ -15,3 +17,5 @@ __pycache__/
 
 # 私人历史审计基线
 personal-learning/data/legacy-audit-baseline.json
+# 本地测试截图等临时文件
+*.tmp.html

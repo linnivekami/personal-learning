@@ -1,39 +1,65 @@
 # Personal Learning OS
 
-当前主系统版本为 **v2.0.0**。当前系统源目录是 [`personal-learning/`](personal-learning/)；教学对话与维护对话均应从此目录读取和写入。
+**一个让 AI 当你的私人助教、但不替你学习的个人自学系统。** 它是一套纯 Markdown 的教学协议与状态文件：AI 按协议诊断、讲解、出题和安排复习，并把**有证据的**学习进度写进普通文件，下次任何 AI 都能接着教。
 
-## 软件平台
+当前版本：**v2.1.0**（见 [VERSION.md](personal-learning/VERSION.md)）
 
-[Personal Learning 平台源码与启动说明](personal-learning-platform/README.md) · [部署与安全配置](personal-learning-platform/docs/DEPLOYMENT.md) · [完整验收状态](personal-learning-platform/docs/ACCEPTANCE.md)
+## 特点
 
-软件与 Skill 共享教学状态引擎；个人记录不包含在公开源码或演示数据中。当前提供完整功能代码与内部验收环境，真实模型、语音、邮件、Google 登录及生产恢复仍需服务配置和验收后正式上线。
+- **证据驱动的掌握度**：0–5 级累积门槛——首次无提示做对才到 2，≥2 天后无提示复测才到 3。看过、听懂、浏览复习页都不算掌握。
+- **跨会话记忆**：每门课一个 `state.md`（薄弱点、错误、信心、复习时间、下一步），换对话、换 AI 都能无缝继续。
+- **知识归纳 HTML**：一句话生成单文件复习页——薄弱点优先、知识分类树、每个知识点的核心 / 详解 / 结构判据 / 例子 / 易错点 / 关联 / 自测；离线可用、可搜索筛选、深浅色、可打印。[看演示](personal-learning/examples/knowledge-summary-demo/)
+- **四种模式**：Normal（长期掌握）、Exam（考前冲刺）、Quick（对话内概括）、Knowledge Summary（知识归纳）。
+- **防拖延**：永远只给一个 5–15 分钟可开始的下一步；中断几天直接说“继续”。
+- **多助教协作**：每门课可以有自己的助教 bot，只写自己的课程数据；协议由一个维护者统一管理和审计。
+- **适配任何 agent**：不依赖特定平台。只要 AI 能读写本地文件（Claude Code、Codex、Cursor、各类桌面 / 云端 agent 等），把 `SKILL.md` 交给它即可。
 
-## 快速入口
+## 快速开始
 
-- 教学对话：[TEACHING-HANDOFF.md](personal-learning/TEACHING-HANDOFF.md)
-- 维护与版本：[VERSION.md](personal-learning/VERSION.md)
-- 核心协议：[SKILL.md](personal-learning/SKILL.md)
-- 运行数据：[data/](personal-learning/data/)
-- 发布包：`personal-learning-skill.zip`、`dist/personal-learning.zip`
+1. 克隆仓库，把 `personal-learning/` 作为技能目录交给你的 AI agent（或在对话开头让它读取 `personal-learning/SKILL.md`）。
+2. 复制 `personal-learning/assets/learner-profile.md` 到 `personal-learning/data/learner-profile.md` 并填写。
+3. 对 AI 说：“这是我这门课的资料，我想扎实掌握”——它会建立资料索引、知识地图和学习状态。
+4. 之后只需说：“继续”“帮我快速了解这门课”“下周三考试”“今天只有 10 分钟”。
 
-根目录的 `archive/` 保存早期只读快照及升级前回退快照，不能作为运行数据来源。
+更多说法见 [使用指南](docs/USER-GUIDE.md)。
 
-## 思维导图模式
+### 试一下知识归纳构建器
 
-直接说“用思维导图浏览 ISOM3540 知识点”或“给我条件概率的知识点总览”。系统先展示简洁结构，再按需深入：
+```bash
+cd personal-learning
+python3 scripts/build_summary.py examples/knowledge-summary-demo/cards.json \
+  --state examples/knowledge-summary-demo/state.md \
+  --map examples/knowledge-summary-demo/knowledge-map.md \
+  --out /tmp/stats-overview.html
+```
 
-| 你说 | 系统会做 |
-| --- | --- |
-| 展开 3 / 展开条件概率 | 查看该分支的知识点与一句核心含义 |
-| 返回上一级 / 返回总览 | 回到原结构，保留分支编号 |
-| 查看关联 | 展示先修、对比或应用关系 |
-| 显示掌握度 / 只看薄弱点 | 从当前 state 临时标注或筛选，保留待核验说明 |
-| 解释贝叶斯 / 给我一道练习 | 从所选节点进入讲解或练习 |
+只需 Python 3 标准库；生成的 HTML 不引用任何外部脚本、字体或样式。
 
-仅浏览不会增加掌握度或覆盖原 Next Action。规则见 [mind-map.md](personal-learning/references/mind-map.md)，验证记录见 [REVIEW.md](tests/mind-map-v1.3.0/REVIEW.md)。已有教学对话使用新模式前，重新读取最新 VERSION、SKILL 与 TEACHING-HANDOFF。
+## 目录结构
 
-## v1.2.0 优化与验证
+```
+personal-learning/            唯一源目录（技能本体）
+├── SKILL.md                  核心教学协议
+├── TEACHING-HANDOFF.md       课程助教启动卡
+├── VERSION.md                版本与变更记录
+├── references/               细则：流水线、状态字段、掌握度、模式、知识归纳、Next Action、教学契约
+├── assets/                   模板：画像、state、知识地图、日志、资料索引、知识归纳 HTML 与卡片 JSON
+├── scripts/                  build_summary.py（知识归纳构建）、state.mjs（可选结构化证据）
+├── shared/                   与软件平台共享的教学引擎与策略（生成副本）
+├── examples/                 公开演示数据
+└── data/                     你的私人数据（不进仓库，只有 README）
+docs/                         架构说明、使用指南、历史文档
+scripts/                      维护工具：audit.sh、audit_state.py、release.sh、verify_release.py
+ielts-learning-os/            独立维护的 IELTS 子系统
+SYSTEM-MAINTENANCE.md         维护者手册
+```
 
-- [实施报告](tests/tutor-v1.2.0/REPORT.md)
-- [历史待核验清单](tests/tutor-v1.2.0/historical-review.md)
-- 行为原始回复与评分保存在 `tests/tutor-v1.2.0/`；教学对话继续前重新读取最新版本与交接卡。
+架构与学习闭环图见 [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md)。
+
+## 隐私
+
+学习者画像、各课程状态与日志、知识归纳成品、测试记录和发布包都在 `.gitignore` 中排除，公开仓库只包含协议、模板、脚本、演示与文档。`scripts/audit.sh` 会检查公开文件里是否出现私有课程 ID。课程资料通常受版权保护，请勿提交。
+
+## 维护者
+
+修改协议、模板或脚本后：更新 `VERSION.md` → `scripts/audit.sh` → `scripts/release.sh` → 提交。详见 [SYSTEM-MAINTENANCE.md](SYSTEM-MAINTENANCE.md)。可选的软件平台在单独项目中开发，`personal-learning/shared/` 是其共享教学引擎的生成副本。

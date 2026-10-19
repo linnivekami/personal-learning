@@ -1,0 +1,47 @@
+{
+ "schema": "plos-knowledge-summary/1",
+ "_说明": "复制到 data/projects/<project>/summaries/<topic>.json 后填写；字段规则见 references/knowledge-summary.md。以 _ 开头的键只是说明，可删除。",
+ "meta": {
+  "project": "<project-id>",
+  "id": "<topic-id，如 midterm-overview>",
+  "title": "<课程/主题> · 知识归纳",
+  "subtitle": "<范围一句话，如 第 1–6 讲 + 案例>",
+  "scope": "<覆盖范围与未覆盖说明>",
+  "intro": "<可选：页首说明，可含 <b>加粗</b>>",
+  "pills": ["<可选：考试日期/题型/允许材料等，来自资料或用户>"],
+  "sources": ["<资料文件名或 material-index 条目>"]
+ },
+ "sections": [
+  {"id": "<sec-id>", "n": "1", "title": "<分类中文名>", "en": "<English name>", "summary": "<这一类解决什么问题>"}
+ ],
+ "cards": [
+  {
+   "id": "<与 knowledge-map 节点 #id 一致的小写 ID>",
+   "node": "<knowledge-map 节点路径，如 2 分布与抽样 > 正态分布与 z 值>",
+   "sec": "<sec-id>",
+   "stateTopic": "<state.md Mastery 表 Topic 原文；无对应则删除此键，页面显示“未记录”>",
+   "memoryItem": "<可选：state.md Memory 表 Knowledge Item 原文；缺省时沿用 stateTopic>",
+   "weak": "<可选：薄弱原因，只能来自 state 的 Weaknesses / Error Map / 实际作答证据>",
+   "title": "<知识点中文名>",
+   "en": "<English term>",
+   "origin": "source",
+   "sourceRef": "<出处，如 Lecture 3 p.12>",
+   "core": "<一句话核心：它解决什么问题 / 关键关系>",
+   "explain": "<详解：最小充分解释，英文术语用 <b>加粗</b>；行内公式写 \\( … \\)，独立公式写 \\[ … \\]，美元符号写 \\$>",
+   "criteria": ["<结构判据：看到什么条件/结构就该想到它>"],
+   "why": "<为什么重要：决策或考试中的作用>",
+   "example": {"text": "<例子，优先用资料中的数字>", "origin": "source"},
+   "formulas": [{"tex": "<TeX，只在确实需要时提供>", "note": "<读法或结构含义>", "origin": "source"}],
+   "vars": [["<TeX 符号>", "<含义>"]],
+   "traps": ["<易错点>", {"text": "<课外补充的易错点>", "origin": "outside"}],
+   "related": [{"id": "<本页另一张卡的 id>", "type": "prereq"}, {"id": "<本页外节点>", "label": "<显示名>", "type": "apply"}],
+   "quiz": {"q": "<先答再看的自测题>", "a": "<答案与关键理由>", "origin": "computed"},
+   "figure": {"type": "flow", "steps": ["<步骤1>", "<步骤2>", "<步骤3>"], "caption": "<图注>"},
+   "keywords": ["<可选：额外搜索词，如中英文同义词>"]
+  }
+ ],
+ "weakFirst": [{"card": "<card-id>", "why": "<可选：人工排序的薄弱项与原因；缺省时由徽章自动生成>"}],
+ "formulaSheet": [{"group": "<可选：自定义公式总表分组；缺省时按分类自动汇总>", "items": [{"tex": "<TeX>", "note": "<说明>", "card": "<card-id>"}]}],
+ "tables": [{"title": "<可选：查表数据，如 z 表>", "origin": "source", "head": ["<列1>", "<列2>"], "rows": [["<值>", "<值>"]]}],
+ "coverageGaps": [{"source": "<资料与页码>", "issue": "<无法提取的图表/扫描页等>", "action": "<处理方式>"}]
+}
