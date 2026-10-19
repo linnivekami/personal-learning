@@ -1,0 +1,13 @@
+dist/
+site.tar.gz
+node_modules/
+.wrangler/
+.dev.vars
+.env
+.env.*
+!.env.example
+.sites-runtime/
+playwright-report/
+test-results/
+private/
+*.log

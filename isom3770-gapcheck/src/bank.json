@@ -1,0 +1,2002 @@
+[
+ {
+  "id": 1,
+  "section": "S1",
+  "sectionName": "Supply Chain Fundamentals",
+  "topic": "S1-01",
+  "code": "S1 · 01",
+  "topicTitle": "Supply Chain / Network",
+  "category": "Supply Chain Basics",
+  "type": "Concept",
+  "difficulty": 2,
+  "question": "Which statement best describes a supply chain?",
+  "options": [
+   "Only suppliers, warehouses, and carriers upstream of retailers",
+   "All stages and flows involved directly or indirectly in fulfilling a customer request",
+   "A single firm’s internal production departments",
+   "Only the firms that physically manufacture a product"
+  ],
+  "answer": 1,
+  "explain": "Customer is also a stage; it is a network of suppliers, manufacturers, distributors, retailers and associated flows."
+ },
+ {
+  "id": 2,
+  "section": "S1",
+  "sectionName": "Supply Chain Fundamentals",
+  "topic": "S1-02",
+  "code": "S1 · 02",
+  "topicTitle": "Three flows",
+  "category": "Supply Chain Basics",
+  "type": "Concept",
+  "difficulty": 2,
+  "question": "Which direction most accurately describes the three key supply-chain flows?",
+  "options": [
+   "Products upstream; cash downstream; information downstream",
+   "All three flows exclusively downstream",
+   "Products downstream; cash and information exclusively upstream",
+   "Products downstream; cash upstream; information in both directions"
+  ],
+  "answer": 3,
+  "explain": "Material flows mainly toward customers; funds toward suppliers; information moves both ways."
+ },
+ {
+  "id": 3,
+  "section": "S1",
+  "sectionName": "Supply Chain Fundamentals",
+  "topic": "S1-03",
+  "code": "S1 · 03",
+  "topicTitle": "Multiplier / Financial impact",
+  "category": "Supply Chain Basics",
+  "type": "Calculation",
+  "difficulty": 1,
+  "question": "A firm has COGS of $60 million and net income of $3 million. What is its supply-chain multiplier?",
+  "options": [
+   "0.05",
+   "63",
+   "20",
+   "5"
+  ],
+  "answer": 2,
+  "explain": "Supply-chain multiplier = COGS / net income = 60/3 = 20."
+ },
+ {
+  "id": 4,
+  "section": "S1",
+  "sectionName": "Supply Chain Fundamentals",
+  "topic": "S1-03",
+  "code": "S1 · 03",
+  "topicTitle": "Multiplier / Financial impact",
+  "category": "Supply Chain Basics",
+  "type": "Calculation",
+  "difficulty": 2,
+  "question": "A firm has revenue $100, COGS $60, labor $15, overhead $15, and profit $10 per unit. If COGS falls by 10% without changing other items, profit rises by:",
+  "options": [
+   "6%",
+   "40%",
+   "60%",
+   "10%"
+  ],
+  "answer": 2,
+  "explain": "COGS saves $6; profit increases from $10 to $16, i.e. +60%."
+ },
+ {
+  "id": 5,
+  "section": "S1",
+  "sectionName": "Supply Chain Fundamentals",
+  "topic": "S1-04",
+  "code": "S1 · 04",
+  "topicTitle": "Goal: SC surplus",
+  "category": "Supply Chain Basics",
+  "type": "Concept",
+  "difficulty": 2,
+  "question": "The primary objective of supply-chain management is to:",
+  "options": [
+   "Maximize total value created and overall supply-chain profitability",
+   "Maximize retailer profit even if manufacturer losses increase",
+   "Maximize total manufacturing output",
+   "Minimize all inventory regardless of service levels"
+  ],
+  "answer": 0,
+  "explain": "Supply-chain surplus = customer value − total SC cost; evaluate whole-chain profit, not a single stage."
+ },
+ {
+  "id": 6,
+  "section": "S1",
+  "sectionName": "Supply Chain Fundamentals",
+  "topic": "S1-05",
+  "code": "S1 · 05",
+  "topicTitle": "Decision phases",
+  "category": "Supply Chain Basics",
+  "type": "Scenario",
+  "difficulty": 2,
+  "question": "A company decides where to build factories and what long-term capacity each factory should have. Which decision phase is this?",
+  "options": [
+   "Supply-chain operation",
+   "Supply-chain planning",
+   "Daily replenishment control",
+   "Supply-chain strategy/design"
+  ],
+  "answer": 3,
+  "explain": "Factory location/capacity are expensive-to-reverse design decisions, normally with a multi-year horizon."
+ },
+ {
+  "id": 7,
+  "section": "S1",
+  "sectionName": "Supply Chain Fundamentals",
+  "topic": "S1-06",
+  "code": "S1 · 06",
+  "topicTitle": "Cycle vs Push/Pull",
+  "category": "Supply Chain Basics",
+  "type": "Concept",
+  "difficulty": 2,
+  "question": "The replenishment cycle in the cycle view is the interface between:",
+  "options": [
+   "Distributor and manufacturer",
+   "Retailer and distributor",
+   "Manufacturer and supplier",
+   "Customer and retailer"
+  ],
+  "answer": 1,
+  "explain": "Customer order: customer–retailer; replenishment: retailer–distributor; manufacturing: distributor–manufacturer; procurement: manufacturer–supplier."
+ },
+ {
+  "id": 8,
+  "section": "S1",
+  "sectionName": "Supply Chain Fundamentals",
+  "topic": "S1-06",
+  "code": "S1 · 06",
+  "topicTitle": "Cycle vs Push/Pull",
+  "category": "Supply Chain Basics",
+  "type": "Scenario",
+  "difficulty": 2,
+  "question": "A retailer places an order before receiving an actual customer order, based on forecast demand. The retailer’s action is:",
+  "options": [
+   "Demand postponement",
+   "Cycle-service-level planning",
+   "Push process",
+   "Pull process"
+  ],
+  "answer": 2,
+  "explain": "Push occurs in anticipation of customer orders; pull begins after receiving actual customer orders."
+ },
+ {
+  "id": 9,
+  "section": "S2",
+  "sectionName": "Strategic Fit & Six Drivers",
+  "topic": "S2-01",
+  "code": "S2 · 01",
+  "topicTitle": "Strategic fit",
+  "category": "Strategic Fit & Six Drivers",
+  "type": "Scenario",
+  "difficulty": 2,
+  "question": "A retailer promises extremely wide variety and same-day delivery. Which supply-chain configuration most strongly supports strategic fit?",
+  "options": [
+   "Highly centralized inventory and slow bulk replenishment",
+   "Responsive facilities and transport with appropriate inventory and information",
+   "Strictly lowest transportation spending irrespective of time",
+   "A pricing-only change with no operations adjustment"
+  ],
+  "answer": 1,
+  "explain": "Fast response and variety normally require responsive drivers, often at higher cost."
+ },
+ {
+  "id": 10,
+  "section": "S2",
+  "sectionName": "Strategic Fit & Six Drivers",
+  "topic": "S2-01",
+  "code": "S2 · 01",
+  "topicTitle": "Strategic fit",
+  "category": "Strategic Fit & Six Drivers",
+  "type": "Concept",
+  "difficulty": 2,
+  "question": "Which supply-chain driver can often improve both efficiency and responsiveness rather than requiring a direct trade-off?",
+  "options": [
+   "Holding more stock everywhere",
+   "Extra idle factory capacity",
+   "Better information and coordination",
+   "Using premium delivery for every order"
+  ],
+  "answer": 2,
+  "explain": "High-quality timely information improves forecasts, utilization, coordination, and product availability."
+ },
+ {
+  "id": 11,
+  "section": "S2",
+  "sectionName": "Strategic Fit & Six Drivers",
+  "topic": "S2-02",
+  "code": "S2 · 02",
+  "topicTitle": "Six drivers",
+  "category": "Strategic Fit & Six Drivers",
+  "type": "Concept",
+  "difficulty": 2,
+  "question": "Which set contains the three logistical supply-chain drivers?",
+  "options": [
+   "Inventory, sourcing, pricing",
+   "Facilities, information, pricing",
+   "Facilities, transportation, inventory",
+   "Information, pricing, sourcing"
+  ],
+  "answer": 2,
+  "explain": "Logistical = facilities, inventory, transportation; cross-functional = information, sourcing, pricing."
+ },
+ {
+  "id": 12,
+  "section": "S2",
+  "sectionName": "Strategic Fit & Six Drivers",
+  "topic": "S2-03",
+  "code": "S2 · 03",
+  "topicTitle": "Facilities decisions/metrics",
+  "category": "Strategic Fit & Six Drivers",
+  "type": "Scenario",
+  "difficulty": 2,
+  "question": "A factory adds spare capacity to handle sudden orders. The most likely immediate trade-off is:",
+  "options": [
+   "Elimination of variable production cost",
+   "Zero impact on utilization and response time",
+   "Reduced responsiveness and improved fixed-cost efficiency",
+   "Improved responsiveness but potentially lower capacity utilization"
+  ],
+  "answer": 3,
+  "explain": "Excess capacity increases response speed but can mean costly idle resources."
+ },
+ {
+  "id": 13,
+  "section": "S2",
+  "sectionName": "Strategic Fit & Six Drivers",
+  "topic": "S2-03",
+  "code": "S2 · 03",
+  "topicTitle": "Facilities decisions/metrics",
+  "category": "Strategic Fit & Six Drivers",
+  "type": "Concept",
+  "difficulty": 2,
+  "question": "Which metric most directly reflects use of a facility’s available capacity?",
+  "options": [
+   "Capacity utilization",
+   "Days sales outstanding",
+   "Inventory turnover",
+   "Freight cost per shipment"
+  ],
+  "answer": 0,
+  "explain": "Utilization compares actual output/processing with facility capacity."
+ },
+ {
+  "id": 14,
+  "section": "S2",
+  "sectionName": "Strategic Fit & Six Drivers",
+  "topic": "S2-04",
+  "code": "S2 · 04",
+  "topicTitle": "Inventory types/metrics",
+  "category": "Strategic Fit & Six Drivers",
+  "type": "Concept",
+  "difficulty": 2,
+  "question": "Which type of inventory is built deliberately in advance of a predictable peak season?",
+  "options": [
+   "Safety inventory",
+   "Cycle inventory",
+   "Seasonal inventory",
+   "Pipeline inventory"
+  ],
+  "answer": 2,
+  "explain": "Seasonal stock is prebuilt for predictable seasonal demand; safety inventory buffers uncertainty."
+ },
+ {
+  "id": 15,
+  "section": "S2",
+  "sectionName": "Strategic Fit & Six Drivers",
+  "topic": "S2-05",
+  "code": "S2 · 05",
+  "topicTitle": "Transportation",
+  "category": "Strategic Fit & Six Drivers",
+  "type": "Scenario",
+  "difficulty": 2,
+  "question": "Switching from ocean shipping to air freight typically:",
+  "options": [
+   "Lowers transportation cost and increases lead time",
+   "Increases responsiveness but may raise shipping cost",
+   "Leaves inventory design unaffected",
+   "Always reduces overall supply-chain cost"
+  ],
+  "answer": 1,
+  "explain": "Air is faster but normally more expensive; transport choices influence stock and facility locations."
+ },
+ {
+  "id": 16,
+  "section": "S2",
+  "sectionName": "Strategic Fit & Six Drivers",
+  "topic": "S2-06",
+  "code": "S2 · 06",
+  "topicTitle": "Information",
+  "category": "Strategic Fit & Six Drivers",
+  "type": "Concept",
+  "difficulty": 2,
+  "question": "A team jointly agrees on sales forecasts, production and inventory plans. Which driver/activity is most directly involved?",
+  "options": [
+   "Sourcing and procurement",
+   "Pricing and EDLP",
+   "Facility selection",
+   "Information and S&OP"
+  ],
+  "answer": 3,
+  "explain": "S&OP uses shared information across sales, operations and inventory planning."
+ },
+ {
+  "id": 17,
+  "section": "S2",
+  "sectionName": "Strategic Fit & Six Drivers",
+  "topic": "S2-07",
+  "code": "S2 · 07",
+  "topicTitle": "Sourcing",
+  "category": "Strategic Fit & Six Drivers",
+  "type": "Scenario",
+  "difficulty": 2,
+  "question": "Supplier A quotes $5/unit but has poor quality and unreliable delivery; supplier B quotes $5.30/unit with better delivery performance. Best sourcing principle?",
+  "options": [
+   "Choose lowest total cost of ownership, including quality and reliability",
+   "Always choose the lowest quoted price",
+   "Outsource all activities",
+   "Prioritize the largest supplier regardless of cost"
+  ],
+  "answer": 0,
+  "explain": "Procurement evaluates purchase price plus lead time, quality, service and other total ownership costs."
+ },
+ {
+  "id": 18,
+  "section": "S2",
+  "sectionName": "Strategic Fit & Six Drivers",
+  "topic": "S2-08",
+  "code": "S2 · 08",
+  "topicTitle": "Pricing",
+  "category": "Strategic Fit & Six Drivers",
+  "type": "Concept",
+  "difficulty": 2,
+  "question": "Compared with high–low promotion pricing, Everyday Low Pricing (EDLP) tends to:",
+  "options": [
+   "Concentrate orders into promotion weeks",
+   "Eliminate all price sensitivity",
+   "Stabilize downstream demand and replenishment",
+   "Create higher forward buying"
+  ],
+  "answer": 2,
+  "explain": "EDLP avoids sharp discount-driven order spikes and smooths demand."
+ },
+ {
+  "id": 19,
+  "section": "S2",
+  "sectionName": "Strategic Fit & Six Drivers",
+  "topic": "S2-09",
+  "code": "S2 · 09",
+  "topicTitle": "Walmart drivers",
+  "category": "Strategic Fit & Six Drivers",
+  "type": "Case",
+  "difficulty": 2,
+  "question": "Which combination best describes Walmart’s supply chain in the review?",
+  "options": [
+   "No IT spending, unusually high safety stock and direct supplier delivery only",
+   "Specialty products, tiny batches and in-store manufacturing",
+   "EDLP, cross-docking, centralized distribution and its own truck fleet",
+   "High–low pricing, scattered independent buying and air-only transport"
+  ],
+  "answer": 2,
+  "explain": "Walmart uses EDLP, central DCs, cross-docking, an owned fleet and information investment to support low prices."
+ },
+ {
+  "id": 20,
+  "section": "S3",
+  "sectionName": "Seven-Eleven Japan",
+  "topic": "S3-01",
+  "code": "S3 · 01",
+  "topicTitle": "SEJ response model",
+  "category": "Seven-Eleven Japan",
+  "type": "Case",
+  "difficulty": 2,
+  "question": "Seven-Eleven Japan primarily achieved store responsiveness through:",
+  "options": [
+   "Frequent small replenishments coordinated with local demand data",
+   "Once-a-month central bulk delivery",
+   "Cooking every product inside each shop",
+   "High local safety stock of every SKU"
+  ],
+  "answer": 0,
+  "explain": "SEJ emphasizes rapid replenishment, small store inventory and detailed micro-matching."
+ },
+ {
+  "id": 21,
+  "section": "S3",
+  "sectionName": "Seven-Eleven Japan",
+  "topic": "S3-01",
+  "code": "S3 · 01",
+  "topicTitle": "SEJ response model",
+  "category": "Seven-Eleven Japan",
+  "type": "Case",
+  "difficulty": 2,
+  "question": "Which dimension is central to SEJ’s micro-matching of demand and supply?",
+  "options": [
+   "Only supplier manufacturing cost",
+   "Location, time of day, day of week, and season",
+   "Only total advertising expenditure",
+   "Only annual national demand totals"
+  ],
+  "answer": 1,
+  "explain": "SEJ matches demand by store and time, including hourly/daily/seasonal patterns."
+ },
+ {
+  "id": 22,
+  "section": "S3",
+  "sectionName": "Seven-Eleven Japan",
+  "topic": "S3-02",
+  "code": "S3 · 02",
+  "topicTitle": "Facilities / clustering",
+  "category": "Seven-Eleven Japan",
+  "type": "Case",
+  "difficulty": 2,
+  "question": "The primary logistics rationale for clustering 50–60 SEJ stores around one DC is:",
+  "options": [
+   "Relocate manufacturing into each store",
+   "Eliminate all delivery trucks",
+   "Increase stop density and combined-delivery efficiency",
+   "Avoid sharing sales information"
+  ],
+  "answer": 2,
+  "explain": "High store density lowers delivery distance per store and improves density and brand presence."
+ },
+ {
+  "id": 23,
+  "section": "S3",
+  "sectionName": "Seven-Eleven Japan",
+  "topic": "S3-02",
+  "code": "S3 · 02",
+  "topicTitle": "Facilities / clustering",
+  "category": "Seven-Eleven Japan",
+  "type": "Case",
+  "difficulty": 2,
+  "question": "SEJ combined concentrated manufacturing with:",
+  "options": [
+   "Fully independent store production",
+   "Centralized retail in a few large megastores",
+   "An exclusively online distribution network",
+   "Dense, decentralized neighborhood storefronts"
+  ],
+  "answer": 3,
+  "explain": "Manufacturing is centralized while small stores are densely distributed near customers."
+ },
+ {
+  "id": 24,
+  "section": "S3",
+  "sectionName": "Seven-Eleven Japan",
+  "topic": "S3-03",
+  "code": "S3 · 03",
+  "topicTitle": "Distribution / cross-dock",
+  "category": "Seven-Eleven Japan",
+  "type": "Case",
+  "difficulty": 2,
+  "question": "Which statement is correct about the food DCs used by SEJ?",
+  "options": [
+   "They allow only one fixed-temperature category for all products",
+   "They mainly store several weeks of finished-goods inventory",
+   "They send each supplier’s truck directly to each store",
+   "They receive deliveries from suppliers and cross-dock goods with little/no storage"
+  ],
+  "answer": 3,
+  "explain": "SEJ food DCs are cross-docking points, combining frozen/chilled/ambient/warm categories in suitable flows."
+ },
+ {
+  "id": 25,
+  "section": "S3",
+  "sectionName": "Seven-Eleven Japan",
+  "topic": "S3-03",
+  "code": "S3 · 03",
+  "topicTitle": "Distribution / cross-dock",
+  "category": "Seven-Eleven Japan",
+  "type": "Case",
+  "difficulty": 2,
+  "question": "Why did SEJ replace many direct-to-store deliveries with combined deliveries?",
+  "options": [
+   "To reduce receiving traffic and consolidate compatible temperature-controlled loads",
+   "To increase the number of trucks entering stores",
+   "To ban supplier coordination",
+   "To remove point-of-sale systems"
+  ],
+  "answer": 0,
+  "explain": "Combined delivery consolidates supplier loads to reduce store receiving and freight intensity."
+ },
+ {
+  "id": 26,
+  "section": "S3",
+  "sectionName": "Seven-Eleven Japan",
+  "topic": "S3-04",
+  "code": "S3 · 04",
+  "topicTitle": "POS & systems",
+  "category": "Seven-Eleven Japan",
+  "type": "Case",
+  "difficulty": 2,
+  "question": "Which SEJ device is used by store staff to prepare and place product orders?",
+  "options": [
+   "Graphical Order Terminal (GOT)",
+   "DC refrigeration controller",
+   "POS checkout recorder only",
+   "Scanner Terminal for receiving checks"
+  ],
+  "answer": 0,
+  "explain": "GOT supports ordering decisions; scanner checks incoming deliveries; POS records sales and customer patterns."
+ },
+ {
+  "id": 27,
+  "section": "S3",
+  "sectionName": "Seven-Eleven Japan",
+  "topic": "S3-05",
+  "code": "S3 · 05",
+  "topicTitle": "E-commerce / US",
+  "category": "Seven-Eleven Japan",
+  "type": "Case",
+  "difficulty": 2,
+  "question": "Compared with Japanese operations, rapid replenishment was harder to replicate in the United States chiefly because:",
+  "options": [
+   "US stores were more dispersed and conventional wholesalers/DSD were established",
+   "US stores had no suppliers",
+   "US customers never buy prepared meals",
+   "Japanese stores had lower inventory turnover"
+  ],
+  "answer": 0,
+  "explain": "Lower US store density, greater distances and existing DSD/wholesaler routes impede Japan-style distribution."
+ },
+ {
+  "id": 28,
+  "section": "S3",
+  "sectionName": "Seven-Eleven Japan",
+  "topic": "S3-06",
+  "code": "S3 · 06",
+  "topicTitle": "Triple-A",
+  "category": "Seven-Eleven Japan",
+  "type": "Case",
+  "difficulty": 2,
+  "question": "In the review’s Triple-A classification, penalties for late suppliers and aligned delivery incentives illustrate:",
+  "options": [
+   "Agility",
+   "Alignment",
+   "Adaptability",
+   "Asset utilization"
+  ],
+  "answer": 1,
+  "explain": "Alignment means coordinating partner incentives and goals; agility is short-run response, adaptability network change."
+ },
+ {
+  "id": 29,
+  "section": "S4",
+  "sectionName": "Network Design / MILP",
+  "topic": "S4-01",
+  "code": "S4 · 01",
+  "topicTitle": "Network design logic",
+  "category": "Network Design / MILP",
+  "type": "Concept",
+  "difficulty": 2,
+  "question": "Which decision is part of strategic supply-chain network design?",
+  "options": [
+   "Factory locations, capacities and market assignments",
+   "Choosing one customer’s delivery slot today",
+   "Which customer order to pick this morning",
+   "Daily POS scanner calibration"
+  ],
+  "answer": 0,
+  "explain": "Network design chooses number/location/size of plants or DCs, mix and flows."
+ },
+ {
+  "id": 30,
+  "section": "S4",
+  "sectionName": "Network Design / MILP",
+  "topic": "S4-02",
+  "code": "S4 · 02",
+  "topicTitle": "CPLM / MILP",
+  "category": "Network Design / MILP",
+  "type": "Model",
+  "difficulty": 2,
+  "question": "In a capacitated plant-location model, yᵢ and xᵢⱼ are respectively:",
+  "options": [
+   "Plant open/close binary and nonnegative shipment amount",
+   "Demand forecast and supplier lead time",
+   "Shipment quantity and customer demand",
+   "Unit selling price and variable cost"
+  ],
+  "answer": 0,
+  "explain": "y_i ∈{0,1} opens plant i; x_ij ≥0 ships from plant i to market j."
+ },
+ {
+  "id": 31,
+  "section": "S4",
+  "sectionName": "Network Design / MILP",
+  "topic": "S4-02",
+  "code": "S4 · 02",
+  "topicTitle": "CPLM / MILP",
+  "category": "Network Design / MILP",
+  "type": "Model",
+  "difficulty": 2,
+  "question": "Which constraint forces market j to receive all demand Dⱼ when unmet demand is not allowed?",
+  "options": [
+   "Σᵢ yᵢ = Dⱼ",
+   "Σᵢ xᵢⱼ = Dⱼ",
+   "Σⱼ xᵢⱼ = Dⱼ",
+   "Σⱼ yᵢ = Kᵢ"
+  ],
+  "answer": 1,
+  "explain": "Sum shipments over all plants i for a fixed market j, so Σ_i x_ij = D_j."
+ },
+ {
+  "id": 32,
+  "section": "S4",
+  "sectionName": "Network Design / MILP",
+  "topic": "S4-02",
+  "code": "S4 · 02",
+  "topicTitle": "CPLM / MILP",
+  "category": "Network Design / MILP",
+  "type": "Model",
+  "difficulty": 2,
+  "question": "Which constraint prevents a closed plant from shipping products?",
+  "options": [
+   "Σᵢ yᵢ ≤ xᵢⱼ",
+   "Σⱼ xᵢⱼ ≤ Kᵢyᵢ",
+   "Σᵢ xᵢⱼ ≥ Kᵢyᵢ",
+   "Σⱼ xᵢⱼ ≤ Kᵢ + yᵢ"
+  ],
+  "answer": 1,
+  "explain": "Capacity is multiplied by the binary opening variable. If y_i=0, total shipments cannot exceed zero."
+ },
+ {
+  "id": 33,
+  "section": "S4",
+  "sectionName": "Network Design / MILP",
+  "topic": "S4-02",
+  "code": "S4 · 02",
+  "topicTitle": "CPLM / MILP",
+  "category": "Network Design / MILP",
+  "type": "Model",
+  "difficulty": 2,
+  "question": "The total-cost objective for a standard capacitated plant-location model is:",
+  "options": [
+   "Min Σᵢ fᵢyᵢ + Σᵢⱼ cᵢⱼxᵢⱼ",
+   "Min Σᵢ fᵢxᵢⱼ + Σᵢⱼ cᵢⱼyᵢ",
+   "Max Σᵢ fᵢyᵢ + Σᵢⱼ cᵢⱼxᵢⱼ",
+   "Min Σᵢ Kᵢyᵢ + Σᵢⱼ Dⱼxᵢⱼ"
+  ],
+  "answer": 0,
+  "explain": "Choose fixed costs for open sites and unit variable landed costs for shipped quantities."
+ },
+ {
+  "id": 34,
+  "section": "S4",
+  "sectionName": "Network Design / MILP",
+  "topic": "S4-03",
+  "code": "S4 · 03",
+  "topicTitle": "Capacity choice / single sourcing",
+  "category": "Network Design / MILP",
+  "type": "Model",
+  "difficulty": 2,
+  "question": "A site can be closed, low-capacity, or high-capacity (but not both). Which constraint is required?",
+  "options": [
+   "yᵢL + yᵢH ≥ 1",
+   "yᵢL + yᵢH = 2",
+   "yᵢL + yᵢH ≤ 1",
+   "yᵢL − yᵢH = 1"
+  ],
+  "answer": 2,
+  "explain": "The two binary choices can total at most one, so closed is also allowed."
+ },
+ {
+  "id": 35,
+  "section": "S4",
+  "sectionName": "Network Design / MILP",
+  "topic": "S4-03",
+  "code": "S4 · 03",
+  "topicTitle": "Capacity choice / single sourcing",
+  "category": "Network Design / MILP",
+  "type": "Model",
+  "difficulty": 2,
+  "question": "For strictly single sourcing of market j, which condition is essential?",
+  "options": [
+   "Σᵢ zᵢⱼ ≥ 2, with zᵢⱼ binary",
+   "Σⱼ zᵢⱼ = 0 for every plant",
+   "zᵢⱼ continuous with Σᵢ zᵢⱼ = 2",
+   "Σᵢ zᵢⱼ = 1, with zᵢⱼ binary"
+  ],
+  "answer": 3,
+  "explain": "Exactly one plant is selected per market; link shipment x_ij = D_j z_ij when demand must be fully met."
+ },
+ {
+  "id": 36,
+  "section": "S4",
+  "sectionName": "Network Design / MILP",
+  "topic": "S4-04",
+  "code": "S4 · 04",
+  "topicTitle": "Tutorial 1 models",
+  "category": "Network Design / MILP",
+  "type": "Calculation",
+  "difficulty": 2,
+  "question": "A Sleekfon unit has fixed allocated cost 5, production variable cost 5.5 and transport 2.2, all subject to a 25% tariff. Total landed unit cost is:",
+  "options": [
+   "$15.88",
+   "$18.13",
+   "$15.25",
+   "$12.70"
+  ],
+  "answer": 0,
+  "explain": "(5+5.5+2.2)×1.25=12.7×1.25=15.875≈$15.88."
+ },
+ {
+  "id": 37,
+  "section": "S4",
+  "sectionName": "Network Design / MILP",
+  "topic": "S4-04",
+  "code": "S4 · 04",
+  "topicTitle": "Tutorial 1 models",
+  "category": "Network Design / MILP",
+  "type": "Calculation",
+  "difficulty": 2,
+  "question": "Each consulting office can employ at most 10 consultants, and each consultant can complete at most 25 trips/year. A valid annual office-capacity constraint is:",
+  "options": [
+   "Σⱼxᵢⱼ ≥ 250yᵢ",
+   "Σᵢxᵢⱼ ≤ 10yᵢ",
+   "Σⱼxᵢⱼ ≤ 25yᵢ",
+   "Σⱼxᵢⱼ ≤ 250yᵢ"
+  ],
+  "answer": 3,
+  "explain": "10 consultants ×25 trips per consultant = 250 trips per office if opened."
+ },
+ {
+  "id": 38,
+  "section": "S5",
+  "sectionName": "Distribution Network",
+  "topic": "S5-01",
+  "code": "S5 · 01",
+  "topicTitle": "Distribution evaluation",
+  "category": "Distribution Network",
+  "type": "Concept",
+  "difficulty": 2,
+  "question": "Which is a customer-service metric used to evaluate distribution-network design?",
+  "options": [
+   "Order visibility",
+   "Average warehouse rent",
+   "Facility handling cost",
+   "Freight cost per shipment"
+  ],
+  "answer": 0,
+  "explain": "Response time, product variety, availability, customer experience, order visibility and returnability evaluate customer needs."
+ },
+ {
+  "id": 39,
+  "section": "S5",
+  "sectionName": "Distribution Network",
+  "topic": "S5-02",
+  "code": "S5 · 02",
+  "topicTitle": "# Facilities trade-off",
+  "category": "Distribution Network",
+  "type": "Scenario",
+  "difficulty": 2,
+  "question": "As the number of distribution facilities rises substantially, which trade-off is most typical?",
+  "options": [
+   "Facility cost falls and responsiveness falls",
+   "Transportation cost always falls monotonically",
+   "Response time falls while facility and aggregate inventory costs tend to rise",
+   "Inventory pooling improves and inventory cost falls"
+  ],
+  "answer": 2,
+  "explain": "More local nodes improve delivery time but lose pooling benefits, raising facilities and inventory costs."
+ },
+ {
+  "id": 40,
+  "section": "S5",
+  "sectionName": "Distribution Network",
+  "topic": "S5-02",
+  "code": "S5 · 02",
+  "topicTitle": "# Facilities trade-off",
+  "category": "Distribution Network",
+  "type": "Concept",
+  "difficulty": 2,
+  "question": "Why can transportation cost be U-shaped as distribution facilities increase?",
+  "options": [
+   "Returns costs exactly offset outbound costs",
+   "More sites shorten outbound trips at first but ultimately reduce inbound scale economies",
+   "Inbound shipping costs disappear entirely at large network sizes",
+   "All freight costs always increase with consolidation"
+  ],
+  "answer": 1,
+  "explain": "Fewer sites imply long outbound travel; too many sites fragment inbound loads. Intermediate network sizes can minimize transport."
+ },
+ {
+  "id": 41,
+  "section": "S5",
+  "sectionName": "Distribution Network",
+  "topic": "S5-03",
+  "code": "S5 · 03",
+  "topicTitle": "Six designs",
+  "category": "Distribution Network",
+  "type": "Scenario",
+  "difficulty": 2,
+  "question": "A manufacturer ships ordered items straight to consumers without storing them at a distributor. This is:",
+  "options": [
+   "Manufacturer storage with direct shipping (drop shipping)",
+   "Retail storage with pickup",
+   "Distributor storage with customer pickup",
+   "Distributor storage with last-mile delivery"
+  ],
+  "answer": 0,
+  "explain": "Drop shipping keeps the product at manufacturer storage until order fulfillment."
+ },
+ {
+  "id": 42,
+  "section": "S5",
+  "sectionName": "Distribution Network",
+  "topic": "S5-03",
+  "code": "S5 · 03",
+  "topicTitle": "Six designs",
+  "category": "Distribution Network",
+  "type": "Scenario",
+  "difficulty": 2,
+  "question": "Two products from different manufacturers are consolidated in transit and arrive together in one final delivery. The design is:",
+  "options": [
+   "Dedicated local manufacturing",
+   "Single sourcing",
+   "Retail storage and customer pickup",
+   "In-transit merge"
+  ],
+  "answer": 3,
+  "explain": "Manufacturer storage + in-transit merge combines orders on the way to the customer."
+ },
+ {
+  "id": 43,
+  "section": "S5",
+  "sectionName": "Distribution Network",
+  "topic": "S5-04",
+  "code": "S5 · 04",
+  "topicTitle": "Direct vs local inventory",
+  "category": "Distribution Network",
+  "type": "Scenario",
+  "difficulty": 2,
+  "question": "Which product is generally most suitable for manufacturer storage with direct shipping?",
+  "options": [
+   "Low-price bulky item requiring short-distance delivery",
+   "Popular staple with predictable high daily volume",
+   "Perishable food requiring immediate store pickup",
+   "High-value product with many variants and slow demand"
+  ],
+  "answer": 3,
+  "explain": "High-value/variety, lower-volume items benefit from centralized stock despite longer and costlier direct shipping."
+ },
+ {
+  "id": 44,
+  "section": "S5",
+  "sectionName": "Distribution Network",
+  "topic": "S5-05",
+  "code": "S5 · 05",
+  "topicTitle": "Omni-channel",
+  "category": "Distribution Network",
+  "type": "Scenario",
+  "difficulty": 2,
+  "question": "A retailer stocks predictable fast movers in physical outlets but sells uncertain long-tail products online. This primarily exploits:",
+  "options": [
+   "Omni-channel complementarity",
+   "Complete inventory decentralization",
+   "Single-stage optimization",
+   "Supplier shortage gaming"
+  ],
+  "answer": 0,
+  "explain": "Store handles predictable demand, pickup, experience and returns; online supports variety and unpredictable demand."
+ },
+ {
+  "id": 45,
+  "section": "S5",
+  "sectionName": "Distribution Network",
+  "topic": "S5-05",
+  "code": "S5 · 05",
+  "topicTitle": "Omni-channel",
+  "category": "Distribution Network",
+  "type": "Concept",
+  "difficulty": 2,
+  "question": "Which service advantage is most closely associated with physical stores over an online-only channel?",
+  "options": [
+   "Immediate tactile evaluation, returns and pickup",
+   "Unlimited online assortment",
+   "Automatically lower rent and handling cost",
+   "Zero need for on-site inventory"
+  ],
+  "answer": 0,
+  "explain": "Physical stores allow touch/feel, quick pickup and easier returns; online channels improve variety and convenience."
+ },
+ {
+  "id": 46,
+  "section": "S6",
+  "sectionName": "Inventory Models & Service",
+  "topic": "S6-01",
+  "code": "S6 · 01",
+  "topicTitle": "Four inventory systems",
+  "category": "Inventory Models & Service",
+  "type": "Scenario",
+  "difficulty": 2,
+  "question": "A shop must order Halloween costumes only once before the season and demand is uncertain. The appropriate model is:",
+  "options": [
+   "Continuous review (Q,ROP)",
+   "Newsvendor",
+   "Economic order quantity (EOQ)",
+   "Periodic review (T,S)"
+  ],
+  "answer": 1,
+  "explain": "Newsvendor addresses one-shot ordering under uncertain demand and leftover risk."
+ },
+ {
+  "id": 47,
+  "section": "S6",
+  "sectionName": "Inventory Models & Service",
+  "topic": "S6-01",
+  "code": "S6 · 01",
+  "topicTitle": "Four inventory systems",
+  "category": "Inventory Models & Service",
+  "type": "Concept",
+  "difficulty": 2,
+  "question": "In a continuous-review (Q,ROP) system:",
+  "options": [
+   "Lead time is always exactly zero",
+   "Q is the stockout probability",
+   "Order size is variable and review dates are fixed",
+   "Order size is fixed and the order occurs when inventory position reaches ROP"
+  ],
+  "answer": 3,
+  "explain": "Continuous monitoring triggers a fixed-quantity replenishment at the reorder point."
+ },
+ {
+  "id": 48,
+  "section": "S6",
+  "sectionName": "Inventory Models & Service",
+  "topic": "S6-02",
+  "code": "S6 · 02",
+  "topicTitle": "Newsvendor optimal",
+  "category": "Inventory Models & Service",
+  "type": "Calculation",
+  "difficulty": 2,
+  "question": "For a one-period item, selling price p=$80, purchase cost c=$50, salvage value v=$20. The critical ratio is:",
+  "options": [
+   "0.75",
+   "0.60",
+   "0.50",
+   "0.25"
+  ],
+  "answer": 2,
+  "explain": "Underage = 80−50=30; overage=50−20=30; CR=30/(30+30)=0.50."
+ },
+ {
+  "id": 49,
+  "section": "S6",
+  "sectionName": "Inventory Models & Service",
+  "topic": "S6-02",
+  "code": "S6 · 02",
+  "topicTitle": "Newsvendor optimal",
+  "category": "Inventory Models & Service",
+  "type": "Calculation",
+  "difficulty": 2,
+  "question": "A newsvendor sells for $50, purchases for $40 and salvages for $0. Demand N(1000,200²); Φ(−0.84)=0.20. The optimal order quantity is closest to:",
+  "options": [
+   "1000",
+   "832",
+   "1200",
+   "1168"
+  ],
+  "answer": 1,
+  "explain": "Cu=10, Co=40, CR=0.2; z≈−0.84; Q*=1000−0.84×200=832."
+ },
+ {
+  "id": 50,
+  "section": "S6",
+  "sectionName": "Inventory Models & Service",
+  "topic": "S6-02",
+  "code": "S6 · 02",
+  "topicTitle": "Newsvendor optimal",
+  "category": "Inventory Models & Service",
+  "type": "Concept",
+  "difficulty": 2,
+  "question": "For normally distributed demand, if the newsvendor’s critical ratio is below 0.5, then:",
+  "options": [
+   "Optimal Q is above mean demand",
+   "Optimal Q must be zero",
+   "Optimal Q is below mean demand",
+   "Optimal Q equals mean demand"
+  ],
+  "answer": 2,
+  "explain": "CR<0.5 implies z*<0, hence Q* = μ+z*σ < μ."
+ },
+ {
+  "id": 51,
+  "section": "S6",
+  "sectionName": "Inventory Models & Service",
+  "topic": "S6-02",
+  "code": "S6 · 02",
+  "topicTitle": "Newsvendor optimal",
+  "category": "Inventory Models & Service",
+  "type": "Scenario",
+  "difficulty": 2,
+  "question": "A perishable item has unit selling price $20, cost $12, and salvage $3. Which values are Cu and Co?",
+  "options": [
+   "Cu=8, Co=12",
+   "Cu=9, Co=8",
+   "Cu=8, Co=9",
+   "Cu=17, Co=12"
+  ],
+  "answer": 2,
+  "explain": "Cu=p−c=8; Co=c−v=9."
+ },
+ {
+  "id": 52,
+  "section": "S6",
+  "sectionName": "Inventory Models & Service",
+  "topic": "S6-03",
+  "code": "S6 · 03",
+  "topicTitle": "Newsvendor performance",
+  "category": "Inventory Models & Service",
+  "type": "Calculation",
+  "difficulty": 2,
+  "question": "A newsvendor orders Q=150 units. Expected demand is 120 units and expected lost sales are 10 units. Expected leftover inventory equals:",
+  "options": [
+   "30 units",
+   "10 units",
+   "40 units",
+   "20 units"
+  ],
+  "answer": 2,
+  "explain": "Expected sales=120−10=110; leftover=150−110=40 units."
+ },
+ {
+  "id": 53,
+  "section": "S6",
+  "sectionName": "Inventory Models & Service",
+  "topic": "S6-03",
+  "code": "S6 · 03",
+  "topicTitle": "Newsvendor performance",
+  "category": "Inventory Models & Service",
+  "type": "Calculation",
+  "difficulty": 2,
+  "question": "Price=$100, unit cost=$60, salvage=$20, expected sales=120, expected leftover=30. Expected newsvendor profit is:",
+  "options": [
+   "$3,600",
+   "$5,200",
+   "$6,000",
+   "$4,800"
+  ],
+  "answer": 0,
+  "explain": "(100−60)×120−(60−20)×30=4800−1200=$3600."
+ },
+ {
+  "id": 54,
+  "section": "S6",
+  "sectionName": "Inventory Models & Service",
+  "topic": "S6-04",
+  "code": "S6 · 04",
+  "topicTitle": "Type I vs Type II",
+  "category": "Inventory Models & Service",
+  "type": "Concept",
+  "difficulty": 2,
+  "question": "Type I (cycle) service level measures:",
+  "options": [
+   "Fraction of units demanded that are filled",
+   "Fraction of annual costs due to orders",
+   "Average inventory units on hand",
+   "Probability of no stockout during a replenishment cycle"
+  ],
+  "answer": 3,
+  "explain": "CSL is the probability that all demand is satisfied without stockout; fill rate is a unit fraction."
+ },
+ {
+  "id": 55,
+  "section": "S6",
+  "sectionName": "Inventory Models & Service",
+  "topic": "S6-04",
+  "code": "S6 · 04",
+  "topicTitle": "Type I vs Type II",
+  "category": "Inventory Models & Service",
+  "type": "Calculation",
+  "difficulty": 2,
+  "question": "Across 10 replenishment cycles, shortages occur in 2 cycles. Type I service level is:",
+  "options": [
+   "80%",
+   "20%",
+   "98%",
+   "90%"
+  ],
+  "answer": 0,
+  "explain": "Eight of ten cycles have no stockout: CSL = 8/10 = 80%."
+ },
+ {
+  "id": 56,
+  "section": "S6",
+  "sectionName": "Inventory Models & Service",
+  "topic": "S6-04",
+  "code": "S6 · 04",
+  "topicTitle": "Type I vs Type II",
+  "category": "Inventory Models & Service",
+  "type": "Calculation",
+  "difficulty": 2,
+  "question": "Average demand per cycle is 200 units and expected shortage is 8 units. Type II fill rate is:",
+  "options": [
+   "80%",
+   "4%",
+   "92%",
+   "96%"
+  ],
+  "answer": 3,
+  "explain": "Fill rate=1−8/200=96%."
+ },
+ {
+  "id": 57,
+  "section": "S6",
+  "sectionName": "Inventory Models & Service",
+  "topic": "S6-05",
+  "code": "S6 · 05",
+  "topicTitle": "EOQ",
+  "category": "Inventory Models & Service",
+  "type": "Calculation",
+  "difficulty": 2,
+  "question": "Annual demand D=10,000 units, ordering cost K=$50/order, annual holding cost H=$2/unit. EOQ is closest to:",
+  "options": [
+   "1000 units",
+   "500 units",
+   "707 units",
+   "1414 units"
+  ],
+  "answer": 2,
+  "explain": "EOQ=√(2KD/H)=√(2×50×10000/2)=√500000≈707 units."
+ },
+ {
+  "id": 58,
+  "section": "S6",
+  "sectionName": "Inventory Models & Service",
+  "topic": "S6-05",
+  "code": "S6 · 05",
+  "topicTitle": "EOQ",
+  "category": "Inventory Models & Service",
+  "type": "Concept",
+  "difficulty": 2,
+  "question": "At the economic order quantity (assuming standard EOQ assumptions), annual:",
+  "options": [
+   "Ordering cost equals holding cost",
+   "Average cycle inventory equals EOQ",
+   "Holding cost is zero",
+   "Ordering cost equals purchase expenditure"
+  ],
+  "answer": 0,
+  "explain": "At Q*=√(2KD/H), KD/Q* = HQ*/2."
+ },
+ {
+  "id": 59,
+  "section": "S6",
+  "sectionName": "Inventory Models & Service",
+  "topic": "S6-06",
+  "code": "S6 · 06",
+  "topicTitle": "Continuous review ROP",
+  "category": "Inventory Models & Service",
+  "type": "Calculation",
+  "difficulty": 2,
+  "question": "Mean daily demand=100 units/day and deterministic lead time=5 days. With no safety stock, reorder point is:",
+  "options": [
+   "100 units",
+   "600 units",
+   "500 units",
+   "20 units"
+  ],
+  "answer": 2,
+  "explain": "ROP=dL=100×5=500 units."
+ },
+ {
+  "id": 60,
+  "section": "S6",
+  "sectionName": "Inventory Models & Service",
+  "topic": "S6-06",
+  "code": "S6 · 06",
+  "topicTitle": "Continuous review ROP",
+  "category": "Inventory Models & Service",
+  "type": "Calculation",
+  "difficulty": 2,
+  "question": "Independent daily demand has σD=10 units and fixed lead time L=9 days. The standard deviation of demand during lead time is:",
+  "options": [
+   "90 units",
+   "900 units",
+   "10 units",
+   "30 units"
+  ],
+  "answer": 3,
+  "explain": "For constant L, σL=√L×σD=√9×10=30, not LσD."
+ },
+ {
+  "id": 61,
+  "section": "S6",
+  "sectionName": "Inventory Models & Service",
+  "topic": "S6-07",
+  "code": "S6 · 07",
+  "topicTitle": "Lead-time variance",
+  "category": "Inventory Models & Service",
+  "type": "Calculation",
+  "difficulty": 2,
+  "question": "Daily mean demand μD=100, daily σD=10, average lead time L=4 days, and lead-time std sL=2 days. Lead-time-demand variance is:",
+  "options": [
+   "10,400",
+   "40,400",
+   "20,400",
+   "400"
+  ],
+  "answer": 1,
+  "explain": "Variance= LσD²+μD²sL²=4×100+100²×4=400+40000=40,400."
+ },
+ {
+  "id": 62,
+  "section": "S6",
+  "sectionName": "Inventory Models & Service",
+  "topic": "S6-06",
+  "code": "S6 · 06",
+  "topicTitle": "Continuous review ROP",
+  "category": "Inventory Models & Service",
+  "type": "Calculation",
+  "difficulty": 2,
+  "question": "Lead-time demand has mean 500 and σL=100. For 95% CSL take z=1.645. Reorder point and safety stock are closest to:",
+  "options": [
+   "ROP 600; SS 100",
+   "ROP 950; SS 450",
+   "ROP 500; SS 0",
+   "ROP 665; SS 165"
+  ],
+  "answer": 3,
+  "explain": "SS=1.645×100=164.5 and ROP=500+164.5≈665."
+ },
+ {
+  "id": 63,
+  "section": "S6",
+  "sectionName": "Inventory Models & Service",
+  "topic": "S6-08",
+  "code": "S6 · 08",
+  "topicTitle": "Type II ROP design",
+  "category": "Inventory Models & Service",
+  "type": "Calculation",
+  "difficulty": 2,
+  "question": "In (Q,ROP), an order cycle has expected 2 units short and order quantity Q=200. The Type II fill rate is:",
+  "options": [
+   "98%",
+   "95%",
+   "90%",
+   "99%"
+  ],
+  "answer": 3,
+  "explain": "Fill rate=1−n(ROP)/Q=1−2/200=99%."
+ },
+ {
+  "id": 64,
+  "section": "S7",
+  "sectionName": "Periodic Review",
+  "topic": "S7-01",
+  "code": "S7 · 01",
+  "topicTitle": "Periodic review (T,S)",
+  "category": "Periodic Review",
+  "type": "Concept",
+  "difficulty": 2,
+  "question": "In periodic review with review interval T and fixed lead time L, the inventory protection period is:",
+  "options": [
+   "T×L",
+   "L only",
+   "T only",
+   "T+L"
+  ],
+  "answer": 3,
+  "explain": "A review-order decision must cover demand until the next scheduled review order arrives, T+L."
+ },
+ {
+  "id": 65,
+  "section": "S7",
+  "sectionName": "Periodic Review",
+  "topic": "S7-01",
+  "code": "S7 · 01",
+  "topicTitle": "Periodic review (T,S)",
+  "category": "Periodic Review",
+  "type": "Calculation",
+  "difficulty": 2,
+  "question": "Daily demand has μD=20, σD=4, T=3 days, fixed L=6 days. Mean and standard deviation of protection-period demand are:",
+  "options": [
+   "μ=180, σ=12",
+   "μ=60, σ=4",
+   "μ=180, σ=36",
+   "μ=120, σ=12"
+  ],
+  "answer": 0,
+  "explain": "Protection period T+L=9 days, mean=20×9=180; sd=4√9=12."
+ },
+ {
+  "id": 66,
+  "section": "S7",
+  "sectionName": "Periodic Review",
+  "topic": "S7-02",
+  "code": "S7 · 02",
+  "topicTitle": "Inventory position",
+  "category": "Periodic Review",
+  "type": "Calculation",
+  "difficulty": 2,
+  "question": "On-hand inventory is 100 units, backorders 20 units, and pipeline inventory 85 units. Inventory position is:",
+  "options": [
+   "185 units",
+   "205 units",
+   "165 units",
+   "15 units"
+  ],
+  "answer": 2,
+  "explain": "Inventory level=100−20=80; position=80+85=165."
+ },
+ {
+  "id": 67,
+  "section": "S7",
+  "sectionName": "Periodic Review",
+  "topic": "S7-02",
+  "code": "S7 · 02",
+  "topicTitle": "Inventory position",
+  "category": "Periodic Review",
+  "type": "Calculation",
+  "difficulty": 2,
+  "question": "Order-up-to target S=240 and inventory position=165. How many units should the store order?",
+  "options": [
+   "165 units",
+   "75 units",
+   "240 units",
+   "85 units"
+  ],
+  "answer": 1,
+  "explain": "Order quantity=max(0,S−position)=240−165=75."
+ },
+ {
+  "id": 68,
+  "section": "S7",
+  "sectionName": "Periodic Review",
+  "topic": "S7-02",
+  "code": "S7 · 02",
+  "topicTitle": "Inventory position",
+  "category": "Periodic Review",
+  "type": "Concept",
+  "difficulty": 2,
+  "question": "Which inventory component must be included in inventory position but is not physically on hand?",
+  "options": [
+   "Current sales revenue",
+   "Pipeline units already ordered but not received",
+   "Nominal factory capacity",
+   "Seasonal safety stock already received"
+  ],
+  "answer": 1,
+  "explain": "Inventory position equals on-hand minus backorders plus outstanding pipeline orders."
+ },
+ {
+  "id": 69,
+  "section": "S7",
+  "sectionName": "Periodic Review",
+  "topic": "S7-03",
+  "code": "S7 · 03",
+  "topicTitle": "Base-stock insights",
+  "category": "Periodic Review",
+  "type": "Scenario",
+  "difficulty": 2,
+  "question": "Compared with a continuous-review (Q,ROP) system, periodic-review (T,S) typically has:",
+  "options": [
+   "No need for lead-time coverage",
+   "No order-up-to target",
+   "Fixed order timing and variable order size",
+   "Variable order timing and fixed order size"
+  ],
+  "answer": 2,
+  "explain": "Periodic review triggers at predetermined T intervals and orders the gap up to S."
+ },
+ {
+  "id": 70,
+  "section": "S8",
+  "sectionName": "Risk Pooling",
+  "topic": "S8-01",
+  "code": "S8 · 01",
+  "topicTitle": "Risk pooling types",
+  "category": "Risk Pooling",
+  "type": "Concept",
+  "difficulty": 2,
+  "question": "The key statistical mechanism underlying risk pooling is:",
+  "options": [
+   "Increasing the number of isolated safety-stock locations",
+   "Aggregating uncertain demand to allow offsets across units",
+   "Adding all standard deviations regardless of correlation",
+   "Guaranteeing identical customer demand in all regions"
+  ],
+  "answer": 1,
+  "explain": "Less-than-perfectly-correlated demand fluctuations partially cancel, decreasing aggregate uncertainty relative to total demand."
+ },
+ {
+  "id": 71,
+  "section": "S8",
+  "sectionName": "Risk Pooling",
+  "topic": "S8-02",
+  "code": "S8 · 02",
+  "topicTitle": "Location pooling",
+  "category": "Risk Pooling",
+  "type": "Calculation",
+  "difficulty": 2,
+  "question": "Two independent markets each have demand standard deviation 30 units. Standard deviation of their combined demand is closest to:",
+  "options": [
+   "30",
+   "42.4",
+   "60",
+   "90"
+  ],
+  "answer": 1,
+  "explain": "σpool=√(30²+30²)=√1800≈42.4."
+ },
+ {
+  "id": 72,
+  "section": "S8",
+  "sectionName": "Risk Pooling",
+  "topic": "S8-02",
+  "code": "S8 · 02",
+  "topicTitle": "Location pooling",
+  "category": "Risk Pooling",
+  "type": "Calculation",
+  "difficulty": 2,
+  "question": "Four independent identical stores each have CV=0.40. The combined demand’s CV is:",
+  "options": [
+   "0.40",
+   "0.10",
+   "0.80",
+   "0.20"
+  ],
+  "answer": 3,
+  "explain": "For n independent identical locations, CVpool=CV0/√n=0.4/2=0.2."
+ },
+ {
+  "id": 73,
+  "section": "S8",
+  "sectionName": "Risk Pooling",
+  "topic": "S8-03",
+  "code": "S8 · 03",
+  "topicTitle": "Product & correlation",
+  "category": "Risk Pooling",
+  "type": "Calculation",
+  "difficulty": 2,
+  "question": "Two demands have standard deviations 20 and 30 units and correlation ρ=0. What is their combined standard deviation?",
+  "options": [
+   "50",
+   "10",
+   "25",
+   "36.1"
+  ],
+  "answer": 3,
+  "explain": "√(20²+30²+2×0×20×30)=√1300≈36.1."
+ },
+ {
+  "id": 74,
+  "section": "S8",
+  "sectionName": "Risk Pooling",
+  "topic": "S8-03",
+  "code": "S8 · 03",
+  "topicTitle": "Product & correlation",
+  "category": "Risk Pooling",
+  "type": "Concept",
+  "difficulty": 2,
+  "question": "For two identical-demand products, pooling benefit is greatest when correlation is:",
+  "options": [
+   "ρ=+0.5",
+   "ρ=−1",
+   "ρ=0",
+   "ρ=+1"
+  ],
+  "answer": 1,
+  "explain": "With ρ=−1 and equal σ, combined standard deviation becomes zero."
+ },
+ {
+  "id": 75,
+  "section": "S8",
+  "sectionName": "Risk Pooling",
+  "topic": "S8-04",
+  "code": "S8 · 04",
+  "topicTitle": "Lead-time pooling: DC",
+  "category": "Risk Pooling",
+  "type": "Scenario",
+  "difficulty": 2,
+  "question": "Stores receive rapidly from a nearby DC that pools slower upstream deliveries. This is mainly:",
+  "options": [
+   "Single sourcing through exclusive contracts",
+   "Lead-time pooling through consolidated distribution",
+   "Retail price discrimination",
+   "Forward buying"
+  ],
+  "answer": 1,
+  "explain": "A long upstream lead time can be pooled at the DC while keeping short delivery time downstream."
+ },
+ {
+  "id": 76,
+  "section": "S8",
+  "sectionName": "Risk Pooling",
+  "topic": "S8-05",
+  "code": "S8 · 05",
+  "topicTitle": "Postponement",
+  "category": "Risk Pooling",
+  "type": "Scenario",
+  "difficulty": 2,
+  "question": "A manufacturer stocks generic devices and configures language variants only after orders arrive. This illustrates:",
+  "options": [
+   "Postponement / delayed differentiation",
+   "Early product differentiation",
+   "Demand synchronization",
+   "Shortage gaming"
+  ],
+  "answer": 0,
+  "explain": "Common inventory is pooled before the push–pull boundary; customization follows the order."
+ },
+ {
+  "id": 77,
+  "section": "S8",
+  "sectionName": "Risk Pooling",
+  "topic": "S8-05",
+  "code": "S8 · 05",
+  "topicTitle": "Postponement",
+  "category": "Risk Pooling",
+  "type": "Concept",
+  "difficulty": 2,
+  "question": "Which condition most strongly supports economically attractive postponement?",
+  "options": [
+   "All variants always have perfectly identical demand",
+   "Supplier lead time is always zero",
+   "Demand across variants is diverse and late customization is inexpensive",
+   "Customization is very slow and expensive"
+  ],
+  "answer": 2,
+  "explain": "Pool upstream generic stock and postpone variants only when inventory savings exceed delayed configuration cost."
+ },
+ {
+  "id": 78,
+  "section": "S8",
+  "sectionName": "Risk Pooling",
+  "topic": "S8-06",
+  "code": "S8 · 06",
+  "topicTitle": "Capacity pooling/chaining",
+  "category": "Risk Pooling",
+  "type": "Case",
+  "difficulty": 2,
+  "question": "The main insight of the long-chain flexible-capacity example is:",
+  "options": [
+   "Every factory should make just one product with no alternatives",
+   "Every factory must be able to make every product to gain any benefit",
+   "A limited, well-connected set of flexible links can approach full-flexibility benefits",
+   "All capacities must be doubled before flexibility helps"
+  ],
+  "answer": 2,
+  "explain": "A little flexibility goes a long way when the production-product network is well connected."
+ },
+ {
+  "id": 79,
+  "section": "S8",
+  "sectionName": "Risk Pooling",
+  "topic": "S8-07",
+  "code": "S8 · 07",
+  "topicTitle": "Epson T2 economics",
+  "category": "Risk Pooling",
+  "type": "Calculation",
+  "difficulty": 2,
+  "question": "In the Epson postponement example, annual inventory holding saving is about $1.385M, while added assembly costs are about $4.290M. Net annual economic impact is approximately:",
+  "options": [
+   "+$5.675M",
+   "−$2.905M",
+   "−$1.385M",
+   "+$2.905M"
+  ],
+  "answer": 1,
+  "explain": "Net=1.385−4.290≈−$2.905M. Pooling is not worthwhile if delayed assembly cost exceeds savings."
+ },
+ {
+  "id": 80,
+  "section": "S9",
+  "sectionName": "Beer Game",
+  "topic": "S9-01",
+  "code": "S9 · 01",
+  "topicTitle": "Beer game mechanics",
+  "category": "Beer Game",
+  "type": "Case",
+  "difficulty": 2,
+  "question": "In the Beer Game, which player directly observes final consumer demand?",
+  "options": [
+   "Distributor",
+   "Manufacturer",
+   "Retailer",
+   "Wholesaler"
+  ],
+  "answer": 2,
+  "explain": "Only the retailer sees true customer orders; other upstream players observe downstream orders."
+ },
+ {
+  "id": 81,
+  "section": "S10",
+  "sectionName": "Bullwhip Effect",
+  "topic": "S10-07",
+  "code": "S10 · 07",
+  "topicTitle": "Remedies",
+  "category": "Bullwhip Effect",
+  "type": "Scenario",
+  "difficulty": 2,
+  "question": "Which intervention directly addresses multiple causes of the bullwhip effect while improving supply-chain coordination?",
+  "options": [
+   "Increase minimum order batches and restrict POS information",
+   "Share point-of-sale demand data, shorten lead time, and stagger replenishments",
+   "Use sporadic deep trade promotions and proportional shortage rationing",
+   "Reward managers for maximizing order quantity rather than end sales"
+  ],
+  "answer": 1,
+  "explain": "Sharing actual POS demand plus EDI/RFID/coordination, smoother small batches and shorter lead times reduce artificial upstream swings."
+ },
+ {
+  "id": 82,
+  "section": "S10",
+  "sectionName": "Bullwhip Effect",
+  "topic": "S10-01",
+  "code": "S10 · 01",
+  "topicTitle": "Bullwhip definition",
+  "category": "Bullwhip Effect",
+  "type": "Concept",
+  "difficulty": 2,
+  "question": "The bullwhip effect is best described as:",
+  "options": [
+   "Amplification of order and inventory variability upstream relative to customer demand",
+   "A smooth match between customer sales and manufacturer schedules",
+   "The reduction of waiting time by using more safety stock",
+   "Reduction in demand variance as orders move upstream"
+  ],
+  "answer": 0,
+  "explain": "Small consumer-demand changes create larger upstream-order and inventory fluctuations."
+ },
+ {
+  "id": 83,
+  "section": "S10",
+  "sectionName": "Bullwhip Effect",
+  "topic": "S10-02",
+  "code": "S10 · 02",
+  "topicTitle": "Six causes (exact names)",
+  "category": "Bullwhip Effect",
+  "type": "Concept",
+  "difficulty": 2,
+  "question": "Twenty retailers each sell 100 cases weekly but all order them on Monday instead of spreading orders evenly. Which bullwhip driver does this most directly illustrate?",
+  "options": [
+   "Trade promotions",
+   "Lead-time pooling",
+   "Shortage gaming",
+   "Order synchronization"
+  ],
+  "answer": 3,
+  "explain": "Ordering on the same day creates large artificial peaks despite stable weekly consumption."
+ },
+ {
+  "id": 84,
+  "section": "S10",
+  "sectionName": "Bullwhip Effect",
+  "topic": "S10-03",
+  "code": "S10 · 03",
+  "topicTitle": "Synchronization / batching",
+  "category": "Bullwhip Effect",
+  "type": "Scenario",
+  "difficulty": 2,
+  "question": "A retailer sells 100 units each week but orders 400 units only every fourth week. This illustrates:",
+  "options": [
+   "Shortage gaming",
+   "Order batching",
+   "Product pooling",
+   "Chase capacity planning"
+  ],
+  "answer": 1,
+  "explain": "Batching makes upstream orders 400,0,0,0 while final demand remains 100 per week."
+ },
+ {
+  "id": 85,
+  "section": "S10",
+  "sectionName": "Bullwhip Effect",
+  "topic": "S10-04",
+  "code": "S10 · 04",
+  "topicTitle": "Promotions / forward buying",
+  "category": "Bullwhip Effect",
+  "type": "Scenario",
+  "difficulty": 2,
+  "question": "A supplier offers a short-term wholesale discount. Retailers buy extra stock for future weeks, although consumer purchases have not increased. This is:",
+  "options": [
+   "Product customization",
+   "Capacity pooling",
+   "Forward buying",
+   "Permanent market growth"
+  ],
+  "answer": 2,
+  "explain": "Promotion shifts later orders into the discount period; it does not itself create additional final consumption."
+ },
+ {
+  "id": 86,
+  "section": "S10",
+  "sectionName": "Bullwhip Effect",
+  "topic": "S10-05",
+  "code": "S10 · 05",
+  "topicTitle": "Overreaction / rationing",
+  "category": "Bullwhip Effect",
+  "type": "Scenario",
+  "difficulty": 2,
+  "question": "A supplier allocates scarce units in proportion to orders. Retailers submit inflated orders to obtain more stock. This is:",
+  "options": [
+   "Shortage gaming / rationing",
+   "Risk pooling",
+   "Level capacity",
+   "EDLP"
+  ],
+  "answer": 0,
+  "explain": "Proportional allocation incentivizes phantom orders. Allocating based on past sales mitigates gaming."
+ },
+ {
+  "id": 87,
+  "section": "S10",
+  "sectionName": "Bullwhip Effect",
+  "topic": "S10-06",
+  "code": "S10 · 06",
+  "topicTitle": "Lead-time amplification",
+  "category": "Bullwhip Effect",
+  "type": "Calculation",
+  "difficulty": 2,
+  "question": "Demand drops permanently from 100 to 90 units/week. With lead time 4 weeks, target pipeline changes from 400 to 360. To correct the pipeline in the first week under the lecture’s simplified rule, the order is:",
+  "options": [
+   "140 units",
+   "90 units",
+   "50 units",
+   "100 units"
+  ],
+  "answer": 2,
+  "explain": "Need current replenishment 90 plus a −40 pipeline adjustment = 50; long lead time amplifies order changes."
+ },
+ {
+  "id": 88,
+  "section": "S11",
+  "sectionName": "S&OP / Red Tomato",
+  "topic": "S11-01",
+  "code": "S11 · 01",
+  "topicTitle": "Predictable variability",
+  "category": "S&OP / Red Tomato",
+  "type": "Concept",
+  "difficulty": 2,
+  "question": "Predictable variability refers chiefly to:",
+  "options": [
+   "Forecastable demand trends and seasonality",
+   "Inability to plan production",
+   "Complete elimination of demand changes",
+   "Unknown random demand deviations with no recurring pattern"
+  ],
+  "answer": 0,
+  "explain": "Demand level, trends and seasonal peaks can be planned; they differ from irreducible uncertainty."
+ },
+ {
+  "id": 89,
+  "section": "S11",
+  "sectionName": "S&OP / Red Tomato",
+  "topic": "S11-02",
+  "code": "S11 · 02",
+  "topicTitle": "Level vs chase",
+  "category": "S&OP / Red Tomato",
+  "type": "Scenario",
+  "difficulty": 2,
+  "question": "A company maintains stable production all year, building stock during low-demand months for a seasonal peak. This is:",
+  "options": [
+   "Postponement-only strategy",
+   "Level-capacity strategy",
+   "Rationing",
+   "Chase strategy"
+  ],
+  "answer": 1,
+  "explain": "Level capacity keeps output stable and uses seasonal inventory; chase adjusts workforce/capacity."
+ },
+ {
+  "id": 90,
+  "section": "S11",
+  "sectionName": "S&OP / Red Tomato",
+  "topic": "S11-07",
+  "code": "S11 · 07",
+  "topicTitle": "Promo demand calculation",
+  "category": "S&OP / Red Tomato",
+  "type": "Calculation",
+  "difficulty": 3,
+  "question": "Red Tomato discounts a product by $1 in January. Base demands are Jan=1600, Feb=3000, Mar=3200. Under D′Jan=1.1DJan+0.2DFeb+0.2DMar, what is January promotional demand?",
+  "options": [
+   "1,760 units",
+   "2,400 units",
+   "3,600 units",
+   "3,000 units"
+  ],
+  "answer": 3,
+  "explain": "New January demand =1.1×1600+0.2×3000+0.2×3200=1760+600+640=3000 units; next two months fall to 0.8× their originals."
+ },
+ {
+  "id": 91,
+  "section": "S11",
+  "sectionName": "S&OP / Red Tomato",
+  "topic": "S11-03",
+  "code": "S11 · 03",
+  "topicTitle": "Demand promotion sources",
+  "category": "S&OP / Red Tomato",
+  "type": "Concept",
+  "difficulty": 2,
+  "question": "Which promotional demand source shifts future purchases earlier without necessarily increasing total market consumption?",
+  "options": [
+   "Forward buying",
+   "Stealing share",
+   "Adding a new market",
+   "Market growth"
+  ],
+  "answer": 0,
+  "explain": "Forward buying advances future purchases; market growth adds category demand, while share stealing redirects it."
+ },
+ {
+  "id": 92,
+  "section": "S11",
+  "sectionName": "S&OP / Red Tomato",
+  "topic": "S11-04",
+  "code": "S11 · 04",
+  "topicTitle": "S&OP",
+  "category": "S&OP / Red Tomato",
+  "type": "Concept",
+  "difficulty": 2,
+  "question": "Sales and Operations Planning (S&OP) primarily integrates:",
+  "options": [
+   "Only final-stage retailer pricing",
+   "Only factory engineering layouts",
+   "Only supplier invoice approvals with tax accounting",
+   "Marketing demand estimates with operational capacity and inventory plans"
+  ],
+  "answer": 3,
+  "explain": "S&OP aligns forecast, production, capacity, inventory and profit plans across functions."
+ },
+ {
+  "id": 93,
+  "section": "S11",
+  "sectionName": "S&OP / Red Tomato",
+  "topic": "S11-05",
+  "code": "S11 · 05",
+  "topicTitle": "Red Tomato parameters",
+  "category": "S&OP / Red Tomato",
+  "type": "Calculation",
+  "difficulty": 2,
+  "question": "Red Tomato has 20 days/month at 8 h/day, and each worker needs 4 hours per unit. Normal monthly output per worker equals:",
+  "options": [
+   "40 units",
+   "20 units",
+   "32 units",
+   "80 units"
+  ],
+  "answer": 0,
+  "explain": "20×8/4=40 units per worker per month."
+ },
+ {
+  "id": 94,
+  "section": "S11",
+  "sectionName": "S&OP / Red Tomato",
+  "topic": "S11-06",
+  "code": "S11 · 06",
+  "topicTitle": "Red Tomato LP",
+  "category": "S&OP / Red Tomato",
+  "type": "Model",
+  "difficulty": 2,
+  "question": "In Red Tomato’s planning LP, Wₜ=workers, Hₜ=hires, Lₜ=layoffs. The correct workforce-flow constraint is:",
+  "options": [
+   "Wₜ = Hₜ + Lₜ",
+   "Wₜ = Wₜ₋₁ + Hₜ − Lₜ",
+   "Wₜ = Wₜ₋₁ + Lₜ − Hₜ",
+   "Wₜ = Wₜ₋₁ − Hₜ − Lₜ"
+  ],
+  "answer": 1,
+  "explain": "End workforce equals starting workforce plus hires minus layoffs."
+ },
+ {
+  "id": 95,
+  "section": "S11",
+  "sectionName": "S&OP / Red Tomato",
+  "topic": "S11-08",
+  "code": "S11 · 08",
+  "topicTitle": "Promo profit comparison",
+  "category": "S&OP / Red Tomato",
+  "type": "Case",
+  "difficulty": 2,
+  "question": "For the Red Tomato promotion scenarios in the review, which statement is correct?",
+  "options": [
+   "No promotion yields the highest profit",
+   "April promotion yields both the highest revenue and highest profit",
+   "January (off-peak) promotion yields the highest profit despite lower revenue than April",
+   "April and January promotions have exactly equal operating cost"
+  ],
+  "answer": 2,
+  "explain": "Profit: Jan $221,320, no promo $217,340, Apr $211,220; peak promo increases costs enough to offset higher revenue."
+ },
+ {
+  "id": 96,
+  "section": "S12",
+  "sectionName": "Zara / Fast Fashion",
+  "topic": "S12-01",
+  "code": "S12 · 01",
+  "topicTitle": "Zara speed + variety",
+  "category": "Zara / Fast Fashion",
+  "type": "Case",
+  "difficulty": 2,
+  "question": "Zara’s approximate design-to-rack response time in the course case is:",
+  "options": [
+   "2 years",
+   "15 days",
+   "6 months",
+   "60 days"
+  ],
+  "answer": 1,
+  "explain": "Zara responds to changing fashion trends in about 15 days rather than trying to invent every trend."
+ },
+ {
+  "id": 97,
+  "section": "S12",
+  "sectionName": "Zara / Fast Fashion",
+  "topic": "S12-02",
+  "code": "S12 · 02",
+  "topicTitle": "Organization / rhythm",
+  "category": "Zara / Fast Fashion",
+  "type": "Case",
+  "difficulty": 2,
+  "question": "Why does Zara place designers, market experts, planners and prototypes together in work cells?",
+  "options": [
+   "To replace all capacity buffers with higher utilization",
+   "To isolate design from procurement",
+   "To eliminate shop-floor feedback",
+   "To coordinate end-to-end decisions quickly across functions"
+  ],
+  "answer": 3,
+  "explain": "Cross-functional co-location accelerates feedback, sampling, procurement and planning."
+ },
+ {
+  "id": 98,
+  "section": "S12",
+  "sectionName": "Zara / Fast Fashion",
+  "topic": "S12-03",
+  "code": "S12 · 03",
+  "topicTitle": "SC architecture",
+  "category": "Zara / Fast Fashion",
+  "type": "Case",
+  "difficulty": 2,
+  "question": "Which supply-chain architecture best matches Zara in the review?",
+  "options": [
+   "Online-only direct-to-consumer without physical stores",
+   "Local manufacturing in every international retail store",
+   "Entirely offshore production with no company-owned facilities",
+   "Concentrated Spanish factories/DCs, contractors, store feedback and selected air transport"
+  ],
+  "answer": 3,
+  "explain": "Zara combines near-Spain production (own + contractor), two central DCs and rapid replenishment globally."
+ },
+ {
+  "id": 99,
+  "section": "S12",
+  "sectionName": "Zara / Fast Fashion",
+  "topic": "S12-04",
+  "code": "S12 · 04",
+  "topicTitle": "Utilization vs waiting",
+  "category": "Zara / Fast Fashion",
+  "type": "Concept",
+  "difficulty": 2,
+  "question": "Why might Zara deliberately leave production capacity underutilized?",
+  "options": [
+   "Spare capacity ensures there is no demand uncertainty",
+   "Lower utilization automatically eliminates fixed costs",
+   "High utilization always makes waiting times shorter",
+   "Near-full utilization can sharply increase queues and response time"
+  ],
+  "answer": 3,
+  "explain": "Queuing waiting time rises nonlinearly as utilization approaches 100%; buffers support responsiveness."
+ },
+ {
+  "id": 100,
+  "section": "S12",
+  "sectionName": "Zara / Fast Fashion",
+  "topic": "S12-05",
+  "code": "S12 · 05",
+  "topicTitle": "Zara vs competitors",
+  "category": "Zara / Fast Fashion",
+  "type": "Case",
+  "difficulty": 2,
+  "question": "Which comparison between Zara and SHEIN is consistent with the review?",
+  "options": [
+   "Both depend exclusively on early committed capacity for timeless classics",
+   "Zara uses shop feedback and nearer flexible production; SHEIN uses data/ML signals and outsourced small batches",
+   "Zara is online-only; SHEIN relies primarily on its own Spanish factories",
+   "SHEIN launches substantially fewer styles than Zara and uses only brick-and-mortar"
+  ],
+  "answer": 1,
+  "explain": "Zara relies on physical-store feedback, nearby flexibility and ~35k styles/year; SHEIN uses algorithmic signals, PRD partners, very small batches and many more styles."
+ }
+]

@@ -1,0 +1,11 @@
+{
+  "name":"personal-learning", "main":"dist/server/index.js", "compatibility_date":"2026-10-18",
+  "compatibility_flags":["nodejs_compat"],
+  "vars":{"APP_ENV":"production","IDENTITY_MODE":"app","APP_ORIGIN":"http://localhost:8787","MONTHLY_BUDGET_FEN":"30000"},
+  "d1_databases":[{"binding":"DB","database_name":"personal-learning","database_id":"local-development-database","migrations_dir":"migrations"}],
+  "r2_buckets":[{"binding":"BUCKET","bucket_name":"personal-learning-files"}],
+  "queues":{"producers":[{"binding":"TASKS","queue":"personal-learning-tasks"}],"consumers":[{"queue":"personal-learning-tasks","max_batch_size":5,"max_retries":3,"dead_letter_queue":"personal-learning-failed"}]},
+  "triggers":{"crons":["* * * * *"]},
+  "observability":{"enabled":true,"head_sampling_rate":0.1},
+  "limits":{"cpu_ms":30000}
+}

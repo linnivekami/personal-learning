@@ -1,0 +1,168 @@
+/* Pathline "Transit" language: ink on white, signal yellow only for the
+   current item, focus and the next stop; a line colour for your progress. */
+@font-face {
+  font-family: "Barlow";
+  src: url("/fonts/barlow-400-latin.woff2") format("woff2");
+  font-weight: 400;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Barlow";
+  src: url("/fonts/barlow-500-latin.woff2") format("woff2");
+  font-weight: 500;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Barlow";
+  src: url("/fonts/barlow-600-latin.woff2") format("woff2");
+  font-weight: 600;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Barlow";
+  src: url("/fonts/barlow-700-latin.woff2") format("woff2");
+  font-weight: 700;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Barlow Condensed";
+  src: url("/fonts/barlow-condensed-600-latin.woff2") format("woff2");
+  font-weight: 600;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Barlow Condensed";
+  src: url("/fonts/barlow-condensed-700-latin.woff2") format("woff2");
+  font-weight: 700;
+  font-display: swap;
+}
+
+:root {
+  color-scheme: light;
+  --font:
+    "Barlow", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei",
+    "Noto Sans SC", system-ui, sans-serif;
+  --font-condensed:
+    "Barlow Condensed", "Barlow", "PingFang SC", "Microsoft YaHei", sans-serif;
+  --font-mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+
+  --paper: #ffffff;
+  --surface: #ffffff;
+  --surface-2: #f2f2f0;
+  --surface-3: #e8e8e5;
+  --ink: #111111;
+  --ink-2: #2e2e2e;
+  --muted: #5a5f66;
+  --line: #dadbd7;
+  --line-2: #e8e8e5;
+  --line-strong: #8a8f96;
+  --signal: #ffc72c;
+  --signal-soft: #fff4cc;
+  --signal-ink: #111111;
+  --trust: #0b7a53;
+  --trust-soft: #e3f2ea;
+  --warn: #8a5300;
+  --warn-soft: #fbefd6;
+  --danger: #b3261e;
+  --danger-soft: #fbe4e1;
+  --focus: #111111;
+  --shadow: 0 12px 32px rgb(17 17 17 / 0.12);
+
+  --route: #0b7a53;
+  --route-soft: #e3f2ea;
+  --route-ink: #ffffff;
+
+  --radius: 8px;
+  --radius-sm: 6px;
+  --sidebar: 248px;
+  --topbar: 60px;
+}
+:root[data-line="ocean"] {
+  --route: #00727d;
+  --route-soft: #dff0f1;
+}
+:root[data-line="plum"] {
+  --route: #7a3e9d;
+  --route-soft: #efe5f5;
+}
+:root[data-line="amber"] {
+  --route: #b85c00;
+  --route-soft: #fcebd6;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-scheme="light"]) {
+    color-scheme: dark;
+    --paper: #111214;
+    --surface: #18191c;
+    --surface-2: #202226;
+    --surface-3: #2b2d32;
+    --ink: #f2f2f0;
+    --ink-2: #d9d9d6;
+    --muted: #a9adb3;
+    --line: #383b41;
+    --line-2: #2a2c31;
+    --line-strong: #8d929a;
+    --signal-soft: #3a3115;
+    --trust: #52c493;
+    --trust-soft: #13271e;
+    --warn: #eaae55;
+    --warn-soft: #2f2513;
+    --danger: #ff8f85;
+    --danger-soft: #361b19;
+    --focus: #ffc72c;
+    --shadow: 0 12px 32px rgb(0 0 0 / 0.45);
+    --route: #4cc08d;
+    --route-soft: #15281f;
+    --route-ink: #111111;
+  }
+  :root:not([data-scheme="light"])[data-line="ocean"] {
+    --route: #3cbac5;
+    --route-soft: #102628;
+  }
+  :root:not([data-scheme="light"])[data-line="plum"] {
+    --route: #c095dc;
+    --route-soft: #251a2c;
+  }
+  :root:not([data-scheme="light"])[data-line="amber"] {
+    --route: #f2a24c;
+    --route-soft: #2e2213;
+  }
+}
+:root[data-scheme="dark"] {
+  color-scheme: dark;
+  --paper: #111214;
+  --surface: #18191c;
+  --surface-2: #202226;
+  --surface-3: #2b2d32;
+  --ink: #f2f2f0;
+  --ink-2: #d9d9d6;
+  --muted: #a9adb3;
+  --line: #383b41;
+  --line-2: #2a2c31;
+  --line-strong: #8d929a;
+  --signal-soft: #3a3115;
+  --trust: #52c493;
+  --trust-soft: #13271e;
+  --warn: #eaae55;
+  --warn-soft: #2f2513;
+  --danger: #ff8f85;
+  --danger-soft: #361b19;
+  --focus: #ffc72c;
+  --shadow: 0 12px 32px rgb(0 0 0 / 0.45);
+  --route: #4cc08d;
+  --route-soft: #15281f;
+  --route-ink: #111111;
+}
+:root[data-scheme="dark"][data-line="ocean"] {
+  --route: #3cbac5;
+  --route-soft: #102628;
+}
+:root[data-scheme="dark"][data-line="plum"] {
+  --route: #c095dc;
+  --route-soft: #251a2c;
+}
+:root[data-scheme="dark"][data-line="amber"] {
+  --route: #f2a24c;
+  --route-soft: #2e2213;
+}
